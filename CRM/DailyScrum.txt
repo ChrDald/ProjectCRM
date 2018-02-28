@@ -30,3 +30,19 @@ Started created java classes (database, employees)
 3. Where do I need assistance/help?
 - Layout/design of the windows
 - Task prioritization
+
+===============================
+
+Yasser / 02-28-2018
+
+1. What I have done or Not done since the last scrum?
+- created windows layout 
+
+2. What is planned from this scrum to the next?
+- create java classes jFrame and jDialog for:
+	- Customers
+	- Employees
+	- Login
+	- Products
+	- Sales
+	- Support
