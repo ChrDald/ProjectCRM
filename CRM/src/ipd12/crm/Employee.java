@@ -19,7 +19,7 @@ public class Employee {
     
     @Override
     public String toString() {
-        return "Id: " + this.id + " First name: " + this.firstName + " Last name: " + this.lastName + " Department: " + this.dept;
+        return this.lastName + " " + this.firstName + " " + this.dept;
     }
 
     public long getId() {

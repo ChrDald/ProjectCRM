@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -94,5 +95,28 @@ public class Database {
             stmt.executeUpdate();
         }
     }
-
+    
+    public List<Employee> loadEmployeeList() {
+         
+        String sql = "SELECT id, firstName, lastName, department FROM employees;";
+        List<Employee> list = new ArrayList<>();
+        
+        try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+              
+            while (rs.next()) {
+                Employee employee = new Employee();
+                employee.setId(rs.getInt("id"));
+                employee.setFirstName(rs.getString("firstName"));
+                employee.setLastName(rs.getString("lastName"));
+                employee.dept = Employee.Department.valueOf(rs.getString("department"));
+                
+                list.add(employee);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
 }
