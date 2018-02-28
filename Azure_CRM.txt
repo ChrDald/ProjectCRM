@@ -1,0 +1,9 @@
+Server:
+
+crmproject.database.windows.net
+
+
+login:
+
+java3project
+CRMdbroot11
