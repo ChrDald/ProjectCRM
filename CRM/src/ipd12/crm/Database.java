@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class RecordNotFoundException extends SQLException {
 
@@ -25,17 +27,20 @@ class RecordNotFoundException extends SQLException {
 
 public class Database {
 
-    private final static String HOSTNAME = "localhost";
-    private final static String DBNAME = "first";
-    private final static String USERNAME = "root";
-    private final static String PASSWORD = "root";
-
-    private Connection conn;
-
-    public Database() throws SQLException {
-        conn = DriverManager.getConnection(
-                "jdbc:mysql://" + HOSTNAME + "/" + DBNAME,
-                USERNAME, PASSWORD);
+    private String url = "jdbc:sqlserver://cddb1jab.database.windows.net:1433;databaseName=cddb1;user=cddaldb1;password=testdb1jaB";  
+    
+    private Connection conn;  
+    
+    public Database() {
+        try {    
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");  
+            conn = DriverManager.getConnection(url); 
+        } catch (SQLException e) {
+            System.err.println("Error connecting to databse...");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Class not found exception...");
+        }
+        System.err.println("Connected");
     }
 
     public void addEmployee(Employee employee) throws SQLException {
