@@ -9,12 +9,12 @@ package ipd12.crm;
  *
  * @author yasser
  */
-public class Sale extends javax.swing.JFrame {
+public class Employees extends javax.swing.JFrame {
 
     /**
      * Creates new form jcrm
      */
-    public Sale() {
+    public Employees() {
         initComponents();
     }
 
@@ -79,11 +79,12 @@ public class Sale extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        menuFile = new javax.swing.JMenu();
+        menuEmployees = new javax.swing.JMenu();
+        menuCustomer = new javax.swing.JMenu();
+        menuSales = new javax.swing.JMenu();
+        menuSupport = new javax.swing.JMenu();
+        menuLogin = new javax.swing.JMenu();
 
         jLabel2.setText("Id");
 
@@ -264,8 +265,6 @@ public class Sale extends javax.swing.JFrame {
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
-        jLabel14.getAccessibleContext().setAccessibleName("cisco sw 2960");
-
         jLabel19.setText("Id");
 
         jLabel20.setText("...");
@@ -423,20 +422,23 @@ public class Sale extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        menuFile.setText("File");
+        jMenuBar1.add(menuFile);
 
-        jMenu2.setText("Customers");
-        jMenuBar1.add(jMenu2);
+        menuEmployees.setText("Employees");
+        jMenuBar1.add(menuEmployees);
 
-        jMenu3.setText("Sales");
-        jMenuBar1.add(jMenu3);
+        menuCustomer.setText("Customers");
+        jMenuBar1.add(menuCustomer);
 
-        jMenu4.setText("Support");
-        jMenuBar1.add(jMenu4);
+        menuSales.setText("Sales");
+        jMenuBar1.add(menuSales);
 
-        jMenu5.setText("Login");
-        jMenuBar1.add(jMenu5);
+        menuSupport.setText("Support");
+        jMenuBar1.add(menuSupport);
+
+        menuLogin.setText("Login");
+        jMenuBar1.add(menuLogin);
 
         setJMenuBar(jMenuBar1);
 
@@ -464,21 +466,27 @@ public class Sale extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employees.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employees.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employees.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Employees.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sale().setVisible(true);
+                new Employees().setVisible(true);
             }
         });
     }
@@ -524,11 +532,6 @@ public class Sale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
@@ -541,5 +544,11 @@ public class Sale extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JDialog jdlbAddTicket;
+    private javax.swing.JMenu menuCustomer;
+    private javax.swing.JMenu menuEmployees;
+    private javax.swing.JMenu menuFile;
+    private javax.swing.JMenu menuLogin;
+    private javax.swing.JMenu menuSales;
+    private javax.swing.JMenu menuSupport;
     // End of variables declaration//GEN-END:variables
 }
