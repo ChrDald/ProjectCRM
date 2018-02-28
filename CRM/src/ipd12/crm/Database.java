@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 class RecordNotFoundException extends SQLException {
 
@@ -119,4 +120,37 @@ public class Database {
         }
         return list;
     }
+    
+    public void loadTable(DefaultTableModel model) {
+        
+        List<Employee> list = new ArrayList<>();
+           
+        try (Statement stmt = conn.createStatement()) {
+            String sql= "SELECT firstName, lastName, department FROM employees";
+            ResultSet rs = stmt.executeQuery(sql);
+        
+            while(rs.next()) {
+                Employee employee = new Employee();
+                employee.setFirstName(rs.getString("firstName"));
+                employee.setLastName(rs.getString("lastName"));
+                employee.dept = Employee.Department.valueOf(rs.getString("department"));
+                
+                list.add(employee);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for (int i = 0; i < list.size(); i++){
+            String firstName = list.get(i).getFirstName();
+            String lastName = list.get(i).getLastName();
+            String department = list.get(i).dept.toString();
+            
+            Object[] data = {firstName, lastName, department};
+            
+            model.addRow(data);
+        }
+    }
+    
+
 }
