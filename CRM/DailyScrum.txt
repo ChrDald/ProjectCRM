@@ -1,0 +1,12 @@
+Daily scrum - every day at 9 am
+===============================
+
+Each member writes down answers to 3 questions:
+
+<< Current Date Here >>
+
+1. What I have done since the last scrum?
+
+2. What is planned from this scrum to the next?
+
+3. Where do I need assistance/help?
