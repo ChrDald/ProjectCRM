@@ -10,3 +10,23 @@ Each member writes down answers to 3 questions:
 2. What is planned from this scrum to the next?
 
 3. Where do I need assistance/help?
+==============================
+
+Christopher Daldalian / 02-28-2018
+
+1. What I have done or Not done since the last scrum?
+
+Finished project proposal, create database tables and proper keys
+Started created java classes (database, employees)
+
+
+2. What is planned from this scrum to the next?
+-Create database class (with CRUD methods)
+-Create employee class (with getters/setters)
+-Create customer class
+-Create ticket class
+
+
+3. Where do I need assistance/help?
+- Layout/design of the windows
+- Task prioritization

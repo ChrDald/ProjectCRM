@@ -27,7 +27,7 @@ class RecordNotFoundException extends SQLException {
 
 public class Database {
 
-    private String url = "jdbc:sqlserver://cddb1jab.database.windows.net:1433;databaseName=cddb1;user=cddaldb1;password=testdb1jaB";  
+    private String url = "jdbc:sqlserver://crmproject.database.windows.net:1433;databaseName=CRMProject;user=java3project;password=CRMdbroot11";  
     
     private Connection conn;  
     
@@ -44,76 +44,51 @@ public class Database {
     }
 
     public void addEmployee(Employee employee) throws SQLException {
-        String sql = "INSERT INTO employees (deposit, withdrawal) VALUES (?, ?)";
+        String sql = "INSERT INTO employees (firstName, lastName, department, employeePassword) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setBigDecimal(1, employee.getDeposit());
-            stmt.setBigDecimal(2, employee.getWithdrawal());
+            stmt.setString(1, employee.getFirstName());
+            stmt.setString(2, employee.getLastName());
+            String department = employee.dept.toString();   // check this for errors
+            stmt.setString(3, department);
+            stmt.setString(4, employee.getPassword());
             stmt.executeUpdate();
         }
     }
 
-    public BigDecimal getBalance() throws SQLException {
-        String sql = "SELECT SUM(deposit-withdrawal) as sum FROM employeeactions";
-        try (Statement stmt = conn.createStatement()) {
-            ResultSet result = stmt.executeQuery(sql);
-            if (result.next()) {
-                BigDecimal sum = result.getBigDecimal("sum");
-                return sum;
-            } else {
-                return new BigDecimal(0); // no records found
-            }
-        }
-    }
-
     public ArrayList<Employee> getAllEmployees() throws SQLException {
-        String sql = "SELECT * FROM employeeactions";
+        String sql = "SELECT * FROM employees";
         ArrayList<Employee> list = new ArrayList<>();
 
         try (Statement stmt = conn.createStatement()) {
             ResultSet result = stmt.executeQuery(sql);
             while (result.next()) {
-                int id = result.getInt("id");
-                BigDecimal deposit = result.getBigDecimal("deposit");
-                BigDecimal withdrawal = result.getBigDecimal("withdrawal");
-                java.util.Date opdate = result.getDate("opDate");
-                Employee employee = new Employee(id, deposit, withdrawal, opdate);
+                Employee employee = new Employee();
+                employee.setId(result.getInt("id"));
+                employee.setFirstName(result.getString("firstName"));
+                employee.setLastName(result.getString("lastName"));
+                employee.dept = Employee.Department.valueOf(result.getString("department"));    // maybe errors here
+                employee.setPassword(result.getString("employeePassword"));
+         
                 list.add(employee);
             }
         }
         return list;
     }
 
-    public Employee getEmployeeById(int id) throws SQLException {
-        // FIXME: Preapred statement is required if id may contain malicious SQL injection code
-        String sql = "SELECT * FROM employeeactions WHERE id=" + id;
-
-        try (Statement stmt = conn.createStatement()) {
-            ResultSet result = stmt.executeQuery(sql);
-            if (result.next()) {
-                BigDecimal deposit = result.getBigDecimal("deposit");
-                BigDecimal withdrawal = result.getBigDecimal("withdrawal");
-                java.util.Date opdate = result.getDate("opDate");
-                Employee employee = new Employee(id, deposit, withdrawal, opdate);
-                return employee;
-            } else {
-                throw new RecordNotFoundException("Not found id=" + id);
-                // return null;
-            }
-        }
-    }
-
     public void updateEmployee(Employee employee) throws SQLException {
-        String sql = "UPDATE employeeactions SET task=?, dueDate=?, isDone=? WHERE id=?";
+        String sql = "UPDATE employees SET firstName=?, lastName=?, department =?, employeePassword=? WHERE id=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setBigDecimal(1, employee.getDeposit());
-            stmt.setBigDecimal(2, employee.getWithdrawal());
-            stmt.setDate(3, new java.sql.Date(employee.getOpDate().getTime()));
+            stmt.setString(1, employee.getFirstName());
+            stmt.setString(2, employee.getLastName());
+            stmt.setString(3, employee.dept.toString());    // errors here...
+            stmt.setString(4, employee.getPassword());
+            
             stmt.executeUpdate();
         }
     }
 
     public void deleteEmployeeById(int id) throws SQLException {
-        String sql = "DELETE FROM employeeactions WHERE id=?";
+        String sql = "DELETE FROM employees WHERE id=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();

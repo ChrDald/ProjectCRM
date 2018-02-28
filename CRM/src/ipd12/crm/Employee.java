@@ -14,7 +14,7 @@ public class Employee {
     String firstName;
     String lastName;
     Department dept;
-    
+    String password;
     enum Department {Sales, Support, Management };
     
     @Override
@@ -45,6 +45,14 @@ public class Employee {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
-    
+ 
 }
