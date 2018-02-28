@@ -291,9 +291,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="cisco sw 2960"/>
           </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="cisco sw 2960"/>
-          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
