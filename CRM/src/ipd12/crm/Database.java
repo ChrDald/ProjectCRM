@@ -1,6 +1,5 @@
 package ipd12.crm;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -82,7 +81,7 @@ public class Database {
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, employee.getFirstName());
             stmt.setString(2, employee.getLastName());
-            stmt.setString(3, employee.dept.toString());    // errors here...
+            stmt.setString(3, employee.dept.toString());
             stmt.setString(4, employee.getPassword());
             
             stmt.executeUpdate();

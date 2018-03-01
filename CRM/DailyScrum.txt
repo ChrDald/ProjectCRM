@@ -46,3 +46,30 @@ Yasser / 02-28-2018
 	- Products
 	- Sales
 	- Support
+
+================================
+================================
+Christopher Daldalian / 03-01-2018
+
+1. What I have done or Not done since the last scrum?
+Done:
+-Created table in employee frame to load database data, 
+-Added Add/Delete functionality to the employee frame
+
+Not done:
+-Everything that was planned was done
+
+
+2. What is planned from this scrum to the next?
+- Add "Edit" functionality
+- Extend add/edit/delete functions to the other frames (customers,products,suport)
+- Create a login frame, and save user info to be used for restrictions and user apropriate content
+- Create a "true" password system
+
+
+3. Where do I need assistance/help?
+- Frame designs
+- Adding the employee frame functions to the other frames (add/edit/delete)
+- Ideas on login and password functions
+
+==================================

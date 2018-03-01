@@ -47,7 +47,7 @@ public class Employees extends javax.swing.JFrame {
         dlgAdd_btCancel = new javax.swing.JButton();
         dlgAdd_btSave = new javax.swing.JButton();
         dlgAdd_lblIdValue = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        dlgAdd_lblLastName = new javax.swing.JLabel();
         dlgAdd_tfLastName = new javax.swing.JTextField();
         dlgAdd_tfPassword = new javax.swing.JTextField();
         dlgAdd_lblDepartment = new javax.swing.JLabel();
@@ -91,7 +91,7 @@ public class Employees extends javax.swing.JFrame {
 
         dlgAdd_lblIdValue.setText("...");
 
-        jLabel7.setText("Last Name");
+        dlgAdd_lblLastName.setText("Last Name");
 
         dlgAdd_lblDepartment.setText("Department");
 
@@ -121,7 +121,7 @@ public class Employees extends javax.swing.JFrame {
                             .addGroup(dlgAddLayout.createSequentialGroup()
                                 .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(dlgAdd_lblFirstName)
-                                    .addComponent(jLabel7)
+                                    .addComponent(dlgAdd_lblLastName)
                                     .addComponent(dlgAdd_lblId))
                                 .addGap(32, 32, 32)
                                 .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +150,7 @@ public class Employees extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dlgAdd_tfLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(dlgAdd_lblLastName))
                 .addGap(18, 18, 18)
                 .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dlgAdd_lblPassword)
@@ -178,6 +178,11 @@ public class Employees extends javax.swing.JFrame {
         });
 
         Employee_btEdit.setText("Edit");
+        Employee_btEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Employee_btEditActionPerformed(evt);
+            }
+        });
 
         Employee_btDelete.setText("Delete");
         Employee_btDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -322,6 +327,11 @@ public class Employees extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Employee_btDeleteActionPerformed
 
+    private void Employee_btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Employee_btEditActionPerformed
+        
+        
+    }//GEN-LAST:event_Employee_btEditActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -379,13 +389,13 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JLabel dlgAdd_lblFirstName;
     private javax.swing.JLabel dlgAdd_lblId;
     private javax.swing.JLabel dlgAdd_lblIdValue;
+    private javax.swing.JLabel dlgAdd_lblLastName;
     private javax.swing.JLabel dlgAdd_lblPassword;
     private javax.swing.JTextField dlgAdd_tfFirstName;
     private javax.swing.JTextField dlgAdd_tfLastName;
     private javax.swing.JTextField dlgAdd_tfPassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
