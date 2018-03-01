@@ -5,17 +5,18 @@
  */
 package ipd12.crm;
 
-/**
- *
- * @author yasser
- */
+import javax.swing.JOptionPane;
+
+    
+
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    Database db;
+    public static String department;    // value kept for rights/restrictions
+    
     public Login() {
         initComponents();
+        db = new Database();
     }
 
     /**
@@ -30,10 +31,10 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jtfUserName = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jtfPassword = new javax.swing.JTextField();
+        lblFirstName = new javax.swing.JLabel();
+        tfFirstName = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        tfPassword = new javax.swing.JTextField();
         btCancel = new javax.swing.JButton();
         btLogin = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -51,13 +52,23 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Login");
 
-        jLabel3.setText("User Name");
+        lblFirstName.setText("First name");
 
-        jLabel4.setText("Password");
+        lblPassword.setText("Password");
 
         btCancel.setText("Cancel");
+        btCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelActionPerformed(evt);
+            }
+        });
 
         btLogin.setText("Login");
+        btLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -72,18 +83,18 @@ public class Login extends javax.swing.JFrame {
                         .addGap(71, 71, 71)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(37, 37, 37)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btCancel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btLogin)))))
-                .addContainerGap(84, Short.MAX_VALUE))
+                                .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblFirstName)
+                                    .addComponent(lblPassword))
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,17 +103,17 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblFirstName)
+                    .addComponent(tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jtfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblPassword)
+                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCancel)
-                    .addComponent(btLogin))
-                .addContainerGap(60, Short.MAX_VALUE))
+                    .addComponent(btLogin)
+                    .addComponent(btCancel))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -129,6 +140,47 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+        
+        System.exit(0); //
+    }//GEN-LAST:event_btCancelActionPerformed
+
+    private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
+        
+        String firstName = tfFirstName.getText();
+        String password = tfPassword.getText();
+        
+        department = db.login(firstName, password);
+
+        System.err.println(department);
+        
+        if (department == null) {
+            JOptionPane.showMessageDialog(this,
+            "Invalid login",
+            "Login Error",
+            JOptionPane.ERROR_MESSAGE);
+            // return;        
+        }
+        else {
+            switch (department) {
+                case "Management":
+                    callEmployees();
+                    this.dispose();
+                    break;
+                case "Sales":
+                    callSales();
+                    this.dispose();
+                    break;
+                case "Support":
+                    callSupport();
+                    this.dispose();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }//GEN-LAST:event_btLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,23 +216,33 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void callEmployees(){
+        Employees.main(null);
+    }
+    public void callSales(){
+        Sales.main(null);
+    }
+    public void callSupport(){
+        Support.main(null);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jtfPassword;
-    private javax.swing.JTextField jtfUserName;
+    private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblPassword;
     private javax.swing.JMenu menuCustomer;
     private javax.swing.JMenu menuEmployees;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuLogin;
     private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;
+    private javax.swing.JTextField tfFirstName;
+    private javax.swing.JTextField tfPassword;
     // End of variables declaration//GEN-END:variables
 }

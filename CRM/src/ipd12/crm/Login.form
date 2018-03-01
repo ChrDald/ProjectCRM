@@ -90,25 +90,25 @@
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
+                                  <Component id="btCancel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btLogin" min="-2" pref="65" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblFirstName" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblPassword" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jtfUserName" min="-2" pref="140" max="-2" attributes="0"/>
-                                      <Component id="jtfPassword" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <Component id="tfFirstName" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <Component id="tfPassword" min="-2" pref="140" max="-2" attributes="0"/>
                                   </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="btCancel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btLogin" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="84" max="32767" attributes="0"/>
+                  <EmptySpace pref="102" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -119,20 +119,20 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfUserName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                  <EmptySpace pref="83" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -143,29 +143,35 @@
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lblFirstName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="User Name"/>
+            <Property name="text" type="java.lang.String" value="First name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfUserName">
+        <Component class="javax.swing.JTextField" name="tfFirstName">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lblPassword">
           <Properties>
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfPassword">
+        <Component class="javax.swing.JTextField" name="tfPassword">
         </Component>
         <Component class="javax.swing.JButton" name="btCancel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btLogin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLoginActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

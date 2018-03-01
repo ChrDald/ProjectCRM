@@ -30,6 +30,7 @@ public class Employees extends javax.swing.JFrame {
         
         db = new Database();
         db.loadTable(model);
+        
     }
 
     /**
@@ -294,11 +295,18 @@ public class Employees extends javax.swing.JFrame {
             employee.dept = Employee.Department.valueOf(dlgAdd_cbDepartment.getSelectedItem().toString());
             
             // Check if the dialog is to edit or add a new entry
-            if (dlgAdd_lblIdValue.getText().equals("***")) { // if youre editing, this would be false
+            if (dlgAdd_lblIdValue.getText().equals("...")) { // if youre editing, this would be false
                 db.addEmployee(employee);
             }
             else {
-                employee.setId(Long.valueOf(dlgAdd_lblIdValue.getText()));
+                try {
+                    employee.setId(Long.valueOf(dlgAdd_lblIdValue.getText()));
+                } catch (NumberFormatException e) {
+                    System.err.println("Invalid id value, could not format to long");
+                } catch (NullPointerException e) {
+                    System.err.println("Id value is null");
+                }
+                
                 db.updateEmployee(employee);
             }
         } catch (SQLException ex) {
