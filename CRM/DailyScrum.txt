@@ -74,3 +74,27 @@ Not done:
 - Ideas on login and password functions
 
 ==================================
+
+Yasser / 03-01-2018
+
+1. What I have done or Not done since the last scrum?
+Done:
+- created Frame for All windows (Customer, Employee, Login, Products, Sales, Support)
+- created jDialog for Add/Edit on all Windows.
+
+
+2. What is planned from this scrum to the next?
+- Create table for(customer, product, support, sale)
+- Create add/edit dialog for (customer, product support, sale) 
+
+
+
+
+
+
+
+
+
+
+
+
