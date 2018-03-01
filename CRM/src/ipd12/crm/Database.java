@@ -89,10 +89,10 @@ public class Database {
         }
     }
 
-    public void deleteEmployeeById(int id) throws SQLException {
+    public void deleteEmployeeById(long id) throws SQLException {
         String sql = "DELETE FROM employees WHERE id=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
+            stmt.setLong(1, id);
             stmt.executeUpdate();
         }
     }
@@ -127,7 +127,7 @@ public class Database {
         List<Employee> list = new ArrayList<>();
            
         try (Statement stmt = conn.createStatement()) {
-            String sql= "SELECT firstName, lastName, department FROM employees";
+            String sql= "SELECT firstName, lastName, department, id FROM employees";
             ResultSet rs = stmt.executeQuery(sql);
         
             while(rs.next()) {
@@ -135,7 +135,7 @@ public class Database {
                 employee.setFirstName(rs.getString("firstName"));
                 employee.setLastName(rs.getString("lastName"));
                 employee.dept = Employee.Department.valueOf(rs.getString("department"));
-                
+                employee.setId((long) rs.getInt("id"));
                 list.add(employee);
             }
         } catch (SQLException ex) {
@@ -146,8 +146,9 @@ public class Database {
             String firstName = list.get(i).getFirstName();
             String lastName = list.get(i).getLastName();
             String department = list.get(i).dept.toString();
+            Long id = list.get(i).getId();
             
-            Object[] data = {firstName, lastName, department};
+            Object[] data = {firstName, lastName, department, id};
             
             model.addRow(data);
         }

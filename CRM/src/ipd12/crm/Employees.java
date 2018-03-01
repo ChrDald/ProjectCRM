@@ -8,8 +8,10 @@ package ipd12.crm;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class Employees extends javax.swing.JFrame {
 
     Database db;
-    DefaultTableModel model = new DefaultTableModel(new String[]{"First Name", "Last Name", "Department"}, 0);
+    DefaultTableModel model = new DefaultTableModel(new String[]{"First Name", "Last Name", "Department", "Id"}, 0);
     
     public Employees() {
         initComponents();
@@ -178,6 +180,11 @@ public class Employees extends javax.swing.JFrame {
         Employee_btEdit.setText("Edit");
 
         Employee_btDelete.setText("Delete");
+        Employee_btDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Employee_btDeleteActionPerformed(evt);
+            }
+        });
 
         Employee_btPrint.setText("Print");
 
@@ -281,6 +288,39 @@ public class Employees extends javax.swing.JFrame {
         dlgAdd.setVisible(false);
         db.loadTable(model);
     }//GEN-LAST:event_dlgAdd_btSaveActionPerformed
+
+    private void Employee_btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Employee_btDeleteActionPerformed
+        
+        int decision = JOptionPane.showOptionDialog(
+            this,   // parent element, this referes to the frame
+            "Are you sure you want to delete this item?", // the message
+            "Alert",    // message icon
+            JOptionPane.YES_NO_OPTION,  // how many buttons (in this case 2, yes and no)
+            JOptionPane.WARNING_MESSAGE,
+            null,   // custom icon
+            null,
+            null
+        );
+
+        if (decision == JOptionPane.YES_OPTION) {
+
+            int rowIndex = jTable1.getSelectedRow();
+            long id = 0;
+            try {
+                id = (long) jTable1.getValueAt(rowIndex, 3);
+            } catch (IllegalArgumentException e) {
+                System.err.println("Delete could not be performed, please try again later...");
+            }
+
+            try {
+                db.deleteEmployeeById(id);
+            } catch (SQLException ex) {
+                System.err.println("Error deleting from database, check your query");
+                Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            db.loadTable(model);
+        }
+    }//GEN-LAST:event_Employee_btDeleteActionPerformed
 
     /**
      * @param args the command line arguments
