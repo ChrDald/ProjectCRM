@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -32,7 +33,9 @@ public class Customers extends javax.swing.JFrame {
 
     public void loadCustomers() {
         try {
+            
             DefaultTableModel model = (DefaultTableModel) customersTable.getModel();
+            model.setRowCount(0);
             ArrayList<Customer> list = db.getAllCustomers();
             Object rowData[] = new Object[4];
             for (int i = 0; i < list.size(); i++) {
@@ -188,6 +191,11 @@ public class Customers extends javax.swing.JFrame {
         });
 
         customer_btDelete.setText("Delete");
+        customer_btDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customer_btDeleteActionPerformed(evt);
+            }
+        });
 
         customer_btPrint.setText("Print");
 
@@ -336,6 +344,38 @@ public class Customers extends javax.swing.JFrame {
             System.err.println("Casting exception");
         }
     }//GEN-LAST:event_customer_btEditActionPerformed
+
+    private void customer_btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customer_btDeleteActionPerformed
+        int decision = JOptionPane.showOptionDialog(
+            this,   // parent element, this referes to the frame
+            "Are you sure you want to delete this item?", // the message
+            "Alert",    // message icon
+            JOptionPane.YES_NO_OPTION,  // how many buttons (in this case 2, yes and no)
+            JOptionPane.WARNING_MESSAGE,
+            null,   // custom icon
+            null,
+            null
+        );
+
+        if (decision == JOptionPane.YES_OPTION) {
+
+            int rowIndex = customersTable.getSelectedRow();
+            long id = 0;
+            try {
+                id = (long) customersTable.getValueAt(rowIndex, 3);
+            } catch (ClassCastException e) {
+                System.err.println("Delete could not be performed, please try again later...");
+            }
+
+            try {
+                db.deleteCustomerById(id);
+            } catch (SQLException ex) {
+                System.err.println("Error deleting from database, check your query");
+                Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            loadCustomers();
+        }
+    }//GEN-LAST:event_customer_btDeleteActionPerformed
 
     /**
      * @param args the command line arguments
