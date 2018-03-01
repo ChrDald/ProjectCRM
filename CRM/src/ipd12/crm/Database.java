@@ -123,6 +123,7 @@ public class Database {
     
     public void loadTable(DefaultTableModel model) {
         
+        model.setRowCount(0);
         List<Employee> list = new ArrayList<>();
            
         try (Statement stmt = conn.createStatement()) {

@@ -37,19 +37,19 @@ public class Employees extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Add_Employee = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        dlgAddEmployee_tfFirstName = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        dlgAddEmployee_btSave = new javax.swing.JButton();
-        dlgAddEmployee_lbId = new javax.swing.JLabel();
+        dlgAdd = new javax.swing.JDialog();
+        dlgAdd_lblId = new javax.swing.JLabel();
+        dlgAdd_lblFirstName = new javax.swing.JLabel();
+        dlgAdd_tfFirstName = new javax.swing.JTextField();
+        dlgAdd_lblPassword = new javax.swing.JLabel();
+        dlgAdd_btCancel = new javax.swing.JButton();
+        dlgAdd_btSave = new javax.swing.JButton();
+        dlgAdd_lblIdValue = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        dlgAddEmployee_tfpassword = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        dlgAddEmployee_cbDepartment = new javax.swing.JComboBox<>();
+        dlgAdd_tfLastName = new javax.swing.JTextField();
+        dlgAdd_tfPassword = new javax.swing.JTextField();
+        dlgAdd_lblDepartment = new javax.swing.JLabel();
+        dlgAdd_cbDepartment = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Employee_btAdd = new javax.swing.JButton();
@@ -67,91 +67,100 @@ public class Employees extends javax.swing.JFrame {
         menuSupport = new javax.swing.JMenu();
         menuLogin = new javax.swing.JMenu();
 
-        jLabel2.setText("Id");
+        dlgAdd_lblId.setText("Id");
 
-        jLabel3.setText("First Name");
+        dlgAdd_lblFirstName.setText("First Name");
 
-        jLabel4.setText("Password");
+        dlgAdd_lblPassword.setText("Password");
 
-        jButton1.setText("Cancel");
+        dlgAdd_btCancel.setText("Cancel");
+        dlgAdd_btCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAdd_btCancelActionPerformed(evt);
+            }
+        });
 
-        dlgAddEmployee_btSave.setText("Save");
+        dlgAdd_btSave.setText("Save");
+        dlgAdd_btSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAdd_btSaveActionPerformed(evt);
+            }
+        });
 
-        dlgAddEmployee_lbId.setText("...");
+        dlgAdd_lblIdValue.setText("...");
 
         jLabel7.setText("Last Name");
 
-        jLabel8.setText("Department");
+        dlgAdd_lblDepartment.setText("Department");
 
-        dlgAddEmployee_cbDepartment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dlgAdd_cbDepartment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sales", "Support", "Management" }));
 
-        javax.swing.GroupLayout Add_EmployeeLayout = new javax.swing.GroupLayout(Add_Employee.getContentPane());
-        Add_Employee.getContentPane().setLayout(Add_EmployeeLayout);
-        Add_EmployeeLayout.setHorizontalGroup(
-            Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Add_EmployeeLayout.createSequentialGroup()
-                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Add_EmployeeLayout.createSequentialGroup()
+        javax.swing.GroupLayout dlgAddLayout = new javax.swing.GroupLayout(dlgAdd.getContentPane());
+        dlgAdd.getContentPane().setLayout(dlgAddLayout);
+        dlgAddLayout.setHorizontalGroup(
+            dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAddLayout.createSequentialGroup()
+                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dlgAddLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Add_EmployeeLayout.createSequentialGroup()
-                                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel7))
-                                .addGap(32, 32, 32)
-                                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dlgAddEmployee_tfFirstName)
-                                    .addComponent(jTextField4)))
-                            .addGroup(Add_EmployeeLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(88, 88, 88)
-                                .addComponent(dlgAddEmployee_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(Add_EmployeeLayout.createSequentialGroup()
-                                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel8))
+                        .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dlgAddLayout.createSequentialGroup()
+                                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dlgAdd_lblPassword)
+                                    .addComponent(dlgAdd_lblDepartment))
                                 .addGap(26, 26, 26)
-                                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dlgAddEmployee_tfpassword)
-                                    .addGroup(Add_EmployeeLayout.createSequentialGroup()
-                                        .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(dlgAddEmployee_btSave)
-                                            .addComponent(dlgAddEmployee_cbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 44, Short.MAX_VALUE))))))
-                    .addGroup(Add_EmployeeLayout.createSequentialGroup()
+                                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dlgAdd_tfPassword)
+                                    .addGroup(dlgAddLayout.createSequentialGroup()
+                                        .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(dlgAdd_btSave)
+                                            .addComponent(dlgAdd_cbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 44, Short.MAX_VALUE))))
+                            .addGroup(dlgAddLayout.createSequentialGroup()
+                                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dlgAdd_lblFirstName)
+                                    .addComponent(jLabel7)
+                                    .addComponent(dlgAdd_lblId))
+                                .addGap(32, 32, 32)
+                                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(dlgAddLayout.createSequentialGroup()
+                                        .addComponent(dlgAdd_lblIdValue, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(dlgAdd_tfFirstName)
+                                    .addComponent(dlgAdd_tfLastName)))))
+                    .addGroup(dlgAddLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jButton1)
+                        .addComponent(dlgAdd_btCancel)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        Add_EmployeeLayout.setVerticalGroup(
-            Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Add_EmployeeLayout.createSequentialGroup()
+        dlgAddLayout.setVerticalGroup(
+            dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAddLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(dlgAddEmployee_lbId))
+                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dlgAdd_lblId)
+                    .addComponent(dlgAdd_lblIdValue))
                 .addGap(18, 18, 18)
-                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(dlgAddEmployee_tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dlgAdd_lblFirstName)
+                    .addComponent(dlgAdd_tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dlgAdd_tfLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
-                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(dlgAddEmployee_tfpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dlgAdd_lblPassword)
+                    .addComponent(dlgAdd_tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(dlgAddEmployee_cbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dlgAdd_lblDepartment)
+                    .addComponent(dlgAdd_cbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(dlgAddEmployee_btSave)))
+                .addGroup(dlgAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dlgAdd_btCancel)
+                    .addComponent(dlgAdd_btSave)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -160,6 +169,11 @@ public class Employees extends javax.swing.JFrame {
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         Employee_btAdd.setText("Add");
+        Employee_btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Employee_btAddActionPerformed(evt);
+            }
+        });
 
         Employee_btEdit.setText("Edit");
 
@@ -234,6 +248,40 @@ public class Employees extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Employee_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Employee_btAddActionPerformed
+
+        // set dialog to clean initial state
+        dlgAdd_tfFirstName.setText("");
+        dlgAdd_tfLastName.setText("");
+        dlgAdd_tfPassword.setText("");
+        dlgAdd_cbDepartment.setSelectedIndex(0);
+
+        // show it
+        dlgAdd.pack();
+        dlgAdd.setVisible(true);
+    }//GEN-LAST:event_Employee_btAddActionPerformed
+
+    private void dlgAdd_btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAdd_btCancelActionPerformed
+        dlgAdd.setVisible(false);
+    }//GEN-LAST:event_dlgAdd_btCancelActionPerformed
+
+    private void dlgAdd_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAdd_btSaveActionPerformed
+        
+        try {
+            Employee employee = new Employee();
+            employee.setFirstName(dlgAdd_tfFirstName.getText());
+            employee.setLastName(dlgAdd_tfLastName.getText());
+            employee.setPassword(dlgAdd_tfPassword.getText());
+            employee.dept = Employee.Department.valueOf(dlgAdd_cbDepartment.getSelectedItem().toString());
+            db.addEmployee(employee);
+        } catch (SQLException ex) {
+            System.err.println("SQL Exception");
+            Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dlgAdd.setVisible(false);
+        db.loadTable(model);
+    }//GEN-LAST:event_dlgAdd_btSaveActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -279,29 +327,29 @@ public class Employees extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog Add_Employee;
     private javax.swing.JButton Employee_btAdd;
     private javax.swing.JButton Employee_btDelete;
     private javax.swing.JButton Employee_btEdit;
     private javax.swing.JButton Employee_btPrint;
-    private javax.swing.JButton dlgAddEmployee_btSave;
-    private javax.swing.JComboBox<String> dlgAddEmployee_cbDepartment;
-    private javax.swing.JLabel dlgAddEmployee_lbId;
-    private javax.swing.JTextField dlgAddEmployee_tfFirstName;
-    private javax.swing.JTextField dlgAddEmployee_tfpassword;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JDialog dlgAdd;
+    private javax.swing.JButton dlgAdd_btCancel;
+    private javax.swing.JButton dlgAdd_btSave;
+    private javax.swing.JComboBox<String> dlgAdd_cbDepartment;
+    private javax.swing.JLabel dlgAdd_lblDepartment;
+    private javax.swing.JLabel dlgAdd_lblFirstName;
+    private javax.swing.JLabel dlgAdd_lblId;
+    private javax.swing.JLabel dlgAdd_lblIdValue;
+    private javax.swing.JLabel dlgAdd_lblPassword;
+    private javax.swing.JTextField dlgAdd_tfFirstName;
+    private javax.swing.JTextField dlgAdd_tfLastName;
+    private javax.swing.JTextField dlgAdd_tfPassword;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JMenu menuCustomer;
     private javax.swing.JMenu menuEmployees;
     private javax.swing.JMenu menuFile;
