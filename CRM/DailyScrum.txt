@@ -68,6 +68,7 @@ Not done:
 
 
 3. Where do I need assistance/help?
+- **Proper exception handling, finding out what throws what exception, and adding appropriate handling code
 - Frame designs
 - Adding the employee frame functions to the other frames (add/edit/delete)
 - Ideas on login and password functions

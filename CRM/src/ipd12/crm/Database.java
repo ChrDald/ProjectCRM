@@ -83,7 +83,7 @@ public class Database {
             stmt.setString(2, employee.getLastName());
             stmt.setString(3, employee.dept.toString());
             stmt.setString(4, employee.getPassword());
-            
+            stmt.setLong(5, employee.getId());
             stmt.executeUpdate();
         }
     }

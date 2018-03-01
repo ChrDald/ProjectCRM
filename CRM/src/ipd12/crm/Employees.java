@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +23,7 @@ public class Employees extends javax.swing.JFrame {
 
     Database db;
     DefaultTableModel model = new DefaultTableModel(new String[]{"First Name", "Last Name", "Department", "Id"}, 0);
+   
     
     public Employees() {
         initComponents();
@@ -60,7 +62,11 @@ public class Employees extends javax.swing.JFrame {
         Employee_btPrint = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;   //Disallow the editing of any cell
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuEmployees = new javax.swing.JMenu();
@@ -195,6 +201,7 @@ public class Employees extends javax.swing.JFrame {
 
         jLabel25.setText("Employees");
 
+        jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(model);
         jScrollPane2.setViewportView(jTable1);
 
@@ -278,14 +285,22 @@ public class Employees extends javax.swing.JFrame {
     }//GEN-LAST:event_dlgAdd_btCancelActionPerformed
 
     private void dlgAdd_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAdd_btSaveActionPerformed
-        
+    
         try {
             Employee employee = new Employee();
             employee.setFirstName(dlgAdd_tfFirstName.getText());
             employee.setLastName(dlgAdd_tfLastName.getText());
             employee.setPassword(dlgAdd_tfPassword.getText());
             employee.dept = Employee.Department.valueOf(dlgAdd_cbDepartment.getSelectedItem().toString());
-            db.addEmployee(employee);
+            
+            // Check if the dialog is to edit or add a new entry
+            if (dlgAdd_lblIdValue.getText().equals("***")) { // if youre editing, this would be false
+                db.addEmployee(employee);
+            }
+            else {
+                employee.setId(Long.valueOf(dlgAdd_lblIdValue.getText()));
+                db.updateEmployee(employee);
+            }
         } catch (SQLException ex) {
             System.err.println("SQL Exception");
             Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
@@ -313,7 +328,7 @@ public class Employees extends javax.swing.JFrame {
             long id = 0;
             try {
                 id = (long) jTable1.getValueAt(rowIndex, 3);
-            } catch (IllegalArgumentException e) {
+            } catch (ClassCastException e) {
                 System.err.println("Delete could not be performed, please try again later...");
             }
 
@@ -328,7 +343,31 @@ public class Employees extends javax.swing.JFrame {
     }//GEN-LAST:event_Employee_btDeleteActionPerformed
 
     private void Employee_btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Employee_btEditActionPerformed
+          
+        Employee employee = new Employee();
+        int rowIndex = jTable1.getSelectedRow();
         
+        try {
+            String firstName = String.valueOf(jTable1.getValueAt(rowIndex, 0)); // get first name
+            String lastName = String.valueOf(jTable1.getValueAt(rowIndex, 1)); // get last name
+            String id = String.valueOf(jTable1.getValueAt(rowIndex, 3)); // get the employee id
+            
+            employee.setFirstName(firstName);
+            employee.setLastName(lastName);
+            
+            dlgAdd_lblIdValue.setText(id);
+            dlgAdd_tfFirstName.setText(firstName);
+            dlgAdd_tfLastName.setText(lastName);
+            dlgAdd_tfPassword.setText("****"); // maybe add click event on this text field, when clicked clear all data in the
+                                               // text field
+            dlgAdd.pack();
+            dlgAdd.setVisible(true);
+        } catch (ClassCastException e) {
+            System.err.println("Casting exception");
+        }
+        
+        
+                
         
     }//GEN-LAST:event_Employee_btEditActionPerformed
 
