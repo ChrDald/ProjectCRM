@@ -200,5 +200,13 @@ public class Database {
             }
         }
     }
+    
+    public void deleteCustomerById(long id) throws SQLException {
+        String sql = "DELETE FROM customers WHERE id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        }
+    }
 
 }

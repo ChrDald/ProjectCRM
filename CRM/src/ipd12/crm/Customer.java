@@ -15,12 +15,20 @@ public class Customer {
     private String address;
     private String contactNum;
 
+    public Customer(String companyName, String address, String contactNum) {
+        this.companyName = companyName;
+        this.address = address;
+        this.contactNum = contactNum;
+    }
+
     public Customer(long id, String companyName, String address, String contactNum) {
         this.id = id;
         this.companyName = companyName;
         this.address = address;
         this.contactNum = contactNum;
     }
+
+    
     /**
      * @return the id
      */

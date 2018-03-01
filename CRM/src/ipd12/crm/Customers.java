@@ -181,6 +181,11 @@ public class Customers extends javax.swing.JFrame {
         });
 
         customer_btEdit.setText("Edit");
+        customer_btEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customer_btEditActionPerformed(evt);
+            }
+        });
 
         customer_btDelete.setText("Delete");
 
@@ -297,6 +302,40 @@ public class Customers extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_dlgAddCustomer_btSaveActionPerformed
+
+    private void customer_btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customer_btEditActionPerformed
+        
+        int rowIndex = customersTable.getSelectedRow();
+        
+        try {
+            String id = String.valueOf(customersTable.getValueAt(rowIndex, 0)); 
+            String companyName = String.valueOf(customersTable.getValueAt(rowIndex, 1));
+            String address = String.valueOf(customersTable.getValueAt(rowIndex, 2));
+            String contactNum = String.valueOf(customersTable.getValueAt(rowIndex, 3));
+            
+            Customer c;
+            c = new Customer(companyName, address, contactNum);
+            
+            c.setCompanyName(companyName);
+            c.setAddress(address);
+            c.setContactNum(contactNum);
+            
+            dlgAddCustomer_lbId.setText(id);
+            dlgAddCustomer_tfCompanyName.setText(companyName);
+            dlgAddCustomer_tfAddress.setText(address);
+            dlgAddCustomer_tfContactNumber.setText(contactNum);
+            
+            //dlgAdd_lblIdValue.setText(id);
+            //dlgAdd_tfFirstName.setText(firstName);
+            //dlgAdd_tfLastName.setText(lastName);
+            //dlgAdd_tfPassword.setText("****"); // maybe add click event on this text field, when clicked clear all data in the
+                                               // text field
+            Add_Customer.pack();
+            Add_Customer.setVisible(true);
+        } catch (ClassCastException e) {
+            System.err.println("Casting exception");
+        }
+    }//GEN-LAST:event_customer_btEditActionPerformed
 
     /**
      * @param args the command line arguments
