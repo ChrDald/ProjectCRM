@@ -5,17 +5,52 @@
  */
 package ipd12.crm;
 
+import com.sun.xml.internal.ws.api.streaming.XMLStreamWriterFactory;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author yasser
  */
 public class Customers extends javax.swing.JFrame {
 
+    Database db;
+
     /**
      * Creates new form jcrm
      */
     public Customers() {
+        db = new Database();
         initComponents();
+        loadCustomers();
+    }
+
+    public void loadCustomers() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) customersTable.getModel();
+            ArrayList<Customer> list = db.getAllCustomers();
+            Object rowData[] = new Object[4];
+            for (int i = 0; i < list.size(); i++) {
+                rowData[0] = list.get(i).getId();
+                rowData[1] = list.get(i).getCompanyName();
+                rowData[2] = list.get(i).getAddress();
+                rowData[3] = list.get(i).getContactNum();
+                model.addRow(rowData);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // display dialog with error message and terminate the program
+            JOptionPane.showMessageDialog(this,
+                    "Error: unable to reload customers\n" + ex.getMessage(),
+                    "Database error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -40,13 +75,13 @@ public class Customers extends javax.swing.JFrame {
         dlgAddCustomer_tfContactNumber = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        customer_btAdd = new javax.swing.JButton();
+        customer_btEdit = new javax.swing.JButton();
+        customer_btDelete = new javax.swing.JButton();
+        customer_btPrint = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        customersTable = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuEmployees = new javax.swing.JMenu();
@@ -64,6 +99,11 @@ public class Customers extends javax.swing.JFrame {
         dlgAddCustomer_btCancel.setText("Cancel");
 
         dlgAddCustomer_btSave.setText("Save");
+        dlgAddCustomer_btSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAddCustomer_btSaveActionPerformed(evt);
+            }
+        });
 
         dlgAddCustomer_lbId.setText("...");
 
@@ -133,22 +173,38 @@ public class Customers extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1. Company, Product, Contact Time, Issue, Technical's Person, Description, IsDone(or Not) ", " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        customer_btAdd.setText("Add");
+        customer_btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customer_btAddActionPerformed(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
 
-        jButton4.setText("Add");
+        customer_btEdit.setText("Edit");
 
-        jButton5.setText("Edit");
+        customer_btDelete.setText("Delete");
 
-        jButton6.setText("Delete");
-
-        jButton7.setText("Print");
+        customer_btPrint.setText("Print");
 
         jLabel25.setText("Customers");
+
+        customersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Company Name", "Address", "Contact Number"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(customersTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -158,13 +214,13 @@ public class Customers extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(customer_btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(customer_btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(customer_btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(customer_btPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel25))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -176,17 +232,18 @@ public class Customers extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addComponent(jButton4)
+                        .addComponent(customer_btAdd)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
+                        .addComponent(customer_btEdit)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6)
+                        .addComponent(customer_btDelete)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7)
-                        .addContainerGap(82, Short.MAX_VALUE))
+                        .addComponent(customer_btPrint)
+                        .addContainerGap(129, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1))))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -213,6 +270,33 @@ public class Customers extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void customer_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customer_btAddActionPerformed
+        Add_Customer.pack();
+        Add_Customer.setVisible(true);
+    }//GEN-LAST:event_customer_btAddActionPerformed
+
+    private void dlgAddCustomer_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddCustomer_btSaveActionPerformed
+        try {
+            String companyName = dlgAddCustomer_tfCompanyName.getText();
+            String address = dlgAddCustomer_tfAddress.getText();
+            String contactNum = dlgAddCustomer_tfContactNumber.getText();
+            
+
+            Customer c;
+            c = new Customer(0, companyName, address, contactNum);
+            db.addCustomer(c);
+
+            loadCustomers();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // display dialog with error message and terminate the program
+            JOptionPane.showMessageDialog(this,
+                    "Error: unable to reload customer\n" + ex.getMessage(),
+                    "Database error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_dlgAddCustomer_btSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,26 +338,26 @@ public class Customers extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Add_Customer;
+    private javax.swing.JButton customer_btAdd;
+    private javax.swing.JButton customer_btDelete;
+    private javax.swing.JButton customer_btEdit;
+    private javax.swing.JButton customer_btPrint;
+    private javax.swing.JTable customersTable;
     private javax.swing.JButton dlgAddCustomer_btCancel;
     private javax.swing.JButton dlgAddCustomer_btSave;
     private javax.swing.JLabel dlgAddCustomer_lbId;
     private javax.swing.JTextField dlgAddCustomer_tfAddress;
     private javax.swing.JTextField dlgAddCustomer_tfCompanyName;
     private javax.swing.JTextField dlgAddCustomer_tfContactNumber;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu menuCustomer;
     private javax.swing.JMenu menuEmployees;
     private javax.swing.JMenu menuFile;

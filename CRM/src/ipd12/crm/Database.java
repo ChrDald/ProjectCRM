@@ -153,5 +153,52 @@ public class Database {
         }
     }
     
+    public void addCustomer(Customer customer) throws SQLException {
+        String sql = "INSERT INTO customers (companyName, address, contactNum) VALUES (?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, customer.getCompanyName());
+            stmt.setString(2, customer.getAddress());
+            stmt.setString(3, customer.getContactNum());
+            stmt.executeUpdate();
+        }
+    }
+    
+    public ArrayList<Customer> getAllCustomers() throws SQLException {
+        String sql = "SELECT * FROM customers";
+        ArrayList<Customer> list = new ArrayList<>();
+
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet result = stmt.executeQuery(sql);
+            while (result.next()) {
+                int id = result.getInt("id");
+                String companyName = result.getString("companyName");
+                String address = result.getString("Address");
+                String contactNum = result.getString("contactNum");
+                Customer customer = new Customer(id, companyName, address, contactNum);
+                list.add(customer);
+            }
+        }
+        return list;
+    }
+    
+    public Customer getCustomerById(int id) throws SQLException {
+        // FIXME: Preapred statement is required if id may contain malicious SQL injection code
+        String sql = "SELECT * FROM customers WHERE id=" + id;
+
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet result = stmt.executeQuery(sql);
+            if (result.next()) {
+                String companyName = result.getString("companyName");
+                String address = result.getString("Address");
+                String contactNum = result.getString("contactNum");
+                
+                Customer customer = new Customer(id, companyName, address, contactNum);
+                return customer;
+            } else {
+                throw new RecordNotFoundException("Not found id=" + id);
+                // return null;
+            }
+        }
+    }
 
 }

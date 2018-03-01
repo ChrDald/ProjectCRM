@@ -74,6 +74,7 @@ public class Employees extends javax.swing.JFrame {
         menuSales = new javax.swing.JMenu();
         menuSupport = new javax.swing.JMenu();
         menuLogin = new javax.swing.JMenu();
+        menuLogout = new javax.swing.JMenu();
 
         dlgAdd_lblId.setText("Id");
 
@@ -221,16 +222,16 @@ public class Employees extends javax.swing.JFrame {
                             .addComponent(Employee_btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Employee_btPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel25))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel25)
-                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addComponent(Employee_btAdd)
                         .addGap(18, 18, 18)
                         .addComponent(Employee_btEdit)
@@ -238,7 +239,9 @@ public class Employees extends javax.swing.JFrame {
                         .addComponent(Employee_btDelete)
                         .addGap(18, 18, 18)
                         .addComponent(Employee_btPrint))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -261,6 +264,9 @@ public class Employees extends javax.swing.JFrame {
 
         menuLogin.setText("Login");
         jMenuBar1.add(menuLogin);
+
+        menuLogout.setText("Logout");
+        jMenuBar1.add(menuLogout);
 
         setJMenuBar(jMenuBar1);
 
@@ -443,6 +449,7 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JMenu menuEmployees;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuLogin;
+    private javax.swing.JMenu menuLogout;
     private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;
     // End of variables declaration//GEN-END:variables
