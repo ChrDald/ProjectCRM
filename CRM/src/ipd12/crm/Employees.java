@@ -5,12 +5,15 @@
  */
 package ipd12.crm;
 
+import com.sun.xml.internal.ws.policy.sourcemodel.ModelNode;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +26,6 @@ public class Employees extends javax.swing.JFrame {
 
     Database db;
     DefaultTableModel model = new DefaultTableModel(new String[]{"First Name", "Last Name", "Department", "Id"}, 0);
-   
     
     public Employees() {
         initComponents();
@@ -251,6 +253,7 @@ public class Employees extends javax.swing.JFrame {
         menuFile.setText("File");
         jMenuBar1.add(menuFile);
 
+        menuEmployees.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuEmployees.setText("Employees");
         jMenuBar1.add(menuEmployees);
 

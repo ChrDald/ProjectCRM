@@ -201,6 +201,7 @@ public class Customers extends javax.swing.JFrame {
 
         jLabel25.setText("Customers");
 
+        customersTable.setAutoCreateRowSorter(true);
         customersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
