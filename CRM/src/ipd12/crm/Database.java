@@ -282,9 +282,9 @@ public class Database {
         }
     }
     
-    public String login(String firstName, char[] password) {
+    public void login(String firstName, char[] password) {
                
-        String sql = "SELECT firstName, department, employeePassword "
+        String sql = "SELECT firstName, department, employeePassword, id "
                 + "FROM employees WHERE firstName = ? AND employeePassword = ?";
         
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -296,15 +296,17 @@ public class Database {
             if (rs.next()) {
                 if (firstName.equals(rs.getString("firstName")) && pwd.equals(rs.getString("employeePassword"))) {
                 String dept = rs.getString("department");
-                return dept;
+                int userId = rs.getInt("id");
+                
+                Login.department = dept;
+                Login.userId = userId;
                 }
             }
           
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String nullLogin = null;
-        return nullLogin;
+        Login.department = null;
     }
     
 }

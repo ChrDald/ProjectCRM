@@ -13,6 +13,7 @@ public class Login extends javax.swing.JFrame {
 
     Database db;
     public static String department;    // value kept for rights/restrictions
+    public static int userId;
     
     public Login() {
         initComponents();
@@ -52,9 +53,9 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Login");
 
-        lblFirstName.setText("First name");
+        lblFirstName.setText("First name:");
 
-        lblPassword.setText("Password");
+        lblPassword.setText("Password:");
 
         btCancel.setText("Cancel");
         btCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +97,7 @@ public class Login extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tfFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                                     .addComponent(pfPassword))))))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,9 +155,12 @@ public class Login extends javax.swing.JFrame {
         char[] password = pfPassword.getPassword();
         
         System.err.println(password);
+          
+        db.login(firstName, password);  // sets the value of department and user id
         
-        department = db.login(firstName, password);
-      
+        System.err.println("Department: " + Login.department);
+        System.err.println("ID: " + Login.userId);
+        
         if (department == null) {
             JOptionPane.showMessageDialog(this,
             "Invalid login",

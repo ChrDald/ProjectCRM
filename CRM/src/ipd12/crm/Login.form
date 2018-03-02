@@ -108,7 +108,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="102" max="32767" attributes="0"/>
+                  <EmptySpace pref="98" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -145,14 +145,14 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblFirstName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="First name"/>
+            <Property name="text" type="java.lang.String" value="First name:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfFirstName">
         </Component>
         <Component class="javax.swing.JLabel" name="lblPassword">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Password"/>
+            <Property name="text" type="java.lang.String" value="Password:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btCancel">
