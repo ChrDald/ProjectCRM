@@ -210,12 +210,12 @@ public class Customers extends javax.swing.JFrame {
                 "Id", "Company Name", "Address", "Contact Number"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(customersTable);
@@ -296,10 +296,23 @@ public class Customers extends javax.swing.JFrame {
             String address = dlgAddCustomer_tfAddress.getText();
             String contactNum = dlgAddCustomer_tfContactNumber.getText();
             
-
             Customer c;
             c = new Customer(0, companyName, address, contactNum);
+            if (dlgAddCustomer_lbId.getText().equals("...")) { // if youre editing, this would be false  
             db.addCustomer(c);
+            }
+            else {
+                try {
+                    c.setId(Long.valueOf(dlgAddCustomer_lbId.getText()));
+                } catch (NumberFormatException e) {
+                    System.err.println("Invalid id value, could not format to long");
+                } catch (NullPointerException e) {
+                    System.err.println("Id value is null");
+                }
+                
+                db.updateCustomer(c);
+            }
+            
 
             loadCustomers();
         } catch (SQLException ex) {
@@ -322,23 +335,12 @@ public class Customers extends javax.swing.JFrame {
             String address = String.valueOf(customersTable.getValueAt(rowIndex, 2));
             String contactNum = String.valueOf(customersTable.getValueAt(rowIndex, 3));
             
-            Customer c;
-            c = new Customer(companyName, address, contactNum);
-            
-            c.setCompanyName(companyName);
-            c.setAddress(address);
-            c.setContactNum(contactNum);
-            
             dlgAddCustomer_lbId.setText(id);
             dlgAddCustomer_tfCompanyName.setText(companyName);
             dlgAddCustomer_tfAddress.setText(address);
             dlgAddCustomer_tfContactNumber.setText(contactNum);
             
-            //dlgAdd_lblIdValue.setText(id);
-            //dlgAdd_tfFirstName.setText(firstName);
-            //dlgAdd_tfLastName.setText(lastName);
-            //dlgAdd_tfPassword.setText("****"); // maybe add click event on this text field, when clicked clear all data in the
-                                               // text field
+            
             Add_Customer.pack();
             Add_Customer.setVisible(true);
         } catch (ClassCastException e) {
@@ -363,7 +365,7 @@ public class Customers extends javax.swing.JFrame {
             int rowIndex = customersTable.getSelectedRow();
             long id = 0;
             try {
-                id = (long) customersTable.getValueAt(rowIndex, 3);
+                id = (long) customersTable.getValueAt(rowIndex, 0);
             } catch (ClassCastException e) {
                 System.err.println("Delete could not be performed, please try again later...");
             }

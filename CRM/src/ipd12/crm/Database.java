@@ -1,5 +1,6 @@
 package ipd12.crm;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -120,6 +121,9 @@ public class Database {
         return list;
     }
     
+//================ Add Method ====================================
+    
+    
     public void addCustomer(Customer customer) throws SQLException {
         String sql = "INSERT INTO customers (companyName, address, contactNum) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -129,6 +133,18 @@ public class Database {
             stmt.executeUpdate();
         }
     }
+    
+    public void addProduct(Product product) throws SQLException {
+        String sql = "INSERT INTO products (productName, pricePerUnit, quantity) VALUES (?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, product.getProductName());
+            stmt.setBigDecimal(2, product.getPricePerUnit());
+            stmt.setInt(3, product.getQuantity());
+            stmt.executeUpdate();
+        }
+    }
+    
+    //=============================== ArrayList ===== getAll Method ===============================//
     
     public ArrayList<Customer> getAllCustomers() throws SQLException {
         String sql = "SELECT * FROM customers";
@@ -147,6 +163,26 @@ public class Database {
         }
         return list;
     }
+    
+    public ArrayList<Product> getAllProducts() throws SQLException {
+        String sql = "SELECT * FROM products";
+        ArrayList<Product> list = new ArrayList<>();
+
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet result = stmt.executeQuery(sql);
+            while (result.next()) {
+                int id = result.getInt("id");
+                String productName = result.getString("productName");
+                BigDecimal pericePerUnit = result.getBigDecimal("pricePerUnit");
+                int quantity = result.getInt("quantity");
+                Product product = new Product(id, productName, pericePerUnit, quantity);
+                list.add(product);
+            }
+        }
+        return list;
+    }
+    
+//============================= Get By ID ==================================
     
     public Customer getCustomerById(int id) throws SQLException {
         // FIXME: Preapred statement is required if id may contain malicious SQL injection code
@@ -167,6 +203,32 @@ public class Database {
             }
         }
     }
+    //==================== Update ====================
+    
+    public void updateCustomer(Customer customer) throws SQLException {
+        String sql = "UPDATE customers SET companyName=?, Address=?, contactNum=? WHERE id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, customer.getCompanyName());
+            stmt.setString(2, customer.getAddress());
+            stmt.setString(3, customer.getContactNum());
+            stmt.setLong(4, customer.getId());
+            stmt.executeUpdate();
+        }
+    }
+    
+    public void updateProduct(Product product) throws SQLException {
+        String sql = "UPDATE products SET productName=?, pricePerUnit=?, quantity =? WHERE id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, product.getProductName());
+            stmt.setBigDecimal(2, product.getPricePerUnit());
+            stmt.setInt(3, product.getQuantity());
+            stmt.setLong(4, product.getId());
+            stmt.executeUpdate();
+        }
+    }
+    
+    
+    //==================== Delete ====================
     
     public void deleteCustomerById(long id) throws SQLException {
         String sql = "DELETE FROM customers WHERE id=?";
@@ -176,6 +238,16 @@ public class Database {
         }
     }
     
+    public void deleteProductById(long id) throws SQLException {
+        String sql = "DELETE FROM products WHERE id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        }
+    }
+    
+    
+    //=======================================================
     public void loadTable(DefaultTableModel model) {
         
         model.setRowCount(0);
@@ -233,4 +305,5 @@ public class Database {
         String nullLogin = null;
         return nullLogin;
     }
+    
 }
