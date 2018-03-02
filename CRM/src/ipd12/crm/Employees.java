@@ -64,6 +64,7 @@ public class Employees extends javax.swing.JFrame {
         dlgAdd_lblDepartment = new javax.swing.JLabel();
         dlgAdd_cbDepartment = new javax.swing.JComboBox<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btAdd = new javax.swing.JButton();
@@ -76,14 +77,17 @@ public class Employees extends javax.swing.JFrame {
                 return false;   //Disallow the editing of any cell
             }
         };
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
+        btSupport = new javax.swing.JButton();
+        btSales = new javax.swing.JButton();
+        btCustomers = new javax.swing.JButton();
+        btEmployees = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
-        menuEmployees = new javax.swing.JMenu();
-        menuCustomer = new javax.swing.JMenu();
         menuSales = new javax.swing.JMenu();
         menuSupport = new javax.swing.JMenu();
+        menuSupport1 = new javax.swing.JMenu();
+        menuSupport2 = new javax.swing.JMenu();
+        menuSupport3 = new javax.swing.JMenu();
         menuLogin = new javax.swing.JMenu();
         menuLogout = new javax.swing.JMenu();
 
@@ -215,11 +219,29 @@ public class Employees extends javax.swing.JFrame {
         jTable1.setModel(model);
         jScrollPane2.setViewportView(jTable1);
 
-        jSeparator1.setForeground(new java.awt.Color(0, 102, 255));
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        btSupport.setText("Support");
+        btSupport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSupportActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Centaur", 1, 14)); // NOI18N
-        jLabel2.setText("Employees");
+        btSales.setText("Sales");
+        btSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalesActionPerformed(evt);
+            }
+        });
+
+        btCustomers.setText("Customers");
+        btCustomers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCustomersActionPerformed(evt);
+            }
+        });
+
+        btEmployees.setText("Employees");
+        btEmployees.setSelected(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -228,40 +250,43 @@ public class Employees extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(80, 80, 80)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btEmployees)
+                        .addGap(0, 0, 0)
+                        .addComponent(btCustomers)
+                        .addGap(0, 0, 0)
+                        .addComponent(btSales, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(btSupport, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btEmployees)
+                    .addComponent(btCustomers)
+                    .addComponent(btSales)
+                    .addComponent(btSupport))
+                .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
                         .addComponent(btAdd)
-                        .addGap(18, 18, 18)
+                        .addGap(39, 39, 39)
                         .addComponent(btEdit)
                         .addGap(18, 18, 18)
                         .addComponent(btDelete)
                         .addGap(18, 18, 18)
                         .addComponent(btPrint))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -270,18 +295,22 @@ public class Employees extends javax.swing.JFrame {
         menuFile.setText("File");
         jMenuBar1.add(menuFile);
 
-        menuEmployees.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        menuEmployees.setText("Employees");
-        jMenuBar1.add(menuEmployees);
-
-        menuCustomer.setText("Customers");
-        jMenuBar1.add(menuCustomer);
-
-        menuSales.setText("Sales");
+        menuSales.setText("Import");
         jMenuBar1.add(menuSales);
 
-        menuSupport.setText("Support");
+        menuSupport.setText("Export");
+
+        menuSupport1.setText("Export");
+        menuSupport.add(menuSupport1);
+
         jMenuBar1.add(menuSupport);
+
+        menuSupport2.setText("Print");
+
+        menuSupport3.setText("Export");
+        menuSupport2.add(menuSupport3);
+
+        jMenuBar1.add(menuSupport2);
 
         menuLogin.setText("Login");
         jMenuBar1.add(menuLogin);
@@ -405,6 +434,21 @@ public class Employees extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btEditActionPerformed
 
+    private void btSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalesActionPerformed
+        this.dispose();
+        Sales.main(null);
+    }//GEN-LAST:event_btSalesActionPerformed
+
+    private void btCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCustomersActionPerformed
+        this.dispose();
+        Customers.main(null);                
+    }//GEN-LAST:event_btCustomersActionPerformed
+
+    private void btSupportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSupportActionPerformed
+        this.dispose();
+        Support.main(null);
+    }//GEN-LAST:event_btSupportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -451,9 +495,14 @@ public class Employees extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdd;
+    private javax.swing.JButton btCustomers;
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btEdit;
+    private javax.swing.JButton btEmployees;
     private javax.swing.JButton btPrint;
+    private javax.swing.JButton btSales;
+    private javax.swing.JButton btSupport;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JDialog dlgAdd;
     private javax.swing.JButton dlgAdd_btCancel;
     private javax.swing.JButton dlgAdd_btSave;
@@ -468,19 +517,18 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JTextField dlgAdd_tfLastName;
     private javax.swing.JTextField dlgAdd_tfPassword;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JMenu menuCustomer;
-    private javax.swing.JMenu menuEmployees;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuLogin;
     private javax.swing.JMenu menuLogout;
     private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;
+    private javax.swing.JMenu menuSupport1;
+    private javax.swing.JMenu menuSupport2;
+    private javax.swing.JMenu menuSupport3;
     // End of variables declaration//GEN-END:variables
 }
