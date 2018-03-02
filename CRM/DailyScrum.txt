@@ -112,6 +112,21 @@ Not done:
 
 ==================================
 
+Yasser / 03-02-2018
+
+1. What I have done or Not done since the last scrum?
+Done:
+- Created Customers and Products windows with all add/edit/delete functions
+
+Not done:
+- create Sales and Support windows with all functions
+
+
+2. What is planned from this scrum to the next?
+- create Sales and support windows with all function
+- create function Print for dlgSales
+
+
 
 
 
