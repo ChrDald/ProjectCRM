@@ -100,9 +100,9 @@
                                       <Component id="lblPassword" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tfFirstName" min="-2" pref="140" max="-2" attributes="0"/>
-                                      <Component id="tfPassword" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="tfFirstName" pref="140" max="32767" attributes="0"/>
+                                      <Component id="pfPassword" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -125,7 +125,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pfPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -155,8 +155,6 @@
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfPassword">
-        </Component>
         <Component class="javax.swing.JButton" name="btCancel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
@@ -172,6 +170,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLoginActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="pfPassword">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

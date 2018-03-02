@@ -34,9 +34,9 @@ public class Login extends javax.swing.JFrame {
         lblFirstName = new javax.swing.JLabel();
         tfFirstName = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
-        tfPassword = new javax.swing.JTextField();
         btCancel = new javax.swing.JButton();
         btLogin = new javax.swing.JButton();
+        pfPassword = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuEmployees = new javax.swing.JMenu();
@@ -70,6 +70,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        pfPassword.setText("jPasswordField1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -91,9 +93,9 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(lblFirstName)
                                     .addComponent(lblPassword))
                                 .addGap(37, 37, 37)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(pfPassword))))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -108,7 +110,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword)
-                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btLogin)
@@ -149,7 +151,9 @@ public class Login extends javax.swing.JFrame {
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         
         String firstName = tfFirstName.getText();
-        String password = tfPassword.getText();
+        char[] password = pfPassword.getPassword();
+        
+        System.err.println(password);
         
         department = db.login(firstName, password);
       
@@ -240,7 +244,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JMenu menuLogin;
     private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;
+    private javax.swing.JPasswordField pfPassword;
     private javax.swing.JTextField tfFirstName;
-    private javax.swing.JTextField tfPassword;
     // End of variables declaration//GEN-END:variables
 }

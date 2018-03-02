@@ -1,0 +1,3 @@
+*Add invalid index error handling WHEN delete or edit is selected but no row is selected in the table
+
+*Make the design the same for all tabs (the ID column)

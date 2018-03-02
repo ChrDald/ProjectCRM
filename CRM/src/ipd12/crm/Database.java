@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import sun.security.util.Password;
 
 class RecordNotFoundException extends SQLException {
 
@@ -281,19 +282,19 @@ public class Database {
         }
     }
     
-    public String login(String firstName, String password) {
+    public String login(String firstName, char[] password) {
                
         String sql = "SELECT firstName, department, employeePassword "
                 + "FROM employees WHERE firstName = ? AND employeePassword = ?";
         
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, firstName);
-            stmt.setString(2, password);
-                        
+            String pwd = new String(password);
+            stmt.setString(2, pwd);   
             ResultSet rs = stmt.executeQuery();
             
             if (rs.next()) {
-                if (firstName.equals(rs.getString("firstName")) && password.equals(rs.getString("employeePassword"))) {
+                if (firstName.equals(rs.getString("firstName")) && pwd.equals(rs.getString("employeePassword"))) {
                 String dept = rs.getString("department");
                 return dept;
                 }

@@ -6,6 +6,7 @@
 package ipd12.crm;
 
 import java.math.BigDecimal;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Product {
     private String productName;
     private BigDecimal pricePerUnit;
     private int quantity;
+    
 
     public Product(String productName, BigDecimal pricePerUnit, int quantity) {
         this.productName = productName;
