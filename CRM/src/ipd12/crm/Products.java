@@ -5,6 +5,14 @@
  */
 package ipd12.crm;
 
+import java.math.BigDecimal;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author yasser
@@ -14,8 +22,38 @@ public class Products extends javax.swing.JFrame {
     /**
      * Creates new form jcrm
      */
+    Database db;
+
     public Products() {
+        db = new Database();
         initComponents();
+        loadProducts();
+    }
+
+    public void loadProducts() {
+        try {
+            
+            DefaultTableModel model = (DefaultTableModel) productTable.getModel();
+            model.setRowCount(0);
+            ArrayList<Product> list = db.getAllProducts();
+            Object rowData[] = new Object[4];
+            for (int i = 0; i < list.size(); i++) {
+                rowData[0] = list.get(i).getId();
+                rowData[1] = list.get(i).getProductName();
+                rowData[2] = list.get(i).getPricePerUnit();
+                rowData[3] = list.get(i).getQuantity();
+                model.addRow(rowData);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // display dialog with error message and terminate the program
+            JOptionPane.showMessageDialog(this,
+                    "Error: unable to reload products\n" + ex.getMessage(),
+                    "Database error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    
     }
 
     /**
@@ -40,12 +78,13 @@ public class Products extends javax.swing.JFrame {
         dlgAddProduct_tfQuantity = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        products_btAdd = new javax.swing.JButton();
+        products_btEdit = new javax.swing.JButton();
+        products_btDelete = new javax.swing.JButton();
+        products_btPrint = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        productTable = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuEmployees = new javax.swing.JMenu();
@@ -56,13 +95,18 @@ public class Products extends javax.swing.JFrame {
 
         jLabel2.setText("Id");
 
-        jLabel3.setText("Product");
+        jLabel3.setText("Product Name");
 
         jLabel4.setText("PricePerUnit");
 
         dlgAddProduct_btCancel.setText("Cancel");
 
         dlgAddProduct_btSave.setText("Save");
+        dlgAddProduct_btSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAddProduct_btSaveActionPerformed(evt);
+            }
+        });
 
         dlgAddProduct_lbId.setText("...");
 
@@ -132,20 +176,48 @@ public class Products extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1. Company, Product, Contact Time, Issue, Technical's Person, Description, IsDone(or Not) ", " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        products_btAdd.setText("Add");
+        products_btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                products_btAddActionPerformed(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
 
-        jButton4.setText("Add");
+        products_btEdit.setText("Edit");
+        products_btEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                products_btEditActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Edit");
+        products_btDelete.setText("Delete");
+        products_btDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                products_btDeleteActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("Delete");
+        products_btPrint.setText("Print");
 
-        jButton7.setText("Print");
+        jLabel5.setText("Products");
+
+        productTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Product Name", "Price Per Unit", "Quantity"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(productTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,31 +225,37 @@ public class Products extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(products_btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(products_btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(products_btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(products_btPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addGap(18, 18, 18)
-                .addComponent(jButton6)
-                .addGap(18, 18, 18)
-                .addComponent(jButton7)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addComponent(jLabel5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(products_btAdd)
+                        .addGap(18, 18, 18)
+                        .addComponent(products_btEdit)
+                        .addGap(18, 18, 18)
+                        .addComponent(products_btDelete)
+                        .addGap(18, 18, 18)
+                        .addComponent(products_btPrint))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -186,6 +264,11 @@ public class Products extends javax.swing.JFrame {
         jMenuBar1.add(menuFile);
 
         menuEmployees.setText("Employees");
+        menuEmployees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEmployeesActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(menuEmployees);
 
         menuCustomer.setText("Customers");
@@ -204,6 +287,106 @@ public class Products extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmployeesActionPerformed
+
+    }//GEN-LAST:event_menuEmployeesActionPerformed
+
+    private void products_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_products_btAddActionPerformed
+        Add_Product.pack();
+        Add_Product.setVisible(true);
+    }//GEN-LAST:event_products_btAddActionPerformed
+
+    private void dlgAddProduct_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddProduct_btSaveActionPerformed
+        try {
+            String productName = dlgAddProduct_tfProduct.getText();
+            String price = dlgAddProduct_tfPricePerUnit.getText();
+            BigDecimal pricePerUnit = new BigDecimal(price);
+            String q = dlgAddProduct_tfQuantity.getText();
+            int quantity = Integer.parseInt(q);
+            Product p;
+            p = new Product(productName, pricePerUnit, quantity);
+            if (dlgAddProduct_lbId.getText().equals("...")) { // if youre editing, this would be false  
+            db.addProduct(p);
+            }
+            else {
+                try {
+                    p.setId(Long.valueOf(dlgAddProduct_lbId.getText()));
+                } catch (NumberFormatException e) {
+                    System.err.println("Invalid id value, could not format to long");
+                } catch (NullPointerException e) {
+                    System.err.println("Id value is null");
+                }
+                
+                db.updateProduct(p);
+            }
+            
+
+            loadProducts();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // display dialog with error message and terminate the program
+            JOptionPane.showMessageDialog(this,
+                    "Error: unable to reload products\n" + ex.getMessage(),
+                    "Database error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_dlgAddProduct_btSaveActionPerformed
+
+    private void products_btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_products_btEditActionPerformed
+        int rowIndex = productTable.getSelectedRow();
+        
+        try {
+            String id = String.valueOf(productTable.getValueAt(rowIndex, 0)); 
+            String productName = String.valueOf(productTable.getValueAt(rowIndex, 1));
+            String pricePerUnit = String.valueOf(productTable.getValueAt(rowIndex, 2));
+            String quantity = String.valueOf(productTable.getValueAt(rowIndex, 3));
+            
+            
+            dlgAddProduct_lbId.setText(id);
+            dlgAddProduct_tfProduct.setText(productName);
+            dlgAddProduct_tfPricePerUnit.setText(pricePerUnit);
+            dlgAddProduct_tfQuantity.setText(quantity);
+            
+            Add_Product.pack();
+            Add_Product.setVisible(true);
+        } catch (ClassCastException e) {
+            System.err.println("Casting exception");
+        }
+    }//GEN-LAST:event_products_btEditActionPerformed
+
+    private void products_btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_products_btDeleteActionPerformed
+        int decision = JOptionPane.showOptionDialog(
+            this,   // parent element, this referes to the frame
+            "Are you sure you want to delete this item?", // the message
+            "Alert",    // message icon
+            JOptionPane.YES_NO_OPTION,  // how many buttons (in this case 2, yes and no)
+            JOptionPane.WARNING_MESSAGE,
+            null,   // custom icon
+            null,
+            null
+        );
+
+        if (decision == JOptionPane.YES_OPTION) {
+
+            int rowIndex = productTable.getSelectedRow();
+            long id = 0;
+            try {
+                id = (long) productTable.getValueAt(rowIndex, 0);
+            } catch (ClassCastException e) {
+                System.err.println("Delete could not be performed, please try again later...");
+            }
+
+            try {
+                db.deleteProductById(id);
+            } catch (SQLException ex) {
+                System.err.println("Error deleting from database, check your query");
+                Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            loadProducts();
+        }
+    }//GEN-LAST:event_products_btDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,24 +446,26 @@ public class Products extends javax.swing.JFrame {
     private javax.swing.JTextField dlgAddProduct_tfPricePerUnit;
     private javax.swing.JTextField dlgAddProduct_tfProduct;
     private javax.swing.JTextField dlgAddProduct_tfQuantity;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu menuCustomer;
     private javax.swing.JMenu menuEmployees;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuLogin;
     private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;
+    private javax.swing.JTable productTable;
+    private javax.swing.JButton products_btAdd;
+    private javax.swing.JButton products_btDelete;
+    private javax.swing.JButton products_btEdit;
+    private javax.swing.JButton products_btPrint;
     // End of variables declaration//GEN-END:variables
+
 }
