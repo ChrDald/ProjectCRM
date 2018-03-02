@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import sun.security.util.Password;
 
@@ -246,7 +247,30 @@ public class Database {
             stmt.executeUpdate();
         }
     }
+    //==================== Load Data ====================
     
+    public void getIDandCustomers() throws SQLException {
+        String sql = "SELECT id, companyName FROM customers";
+        //ArrayList<Customer> list = new ArrayList<>();
+DefaultComboBoxModel modelCompanyCombo = new DefaultComboBoxModel();
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet result = stmt.executeQuery(sql);
+            while (result.next()) {
+                
+                Support support = new Support();
+                support.modelCompanyCombo = (DefaultComboBoxModel) result.getArray(1);
+                //int id = result.getInt("id");
+                //String companyName = result.getString("companyName");
+                
+                //Customer customer = new Customer(id, companyName);
+                //list.add(customer);
+            }
+        }
+      // DefaultComboBoxModel model = new DefaultComboBoxModel(list.toArray());
+      // Support support = new Support();
+      //      support.dlg_cbCompany.setModel(model);
+      //  return list;
+    }
     
     //=======================================================
     public void loadTable(DefaultTableModel model) {

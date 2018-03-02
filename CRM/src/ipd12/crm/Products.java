@@ -10,10 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +19,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Products extends javax.swing.JFrame {
 
+    /**
+     * Creates new form jcrm
+     */
     Database db;
 
     public Products() {
@@ -32,7 +31,6 @@ public class Products extends javax.swing.JFrame {
     }
 
     public void loadProducts() {
-        
         try {
             
             DefaultTableModel model = (DefaultTableModel) productTable.getModel();
@@ -45,7 +43,6 @@ public class Products extends javax.swing.JFrame {
                 rowData[2] = list.get(i).getPricePerUnit();
                 rowData[3] = list.get(i).getQuantity();
                 model.addRow(rowData);
-                Support.dlgAddTicket_cbProduct.addItem(rowData[1].toString());
             }
 
         } catch (SQLException ex) {

@@ -28,6 +28,12 @@ public class Customer {
         this.contactNum = contactNum;
     }
 
+    public Customer(long id, String companyName) {
+        this.id = id;
+        this.companyName = companyName;
+    }
+
+    
     
     /**
      * @return the id
