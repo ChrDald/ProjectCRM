@@ -87,7 +87,30 @@ Done:
 - Create table for(customer, product, support, sale)
 - Create add/edit dialog for (customer, product support, sale) 
 
+================================
+================================
+Christopher Daldalian / 03-02-2018
 
+1. What I have done or Not done since the last scrum?
+Done:
+- Created functioning login window/system
+- Wrote appropriate methods in database class to make this work
+
+Not done:
+-
+
+
+2. What is planned from this scrum to the next?
+- Add a tab switching system to switch between windows, such as employees, customers, products, etc...
+- Simplify the main menu bar, only keep File, import, export (or print)
+- Make the password more secure (dont show it **password field**)
+- Write code to restrict user permissions
+
+3. Where do I need assistance/help?
+- Extend the functions to all the classes
+- Printing, espcially real printing
+
+==================================
 
 
 

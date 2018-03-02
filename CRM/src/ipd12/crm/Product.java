@@ -21,6 +21,7 @@ public class Product {
         this.productName = productName;
         this.pricePerUnit = pricePerUnit;
         this.quantity = quantity;
+       
     }
     
     public Product(long id, String productName, BigDecimal pricePerUnit, int quantity) {

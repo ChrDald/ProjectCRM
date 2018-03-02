@@ -152,9 +152,7 @@ public class Login extends javax.swing.JFrame {
         String password = tfPassword.getText();
         
         department = db.login(firstName, password);
-
-        System.err.println(department);
-        
+      
         if (department == null) {
             JOptionPane.showMessageDialog(this,
             "Invalid login",
