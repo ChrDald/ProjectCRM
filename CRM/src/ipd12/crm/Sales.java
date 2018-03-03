@@ -5,16 +5,21 @@
  */
 package ipd12.crm;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author yasser
  */
 public class Sales extends javax.swing.JFrame {
 
-    /**
-     * Creates new form jcrm
-     */
+    
+    Database db;
+    DefaultTableModel model = new DefaultTableModel(new String[]
+    {"Ticket Id", "Agent Id", "Customer Id", "Product Id", "Description"}, 0);
+    
     public Sales() {
+        db = new Database();
         initComponents();
     }
 
@@ -43,19 +48,30 @@ public class Sales extends javax.swing.JFrame {
         dlgAddSales_lbId = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbSupport = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;   //Disallow the editing of any cell
+            }
+        };
+        btSupport = new javax.swing.JButton();
+        btSales = new javax.swing.JButton();
+        btCustomers = new javax.swing.JButton();
+        btEmployees = new javax.swing.JButton();
+        btSupport1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
-        menuEmployees = new javax.swing.JMenu();
-        menuCustomer = new javax.swing.JMenu();
-        menuSales = new javax.swing.JMenu();
-        menuSupport = new javax.swing.JMenu();
-        menuLogin = new javax.swing.JMenu();
+        menuSales1 = new javax.swing.JMenu();
+        menuSupport1 = new javax.swing.JMenu();
+        menuSupport2 = new javax.swing.JMenu();
+        menuSupport3 = new javax.swing.JMenu();
+        menuSupport4 = new javax.swing.JMenu();
+        menuLogin1 = new javax.swing.JMenu();
+        menuLogout = new javax.swing.JMenu();
 
         jLabel2.setText("Id");
 
@@ -151,13 +167,6 @@ public class Sales extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1. Company, Product, Contact Time, Issue, Technical's Person, Description, IsDone(or Not) ", " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
         jButton4.setText("Add");
 
         jButton5.setText("Edit");
@@ -166,37 +175,94 @@ public class Sales extends javax.swing.JFrame {
 
         jButton7.setText("Print");
 
+        tbSupport.setAutoCreateRowSorter(true);
+        tbSupport.setModel(model);
+        jScrollPane2.setViewportView(tbSupport);
+
+        btSupport.setText("Support");
+        btSupport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSupportActionPerformed(evt);
+            }
+        });
+
+        btSales.setBackground(new java.awt.Color(255, 255, 255));
+        btSales.setText("Sales");
+        btSales.setFocusable(false);
+        btSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalesActionPerformed(evt);
+            }
+        });
+
+        btCustomers.setText("Customers");
+        btCustomers.setFocusable(false);
+        btCustomers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCustomersActionPerformed(evt);
+            }
+        });
+
+        btEmployees.setText("Employees");
+        btEmployees.setFocusable(false);
+
+        btSupport1.setText("Products");
+        btSupport1.setSelected(true);
+        btSupport1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSupport1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btEmployees)
+                        .addGap(0, 0, 0)
+                        .addComponent(btCustomers)
+                        .addGap(0, 0, 0)
+                        .addComponent(btSales, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(btSupport, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(btSupport1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addGap(18, 18, 18)
-                .addComponent(jButton6)
-                .addGap(18, 18, 18)
-                .addComponent(jButton7)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btEmployees)
+                    .addComponent(btCustomers)
+                    .addComponent(btSales)
+                    .addComponent(btSupport)
+                    .addComponent(btSupport1))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -204,25 +270,53 @@ public class Sales extends javax.swing.JFrame {
         menuFile.setText("File");
         jMenuBar1.add(menuFile);
 
-        menuEmployees.setText("Employees");
-        jMenuBar1.add(menuEmployees);
+        menuSales1.setText("Import");
+        jMenuBar1.add(menuSales1);
 
-        menuCustomer.setText("Customers");
-        jMenuBar1.add(menuCustomer);
+        menuSupport1.setText("Export");
 
-        menuSales.setText("Sales");
-        jMenuBar1.add(menuSales);
+        menuSupport2.setText("Export");
+        menuSupport1.add(menuSupport2);
 
-        menuSupport.setText("Support");
-        jMenuBar1.add(menuSupport);
+        jMenuBar1.add(menuSupport1);
 
-        menuLogin.setText("Login");
-        jMenuBar1.add(menuLogin);
+        menuSupport3.setText("Print");
+
+        menuSupport4.setText("Export");
+        menuSupport3.add(menuSupport4);
+
+        jMenuBar1.add(menuSupport3);
+
+        menuLogin1.setText("Login");
+        jMenuBar1.add(menuLogin1);
+
+        menuLogout.setText("Logout");
+        jMenuBar1.add(menuLogout);
 
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btSupportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSupportActionPerformed
+        this.dispose();
+        Support.main(null);
+    }//GEN-LAST:event_btSupportActionPerformed
+
+    private void btSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalesActionPerformed
+        this.dispose();
+        Sales.main(null);
+    }//GEN-LAST:event_btSalesActionPerformed
+
+    private void btCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCustomersActionPerformed
+        this.dispose();
+        Customers.main(null);
+    }//GEN-LAST:event_btCustomersActionPerformed
+
+    private void btSupport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSupport1ActionPerformed
+        this.dispose();
+        Products.main(null);
+    }//GEN-LAST:event_btSupport1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,6 +358,11 @@ public class Sales extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Add_Sale;
+    private javax.swing.JButton btCustomers;
+    private javax.swing.JButton btEmployees;
+    private javax.swing.JButton btSales;
+    private javax.swing.JButton btSupport;
+    private javax.swing.JButton btSupport1;
     private javax.swing.JButton dlgAddSales_btCancel;
     private javax.swing.JButton dlgAddSales_btPrint;
     private javax.swing.JButton dlgAddSales_btSave;
@@ -282,15 +381,17 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JMenu menuCustomer;
-    private javax.swing.JMenu menuEmployees;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu menuFile;
-    private javax.swing.JMenu menuLogin;
-    private javax.swing.JMenu menuSales;
-    private javax.swing.JMenu menuSupport;
+    private javax.swing.JMenu menuLogin1;
+    private javax.swing.JMenu menuLogout;
+    private javax.swing.JMenu menuSales1;
+    private javax.swing.JMenu menuSupport1;
+    private javax.swing.JMenu menuSupport2;
+    private javax.swing.JMenu menuSupport3;
+    private javax.swing.JMenu menuSupport4;
+    private javax.swing.JTable tbSupport;
     // End of variables declaration//GEN-END:variables
 }

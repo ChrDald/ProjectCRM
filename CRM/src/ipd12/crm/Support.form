@@ -192,29 +192,43 @@
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuEmployees">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Employees"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="menuCustomer">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Customers"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="menuSales">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sales"/>
+            <Property name="text" type="java.lang.String" value="Import"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuSupport">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Support"/>
+            <Property name="text" type="java.lang.String" value="Export"/>
           </Properties>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="menuSupport1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Export"/>
+              </Properties>
+            </Menu>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuSupport2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Print"/>
+          </Properties>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="menuSupport3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Export"/>
+              </Properties>
+            </Menu>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuLogin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Login"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuLogout">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Logout"/>
           </Properties>
         </Menu>
       </SubComponents>
@@ -238,7 +252,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,116,0,0,2,121"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,116,0,0,2,41"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -284,9 +298,11 @@
                           <Component id="btSales" min="-2" pref="83" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="btSupport" min="-2" pref="83" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="btSupport1" min="-2" pref="83" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="90" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -299,8 +315,9 @@
                       <Component id="btCustomers" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btSales" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btSupport" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btSupport1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="btAdd" min="-2" max="-2" attributes="0"/>
@@ -310,7 +327,7 @@
                           <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButton7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="140" max="32767" attributes="0"/>
+                          <EmptySpace pref="146" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -406,6 +423,15 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="btSupport1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Products"/>
+            <Property name="selected" type="boolean" value="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSupport1ActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

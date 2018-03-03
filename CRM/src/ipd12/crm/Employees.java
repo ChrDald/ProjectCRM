@@ -81,6 +81,7 @@ public class Employees extends javax.swing.JFrame {
         btSales = new javax.swing.JButton();
         btCustomers = new javax.swing.JButton();
         btEmployees = new javax.swing.JButton();
+        btSupport1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuSales = new javax.swing.JMenu();
@@ -240,8 +241,17 @@ public class Employees extends javax.swing.JFrame {
             }
         });
 
+        btEmployees.setBackground(new java.awt.Color(255, 255, 255));
         btEmployees.setText("Employees");
         btEmployees.setSelected(true);
+
+        btSupport1.setText("Products");
+        btSupport1.setSelected(true);
+        btSupport1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSupport1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -258,14 +268,16 @@ public class Employees extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(btSales, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(btSupport, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btSupport, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(btSupport1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,19 +287,20 @@ public class Employees extends javax.swing.JFrame {
                     .addComponent(btEmployees)
                     .addComponent(btCustomers)
                     .addComponent(btSales)
-                    .addComponent(btSupport))
+                    .addComponent(btSupport)
+                    .addComponent(btSupport1))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btAdd)
-                        .addGap(39, 39, 39)
+                        .addGap(18, 18, 18)
                         .addComponent(btEdit)
                         .addGap(18, 18, 18)
                         .addComponent(btDelete)
                         .addGap(18, 18, 18)
                         .addComponent(btPrint))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -449,6 +462,11 @@ public class Employees extends javax.swing.JFrame {
         Support.main(null);
     }//GEN-LAST:event_btSupportActionPerformed
 
+    private void btSupport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSupport1ActionPerformed
+        this.dispose();
+        Products.main(null);
+    }//GEN-LAST:event_btSupport1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -502,6 +520,7 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JButton btPrint;
     private javax.swing.JButton btSales;
     private javax.swing.JButton btSupport;
+    private javax.swing.JButton btSupport1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JDialog dlgAdd;
     private javax.swing.JButton dlgAdd_btCancel;

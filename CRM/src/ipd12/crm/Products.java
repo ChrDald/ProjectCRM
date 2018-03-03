@@ -91,16 +91,22 @@ public class Products extends javax.swing.JFrame {
         products_btEdit = new javax.swing.JButton();
         products_btDelete = new javax.swing.JButton();
         products_btPrint = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
+        btSupport = new javax.swing.JButton();
+        btSales = new javax.swing.JButton();
+        btCustomers = new javax.swing.JButton();
+        btEmployees = new javax.swing.JButton();
+        btSupport1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
-        menuEmployees = new javax.swing.JMenu();
-        menuCustomer = new javax.swing.JMenu();
         menuSales = new javax.swing.JMenu();
         menuSupport = new javax.swing.JMenu();
+        menuSupport1 = new javax.swing.JMenu();
+        menuSupport2 = new javax.swing.JMenu();
+        menuSupport3 = new javax.swing.JMenu();
         menuLogin = new javax.swing.JMenu();
+        menuLogout = new javax.swing.JMenu();
 
         jLabel2.setText("Id");
 
@@ -208,8 +214,6 @@ public class Products extends javax.swing.JFrame {
 
         products_btPrint.setText("Print");
 
-        jLabel5.setText("Products");
-
         productTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -228,6 +232,42 @@ public class Products extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(productTable);
 
+        btSupport.setText("Support");
+        btSupport.setSelected(true);
+        btSupport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSupportActionPerformed(evt);
+            }
+        });
+
+        btSales.setText("Sales");
+        btSales.setFocusable(false);
+        btSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalesActionPerformed(evt);
+            }
+        });
+
+        btCustomers.setText("Customers");
+        btCustomers.setFocusable(false);
+        btCustomers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCustomersActionPerformed(evt);
+            }
+        });
+
+        btEmployees.setText("Employees");
+        btEmployees.setFocusable(false);
+
+        btSupport1.setBackground(new java.awt.Color(255, 255, 255));
+        btSupport1.setText("Products");
+        btSupport1.setSelected(true);
+        btSupport1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSupport1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -243,27 +283,39 @@ public class Products extends javax.swing.JFrame {
                             .addComponent(products_btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(products_btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(products_btPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btEmployees)
+                        .addGap(0, 0, 0)
+                        .addComponent(btCustomers)
+                        .addGap(0, 0, 0)
+                        .addComponent(btSales, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(btSupport, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(btSupport1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btEmployees)
+                    .addComponent(btCustomers)
+                    .addComponent(btSales)
+                    .addComponent(btSupport)
+                    .addComponent(btSupport1))
+                .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
                         .addComponent(products_btAdd)
                         .addGap(18, 18, 18)
                         .addComponent(products_btEdit)
                         .addGap(18, 18, 18)
                         .addComponent(products_btDelete)
                         .addGap(18, 18, 18)
-                        .addComponent(products_btPrint))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(products_btPrint)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -272,34 +324,33 @@ public class Products extends javax.swing.JFrame {
         menuFile.setText("File");
         jMenuBar1.add(menuFile);
 
-        menuEmployees.setText("Employees");
-        menuEmployees.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuEmployeesActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(menuEmployees);
-
-        menuCustomer.setText("Customers");
-        jMenuBar1.add(menuCustomer);
-
-        menuSales.setText("Sales");
+        menuSales.setText("Import");
         jMenuBar1.add(menuSales);
 
-        menuSupport.setText("Support");
+        menuSupport.setText("Export");
+
+        menuSupport1.setText("Export");
+        menuSupport.add(menuSupport1);
+
         jMenuBar1.add(menuSupport);
+
+        menuSupport2.setText("Print");
+
+        menuSupport3.setText("Export");
+        menuSupport2.add(menuSupport3);
+
+        jMenuBar1.add(menuSupport2);
 
         menuLogin.setText("Login");
         jMenuBar1.add(menuLogin);
+
+        menuLogout.setText("Logout");
+        jMenuBar1.add(menuLogout);
 
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void menuEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmployeesActionPerformed
-
-    }//GEN-LAST:event_menuEmployeesActionPerformed
 
     private void products_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_products_btAddActionPerformed
         Add_Product.pack();
@@ -397,6 +448,26 @@ public class Products extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_products_btDeleteActionPerformed
 
+    private void btSupportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSupportActionPerformed
+        this.dispose();
+        Support.main(null);
+    }//GEN-LAST:event_btSupportActionPerformed
+
+    private void btSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalesActionPerformed
+        this.dispose();
+        Sales.main(null);
+    }//GEN-LAST:event_btSalesActionPerformed
+
+    private void btCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCustomersActionPerformed
+        this.dispose();
+        Customers.main(null);
+    }//GEN-LAST:event_btCustomersActionPerformed
+
+    private void btSupport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSupport1ActionPerformed
+        this.dispose();
+        Products.main(null);
+    }//GEN-LAST:event_btSupport1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -449,6 +520,11 @@ public class Products extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Add_Product;
+    private javax.swing.JButton btCustomers;
+    private javax.swing.JButton btEmployees;
+    private javax.swing.JButton btSales;
+    private javax.swing.JButton btSupport;
+    private javax.swing.JButton btSupport1;
     private javax.swing.JButton dlgAddProduct_btCancel;
     private javax.swing.JButton dlgAddProduct_btSave;
     private javax.swing.JLabel dlgAddProduct_lbId;
@@ -459,17 +535,18 @@ public class Products extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JMenu menuCustomer;
-    private javax.swing.JMenu menuEmployees;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuLogin;
+    private javax.swing.JMenu menuLogout;
     private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;
+    private javax.swing.JMenu menuSupport1;
+    private javax.swing.JMenu menuSupport2;
+    private javax.swing.JMenu menuSupport3;
     private javax.swing.JTable productTable;
     private javax.swing.JButton products_btAdd;
     private javax.swing.JButton products_btDelete;
