@@ -6,19 +6,18 @@
 package ipd12.crm;
 
 import java.sql.SQLException;
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-=======
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
->>>>>>> 474d98b95f5f1448b644881557e71329ba130ef2
 
 /**
  *
@@ -30,7 +29,6 @@ public class Support extends javax.swing.JFrame {
     DefaultTableModel model = new DefaultTableModel(new String[]
     {"Ticket Id", "Agent Id", "Customer Id", "Product Id", "Description"}, 0);
     
-    Database db;
     
     public Support() {
         try {
@@ -39,12 +37,9 @@ public class Support extends javax.swing.JFrame {
             Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
-<<<<<<< HEAD
-    
-=======
+
         db = new Database();
         loadTickets();
->>>>>>> 474d98b95f5f1448b644881557e71329ba130ef2
     }
     
     
