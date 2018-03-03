@@ -85,7 +85,7 @@ public class Support extends javax.swing.JFrame {
         dlgAddTicket_btCancel = new javax.swing.JButton();
         dlgAddTicket_lblAgentId = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        dlgAddTicket_tfCustomerId = new javax.swing.JTextField();
+        dlgAddTicket_cbCustomerId = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btAdd = new javax.swing.JButton();
@@ -121,6 +121,12 @@ public class Support extends javax.swing.JFrame {
 
         jLabel22.setText("Product:");
 
+        dlgAddTicket_cbProduct.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                dlgAddTicket_cbProductItemStateChanged(evt);
+            }
+        });
+
         jLabel23.setText("Support Agent id:");
 
         jLabel24.setText("Description of the issue:");
@@ -151,7 +157,11 @@ public class Support extends javax.swing.JFrame {
 
         dlgAddTicket_lblAgentId.setText("placeholder");
 
-        dlgAddTicket_tfCustomerId.setText(" ");
+        dlgAddTicket_cbCustomerId.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                dlgAddTicket_cbCustomerIdItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout dlgAddTicketLayout = new javax.swing.GroupLayout(dlgAddTicket.getContentPane());
         dlgAddTicket.getContentPane().setLayout(dlgAddTicketLayout);
@@ -187,8 +197,8 @@ public class Support extends javax.swing.JFrame {
                     .addGroup(dlgAddTicketLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dlgAddTicket_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dlgAddTicket_tfCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(dlgAddTicket_cbCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dlgAddTicket_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24)
@@ -209,7 +219,7 @@ public class Support extends javax.swing.JFrame {
                     .addGroup(dlgAddTicketLayout.createSequentialGroup()
                         .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
-                            .addComponent(dlgAddTicket_tfCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dlgAddTicket_cbCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
@@ -379,10 +389,23 @@ public class Support extends javax.swing.JFrame {
 
     private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
 
-        dlgAddTicket_cbProduct.removeAllItems();
-        Products products = new Products(); // when you create an object of Products, loadProducts() is called in the
-                                            // constructor of Products (you dont need to call it twice
-        // products.loadProducts();
+        try {
+            ArrayList<Customer> customers = db.getAllCustomers();
+            ArrayList<Long> customerIds = new ArrayList<>();
+            
+            for (int i = 0; i < customers.size(); i++) {
+                customerIds.add(customers.get(i).getId());
+            }          
+            System.err.println(customerIds); // test line
+            // add the IDs to the combo box
+            for (int i = 0; i < customerIds.size(); i++) {
+                dlgAddTicket_cbCustomerId.addItem(customerIds.get(i).toString());
+            }
+           
+            getCustomerProducts();
+        } catch (SQLException ex) {
+            Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
+        }
  
         dlgAddTicket.dispose();
         dlgAddTicket.pack();
@@ -413,13 +436,13 @@ public class Support extends javax.swing.JFrame {
     private void dlgAddTicket_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddTicket_btSaveActionPerformed
         
         try {
+            // supportAgentId, description, customerId, productId
             Ticket ticket = new Ticket();
             // ticket.setId **When adding, the id doesnt exist yet**
-            ticket.setSupportAgentId(Integer.valueOf(dlgAddTicket_lblAgentId.getText()));
-
+            ticket.setSupportAgentId(Integer.valueOf(dlgAddTicket_lblAgentId.getText().trim()));
             ticket.setDescription(dlgAddTicket_tfDescription.getText());
-            System.err.println("Test: " + dlgAddTicket_tfCustomerId.getText());
-            ticket.setCustomerId(Integer.parseInt(dlgAddTicket_tfCustomerId.getText()));
+            ticket.setCustomerId(Integer.parseInt(dlgAddTicket_cbCustomerId.getSelectedItem().toString()));
+ 
             // get product id
             switch (dlgAddTicket_cbProduct.getSelectedItem().toString()) {
                 case "sw":
@@ -438,7 +461,7 @@ public class Support extends javax.swing.JFrame {
                             JOptionPane.ERROR_MESSAGE);
                     break;
             }
-
+            System.err.println("Ticket id: " + ticket.getId());
             db.addTicket(ticket);
 
         } catch (SQLException ex) {
@@ -446,7 +469,7 @@ public class Support extends javax.swing.JFrame {
             Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
         } 
         dlgAddTicket.setVisible(false);
-        db.loadTable(model);
+        loadTickets();
     }//GEN-LAST:event_dlgAddTicket_btSaveActionPerformed
 
     private void btSupport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSupport1ActionPerformed
@@ -454,6 +477,33 @@ public class Support extends javax.swing.JFrame {
         Products.main(null);
     }//GEN-LAST:event_btSupport1ActionPerformed
 
+    private void dlgAddTicket_cbProductItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dlgAddTicket_cbProductItemStateChanged
+
+        
+    }//GEN-LAST:event_dlgAddTicket_cbProductItemStateChanged
+
+    private void dlgAddTicket_cbCustomerIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dlgAddTicket_cbCustomerIdItemStateChanged
+       
+        getCustomerProducts();
+    }//GEN-LAST:event_dlgAddTicket_cbCustomerIdItemStateChanged
+
+    public void getCustomerProducts() {
+        try {
+            dlgAddTicket_cbProduct.removeAllItems();
+            
+            // get all products that the selected customer has
+            int selectedCustomerId = Integer.parseInt(dlgAddTicket_cbCustomerId.getSelectedItem().toString());
+            ArrayList<String> customerProducts = db.getCustomerProductsById(selectedCustomerId);
+            
+            // add the products to the list
+            for (int i = 0; i < customerProducts.size(); i++) {
+                dlgAddTicket_cbProduct.addItem(customerProducts.get(i));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
     /**
      * @param args the command line arguments
      */
@@ -506,12 +556,12 @@ public class Support extends javax.swing.JFrame {
     private javax.swing.JDialog dlgAddTicket;
     private javax.swing.JButton dlgAddTicket_btCancel;
     private javax.swing.JButton dlgAddTicket_btSave;
+    private javax.swing.JComboBox<String> dlgAddTicket_cbCustomerId;
     public static javax.swing.JComboBox<String> dlgAddTicket_cbProduct;
     private javax.swing.JLabel dlgAddTicket_lbId;
     private javax.swing.JLabel dlgAddTicket_lblAgentId;
     private javax.swing.JRadioButton dlgAddTicket_rbIsDone;
     private javax.swing.JRadioButton dlgAddTicket_rbIsNotDone;
-    private javax.swing.JTextField dlgAddTicket_tfCustomerId;
     private javax.swing.JTextField dlgAddTicket_tfDescription;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;

@@ -11,3 +11,6 @@ in the database
 *Make sure all the tabs are working properly (when your in the sales window make the sales tab unclickable for example)
 
 *Add menu bar functions
+
+**ADDING SUPPORT TICKET: use a drop down list to select customer id, then load that customer's products and add those to
+the drop down list for products
