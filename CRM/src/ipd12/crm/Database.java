@@ -40,7 +40,7 @@ public class Database {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");  
             conn = DriverManager.getConnection(url); 
         } catch (SQLException e) {
-            System.err.println("Error connecting to databse...");
+            System.err.println("Error connecting to database...");
         } catch (ClassNotFoundException e) {
             System.err.println("Class not found exception...");
         }
@@ -146,6 +146,17 @@ public class Database {
         }
     }
     
+    public void addTicket(Ticket ticket) throws SQLException {
+        String sql = "INSERT INTO supportTickets (supportAgentId, description, customerId, productId) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, ticket.getSupportAgentId());
+            stmt.setString(2, ticket.getDescription());
+            stmt.setInt(3, ticket.getCustomerId());
+            stmt.setInt(4, ticket.getProductId());
+            stmt.executeUpdate();
+        }
+    }
+    
     //=============================== ArrayList ===== getAll Method ===============================//
     
     public ArrayList<Customer> getAllCustomers() throws SQLException {
@@ -184,6 +195,25 @@ public class Database {
         return list;
     }
     
+    public ArrayList<Ticket> getAllTickets() throws SQLException {
+        String sql = "SELECT * FROM supportTickets";
+        ArrayList<Ticket> list = new ArrayList<>();
+
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet result = stmt.executeQuery(sql);
+            while (result.next()) {
+                Ticket ticket = new Ticket();
+                ticket.setId(result.getInt("id"));
+                ticket.setSupportAgentId(result.getInt("supportAgentId"));
+                ticket.setDescription(result.getString("description"));
+                ticket.setCustomerId(result.getInt("customerId"));
+                ticket.setProductId(result.getInt("productId"));
+
+                list.add(ticket);
+            }
+        }
+        return list;
+    }
 //============================= Get By ID ==================================
     
     public Customer getCustomerById(int id) throws SQLException {
