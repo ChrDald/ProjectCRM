@@ -16,18 +16,20 @@ import javax.swing.DefaultComboBoxModel;
  * @author yasser
  */
 public class Support extends javax.swing.JFrame {
-DefaultComboBoxModel modelCompanyCombo = new DefaultComboBoxModel();
+
     
     Database db;
     
     public Support() {
+        try {
+            db.getIDandCustomers();
+        } catch (SQLException ex) {
+            Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
-    try {
-        db.getIDandCustomers();
-    } catch (SQLException ex) {
-        Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
+    
     }
-    }
+    
     
     
 
@@ -322,7 +324,7 @@ DefaultComboBoxModel modelCompanyCombo = new DefaultComboBoxModel();
     private javax.swing.JLabel dlgAddTicket_lbId;
     private javax.swing.JRadioButton dlgAddTicket_rbIsDone;
     private javax.swing.JRadioButton dlgAddTicket_rbIsNotDone;
-    public javax.swing.JComboBox<Customer> dlg_cbCompany;
+    public javax.swing.JComboBox<String> dlg_cbCompany;
     public static javax.swing.JComboBox<String> dlg_cbProduct;
     private javax.swing.JComboBox<String> dlg_cbSupportAgent;
     private javax.swing.JButton jButton5;

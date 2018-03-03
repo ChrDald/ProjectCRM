@@ -250,26 +250,20 @@ public class Database {
     //==================== Load Data ====================
     
     public void getIDandCustomers() throws SQLException {
-        String sql = "SELECT id, companyName FROM customers";
-        //ArrayList<Customer> list = new ArrayList<>();
-DefaultComboBoxModel modelCompanyCombo = new DefaultComboBoxModel();
+        String sql = "SELECT * FROM customers";
+        
+
         try (Statement stmt = conn.createStatement()) {
             ResultSet result = stmt.executeQuery(sql);
             while (result.next()) {
-                
+                int id = result.getInt("id");
+                String companyName = result.getString("companyName");
                 Support support = new Support();
-                support.modelCompanyCombo = (DefaultComboBoxModel) result.getArray(1);
-                //int id = result.getInt("id");
-                //String companyName = result.getString("companyName");
+                support.dlg_cbCompany.addItem(companyName);
                 
-                //Customer customer = new Customer(id, companyName);
-                //list.add(customer);
             }
         }
-      // DefaultComboBoxModel model = new DefaultComboBoxModel(list.toArray());
-      // Support support = new Support();
-      //      support.dlg_cbCompany.setModel(model);
-      //  return list;
+      
     }
     
     //=======================================================
