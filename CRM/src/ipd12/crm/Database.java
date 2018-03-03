@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import sun.security.util.Password;
 
@@ -277,24 +276,7 @@ public class Database {
             stmt.executeUpdate();
         }
     }
-    //==================== Load Data ====================
     
-    public void getIDandCustomers() throws SQLException {
-        String sql = "SELECT * FROM customers";
-        
-
-        try (Statement stmt = conn.createStatement()) {
-            ResultSet result = stmt.executeQuery(sql);
-            while (result.next()) {
-                int id = result.getInt("id");
-                String companyName = result.getString("companyName");
-                Support support = new Support();
-                support.dlg_cbCompany.addItem(companyName);
-                
-            }
-        }
-      
-    }
     
     //=======================================================
     public void loadTable(DefaultTableModel model) {
@@ -330,9 +312,9 @@ public class Database {
         }
     }
     
-    public String login(String firstName, char[] password) {
+    public void login(String firstName, char[] password) {
                
-        String sql = "SELECT firstName, department, employeePassword "
+        String sql = "SELECT firstName, department, employeePassword, id "
                 + "FROM employees WHERE firstName = ? AND employeePassword = ?";
         
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -344,15 +326,16 @@ public class Database {
             if (rs.next()) {
                 if (firstName.equals(rs.getString("firstName")) && pwd.equals(rs.getString("employeePassword"))) {
                 String dept = rs.getString("department");
-                return dept;
+                int userId = rs.getInt("id");
+                
+                Login.department = dept;
+                Login.userId = userId;
                 }
             }
           
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String nullLogin = null;
-        return nullLogin;
     }
     
 }

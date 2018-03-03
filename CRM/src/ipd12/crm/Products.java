@@ -10,6 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,9 +23,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Products extends javax.swing.JFrame {
 
-    /**
-     * Creates new form jcrm
-     */
     Database db;
 
     public Products() {
@@ -31,7 +32,11 @@ public class Products extends javax.swing.JFrame {
     }
 
     public void loadProducts() {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 448b5db767bd623f3ae1ea67f508851610c665a1
         try {            
             DefaultTableModel model = (DefaultTableModel) productTable.getModel();
             model.setRowCount(0);
@@ -42,7 +47,19 @@ public class Products extends javax.swing.JFrame {
                 rowData[1] = list.get(i).getProductName();
                 rowData[2] = list.get(i).getPricePerUnit();
                 rowData[3] = list.get(i).getQuantity();
+<<<<<<< HEAD
                 model.addRow(rowData);  
+=======
+                model.addRow(rowData);
+                
+                // line below only applies when this method is called from the Support class
+                try {
+                    Support.dlgAddTicket_cbProduct.addItem(rowData[1].toString());
+                } catch (NullPointerException e) {
+                    
+                }
+                
+>>>>>>> 448b5db767bd623f3ae1ea67f508851610c665a1
             }
 
         } catch (SQLException ex) {

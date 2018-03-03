@@ -7,13 +7,6 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextField1" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-=======
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                   <Component id="dlgAddTicket_btCancel" min="-2" max="-2" attributes="0"/>
@@ -30,7 +23,6 @@
                           <Component id="dlgAddTicket_cbProduct" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
->>>>>>> 474d98b95f5f1448b644881557e71329ba130ef2
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -39,38 +31,11 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="dlgAddTicket_lblAgentId" min="-2" max="-2" attributes="0"/>
                               </Group>
-<<<<<<< HEAD
-=======
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
->>>>>>> 474d98b95f5f1448b644881557e71329ba130ef2
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="dlg_cbSupportAgent" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="dlg_cbCompany" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="dlgAddTicket_rbIsDone" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="dlgAddTicket_rbIsNotDone" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="dlg_cbProduct" min="-2" pref="200" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="dlgAddTicket_rbIsDone" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="dlgAddTicket_rbIsNotDone" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -84,35 +49,24 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                      <Component id="dlgAddTicket_tfDescription" min="-2" pref="222" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
-<<<<<<< HEAD
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                  <Component id="dlgAddTicket_btCancel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
-                  <Component id="dlgAddTicket_btSave" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-=======
->>>>>>> 474d98b95f5f1448b644881557e71329ba130ef2
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dlgAddTicket_lbId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dlg_cbProduct" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dlg_cbCompany" alignment="3" min="-2" max="-2" attributes="0"/>
-=======
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="dlgAddTicket_tfDescription" min="-2" pref="205" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
@@ -138,22 +92,13 @@
                               <Component id="dlgAddTicket_rbIsNotDone" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
->>>>>>> 474d98b95f5f1448b644881557e71329ba130ef2
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dlg_cbSupportAgent" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dlgAddTicket_rbIsDone" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dlgAddTicket_rbIsNotDone" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="163" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="dlgAddTicket_btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dlgAddTicket_btSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dlgAddTicket_btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -179,7 +124,7 @@
             <Property name="text" type="java.lang.String" value="Product:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="dlg_cbProduct">
+        <Component class="javax.swing.JComboBox" name="dlgAddTicket_cbProduct">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -190,8 +135,6 @@
             <Property name="text" type="java.lang.String" value="Support Agent id:"/>
           </Properties>
         </Component>
-<<<<<<< HEAD
-=======
         <Component class="javax.swing.JLabel" name="jLabel24">
           <Properties>
             <Property name="text" type="java.lang.String" value="Description of the issue:"/>
@@ -202,7 +145,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dlgAddTicket_tfDescriptionActionPerformed"/>
           </Events>
         </Component>
->>>>>>> 474d98b95f5f1448b644881557e71329ba130ef2
         <Component class="javax.swing.JRadioButton" name="dlgAddTicket_rbIsDone">
           <Properties>
             <Property name="text" type="java.lang.String" value="Is Done"/>
@@ -240,29 +182,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value=" "/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="dlg_cbSupportAgent">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="dlg_cbCompany">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
         </Component>
       </SubComponents>
     </Container>
@@ -319,11 +238,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-<<<<<<< HEAD
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,76,0,0,2,66"/>
-=======
     <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,116,0,0,2,121"/>
->>>>>>> 474d98b95f5f1448b644881557e71329ba130ef2
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -350,15 +265,6 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-<<<<<<< HEAD
-                  <Component id="jScrollPane2" min="-2" pref="452" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton6" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButton5" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btAdd" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButton7" alignment="0" max="32767" attributes="0"/>
-=======
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jScrollPane2" min="-2" pref="452" max="-2" attributes="0"/>
@@ -379,9 +285,8 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="btSupport" min="-2" pref="83" max="-2" attributes="0"/>
                       </Group>
->>>>>>> 474d98b95f5f1448b644881557e71329ba130ef2
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace pref="90" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -398,7 +303,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="btAdd" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButton5" min="-2" max="-2" attributes="0"/>
@@ -410,10 +314,6 @@
                       </Group>
                       <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                   </Group>
-<<<<<<< HEAD
-                  <EmptySpace pref="13" max="32767" attributes="0"/>
-=======
->>>>>>> 474d98b95f5f1448b644881557e71329ba130ef2
               </Group>
           </Group>
         </DimensionLayout>
