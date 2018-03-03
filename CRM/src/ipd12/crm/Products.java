@@ -33,8 +33,7 @@ public class Products extends javax.swing.JFrame {
 
     public void loadProducts() {
         
-        try {
-            
+        try {            
             DefaultTableModel model = (DefaultTableModel) productTable.getModel();
             model.setRowCount(0);
             ArrayList<Product> list = db.getAllProducts();
@@ -45,7 +44,14 @@ public class Products extends javax.swing.JFrame {
                 rowData[2] = list.get(i).getPricePerUnit();
                 rowData[3] = list.get(i).getQuantity();
                 model.addRow(rowData);
-                Support.dlgAddTicket_cbProduct.addItem(rowData[1].toString());
+                
+                // line below only applies when this method is called from the Support class
+                try {
+                    Support.dlgAddTicket_cbProduct.addItem(rowData[1].toString());
+                } catch (NullPointerException e) {
+                    
+                }
+                
             }
 
         } catch (SQLException ex) {

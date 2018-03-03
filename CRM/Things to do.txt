@@ -1,3 +1,9 @@
 *Add invalid index error handling WHEN delete or edit is selected but no row is selected in the table
 
 *Make the design the same for all tabs (the ID column)
+
+*Only support employees can add edit and delete support tickets (and managers maybe)
+SO to get the agent information, you get the user info that you saved when the user logs in.
+
+***Make sure you cant put more characters in the description of the issue then you can
+in the database

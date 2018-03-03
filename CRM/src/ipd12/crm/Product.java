@@ -18,7 +18,12 @@ public class Product {
     private BigDecimal pricePerUnit;
     private int quantity;
     
-
+    /*
+    ProductName enumProductName;
+    
+    public enum ProductName { sw, sw2960, UTMCisco }; // Note i changed the name in the database to remove the - sign
+    */
+    
     public Product(String productName, BigDecimal pricePerUnit, int quantity) {
         this.productName = productName;
         this.pricePerUnit = pricePerUnit;
