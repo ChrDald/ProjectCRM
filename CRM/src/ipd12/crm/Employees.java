@@ -89,7 +89,6 @@ public class Employees extends javax.swing.JFrame {
         menuSupport1 = new javax.swing.JMenu();
         menuSupport2 = new javax.swing.JMenu();
         menuSupport3 = new javax.swing.JMenu();
-        menuLogin = new javax.swing.JMenu();
         menuLogout = new javax.swing.JMenu();
 
         dlgAdd_lblId.setText("Id");
@@ -324,9 +323,6 @@ public class Employees extends javax.swing.JFrame {
         menuSupport2.add(menuSupport3);
 
         jMenuBar1.add(menuSupport2);
-
-        menuLogin.setText("Login");
-        jMenuBar1.add(menuLogin);
 
         menuLogout.setText("Logout");
         menuLogout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -565,7 +561,6 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JMenu menuFile;
-    private javax.swing.JMenu menuLogin;
     private javax.swing.JMenu menuLogout;
     private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;

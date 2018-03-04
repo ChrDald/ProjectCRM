@@ -232,11 +232,6 @@
             </Menu>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuLogin">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Login"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="menuLogout">
           <Properties>
             <Property name="text" type="java.lang.String" value="Logout"/>

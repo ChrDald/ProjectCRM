@@ -112,7 +112,6 @@ public class Products extends javax.swing.JFrame {
         menuSupport1 = new javax.swing.JMenu();
         menuSupport2 = new javax.swing.JMenu();
         menuSupport3 = new javax.swing.JMenu();
-        menuLogin = new javax.swing.JMenu();
         menuLogout = new javax.swing.JMenu();
 
         jLabel2.setText("Id");
@@ -353,9 +352,6 @@ public class Products extends javax.swing.JFrame {
 
         jMenuBar1.add(menuSupport2);
 
-        menuLogin.setText("Login");
-        jMenuBar1.add(menuLogin);
-
         menuLogout.setText("Logout");
         menuLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -592,7 +588,6 @@ public class Products extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu menuFile;
-    private javax.swing.JMenu menuLogin;
     private javax.swing.JMenu menuLogout;
     private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;

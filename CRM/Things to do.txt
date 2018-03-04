@@ -1,25 +1,16 @@
 *Add invalid index error handling WHEN delete or edit is selected but no row is selected in the table
 
-*Make the design the same for all tabs (the ID column)
-
-*Only support employees can add edit and delete support tickets (and managers maybe)
-SO to get the agent information, you get the user info that you saved when the user logs in.
-
 ***Make sure you cant put more characters in the description of the issue then you can
 in the database
 
-*Make sure all the tabs are working properly (when your in the sales window make the sales tab unclickable for example)
-
 *Add menu bar functions
-
-**ADDING SUPPORT TICKET: use a drop down list to select customer id, then load that customer's products and add those to
-the drop down list for products
-
-*Change column saleDate in sales to date instead of datetime...
 
 *Decide if the ids are INT or LONG (We have both now its confusing)
 
-**FORGOT to add SALE PRICE in SALES, both in database and in the java classes
-
 *If you want to be a try hard, when you create a sale, you check if you have enough product quantity first, then if you do you substract the sale quantity from
 product quantity.
+
+*Again try hard, if youre a manager and youre editing an employee's info, if you dont change the default **** 
+value for password (for example if youre not changing the password) youre gonna update the password to ****
+pretty big problem, need to set it so if the password is = **** then dont change it (also might wanna add some regex
+for max characters and characters allowed?)
