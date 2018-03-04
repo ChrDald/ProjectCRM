@@ -7,3 +7,10 @@ SO to get the agent information, you get the user info that you saved when the u
 
 ***Make sure you cant put more characters in the description of the issue then you can
 in the database
+
+*Make sure all the tabs are working properly (when your in the sales window make the sales tab unclickable for example)
+
+*Add menu bar functions
+
+**ADDING SUPPORT TICKET: use a drop down list to select customer id, then load that customer's products and add those to
+the drop down list for products

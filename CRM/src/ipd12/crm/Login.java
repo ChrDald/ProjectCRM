@@ -40,11 +40,6 @@ public class Login extends javax.swing.JFrame {
         pfPassword = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
-        menuEmployees = new javax.swing.JMenu();
-        menuCustomer = new javax.swing.JMenu();
-        menuSales = new javax.swing.JMenu();
-        menuSupport = new javax.swing.JMenu();
-        menuLogin = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,21 +118,6 @@ public class Login extends javax.swing.JFrame {
 
         menuFile.setText("File");
         jMenuBar1.add(menuFile);
-
-        menuEmployees.setText("Employees");
-        jMenuBar1.add(menuEmployees);
-
-        menuCustomer.setText("Customers");
-        jMenuBar1.add(menuCustomer);
-
-        menuSales.setText("Sales");
-        jMenuBar1.add(menuSales);
-
-        menuSupport.setText("Support");
-        jMenuBar1.add(menuSupport);
-
-        menuLogin.setText("Login");
-        jMenuBar1.add(menuLogin);
 
         setJMenuBar(jMenuBar1);
 
@@ -242,12 +222,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblPassword;
-    private javax.swing.JMenu menuCustomer;
-    private javax.swing.JMenu menuEmployees;
     private javax.swing.JMenu menuFile;
-    private javax.swing.JMenu menuLogin;
-    private javax.swing.JMenu menuSales;
-    private javax.swing.JMenu menuSupport;
     private javax.swing.JPasswordField pfPassword;
     private javax.swing.JTextField tfFirstName;
     // End of variables declaration//GEN-END:variables

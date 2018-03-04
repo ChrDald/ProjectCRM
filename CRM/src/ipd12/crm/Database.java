@@ -172,7 +172,12 @@ public class Database {
         }
         return list;
     }
+<<<<<<< HEAD
 
+=======
+    
+    
+>>>>>>> e01246a3ebb48ddf678d20c1651f6715179783bc
     public ArrayList<Product> getAllProducts() throws SQLException {
         String sql = "SELECT * FROM products";
         ArrayList<Product> list = new ArrayList<>();
@@ -209,6 +214,38 @@ public class Database {
             }
         }
         return list;
+    }
+    public ArrayList<Sale> getAllSales() throws SQLException {
+        String sql = "SELECT * FROM sales";
+        ArrayList<Sale> list = new ArrayList<>();
+
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet result = stmt.executeQuery(sql);
+            while (result.next()) {
+                Sale sale = new Sale();
+                sale.setId(result.getInt("id"));
+                sale.setEmployeeId(result.getInt("employeeId"));
+                sale.setProductId(result.getInt("productId"));
+                sale.setCustomerId(result.getInt("customerId"));
+
+                list.add(sale);
+            }
+        }
+        return list;
+    }
+    public ArrayList<String> getCustomerProductsById(long id) throws SQLException {
+        String sql = "SELECT productName FROM customerProducts WHERE customerId = " + id;
+        ArrayList<String> products = new ArrayList<>();
+
+        try (Statement stmt = conn.createStatement()) {
+
+            ResultSet result = stmt.executeQuery(sql);
+            while (result.next()) {
+                products.add(result.getString("productName"));
+            }
+        }
+        System.err.println("Products: " + products);
+        return products;
     }
 //============================= Get By ID ==================================
 
@@ -308,6 +345,7 @@ public class Database {
     }
 
     //=======================================================
+    // note this is badly named, should be loadEMPLOYEEtable
     public void loadTable(DefaultTableModel model) {
 
         model.setRowCount(0);
@@ -340,7 +378,47 @@ public class Database {
             model.addRow(data);
         }
     }
+<<<<<<< HEAD
 
+=======
+    public void loadSupportTable(DefaultTableModel model) {
+        
+        model.setRowCount(0);
+        List<Ticket> list = new ArrayList<>();
+           
+        try (Statement stmt = conn.createStatement()) {
+            String sql= "SELECT id, supportAgentId, customerId, productId, description FROM employees";
+            
+            ResultSet rs = stmt.executeQuery(sql);
+        
+            while(rs.next()) {
+                Ticket ticket = new Ticket();
+                ticket.setId(rs.getInt("id"));
+                ticket.setSupportAgentId(rs.getInt("supportAgentId"));
+                ticket.setCustomerId(rs.getInt("customerId"));
+                ticket.setProductId(rs.getInt("productId"));
+                ticket.setDescription(rs.getString("description"));
+
+                list.add(ticket);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for (int i = 0; i < list.size(); i++){
+            int id = list.get(i).getId();
+            int supportAgentId = list.get(i).getSupportAgentId();
+            int customerId = list.get(i).getCustomerId();
+            int productId = list.get(i).getProductId();
+            String description = list.get(i).getDescription();
+
+            Object[] data = {id, supportAgentId, customerId, productId, description};
+            
+            model.addRow(data);
+        }
+    }
+    //=============================================================
+>>>>>>> e01246a3ebb48ddf678d20c1651f6715179783bc
     public void login(String firstName, char[] password) {
 
         String sql = "SELECT firstName, department, employeePassword, id "
