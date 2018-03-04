@@ -6,14 +6,6 @@
 package ipd12.crm;
 
 import java.sql.SQLException;
-<<<<<<< HEAD
-
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
-=======
->>>>>>> e01246a3ebb48ddf678d20c1651f6715179783bc
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -31,15 +23,8 @@ public class Support extends javax.swing.JFrame {
     DefaultTableModel model = new DefaultTableModel(new String[]
     {"Ticket Id", "Agent Id", "Customer Id", "Product Id", "Description"}, 0);
     
-<<<<<<< HEAD
-
     public Support() {
         initComponents();
-
-=======
-    public Support() {
-        initComponents();
->>>>>>> e01246a3ebb48ddf678d20c1651f6715179783bc
         db = new Database();
         loadTickets();
     }
@@ -172,16 +157,9 @@ public class Support extends javax.swing.JFrame {
 
         dlgAddTicket_lblAgentId.setText("placeholder");
 
-<<<<<<< HEAD
-        dlgAddTicket_tfCustomerId.setText(" ");
-        dlgAddTicket_tfCustomerId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dlgAddTicket_tfCustomerIdActionPerformed(evt);
-=======
         dlgAddTicket_cbCustomerId.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 dlgAddTicket_cbCustomerIdItemStateChanged(evt);
->>>>>>> e01246a3ebb48ddf678d20c1651f6715179783bc
             }
         });
 
@@ -499,12 +477,6 @@ public class Support extends javax.swing.JFrame {
         loadTickets();
     }//GEN-LAST:event_dlgAddTicket_btSaveActionPerformed
 
-<<<<<<< HEAD
-    private void dlgAddTicket_tfCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddTicket_tfCustomerIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dlgAddTicket_tfCustomerIdActionPerformed
-
-=======
     private void btSupport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSupport1ActionPerformed
         this.dispose();
         Products.main(null);
@@ -542,7 +514,6 @@ public class Support extends javax.swing.JFrame {
         }
            
     }
->>>>>>> e01246a3ebb48ddf678d20c1651f6715179783bc
     /**
      * @param args the command line arguments
      */

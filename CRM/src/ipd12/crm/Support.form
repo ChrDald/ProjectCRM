@@ -188,16 +188,11 @@
             </Property>
           </Properties>
           <Events>
-<<<<<<< HEAD
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dlgAddTicket_tfCustomerIdActionPerformed"/>
-          </Events>
-=======
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="dlgAddTicket_cbCustomerIdItemStateChanged"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
->>>>>>> e01246a3ebb48ddf678d20c1651f6715179783bc
         </Component>
       </SubComponents>
     </Container>
