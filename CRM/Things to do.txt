@@ -18,3 +18,8 @@ the drop down list for products
 *Change column saleDate in sales to date instead of datetime...
 
 *Decide if the ids are INT or LONG (We have both now its confusing)
+
+**FORGOT to add SALE PRICE in SALES, both in database and in the java classes
+
+*If you want to be a try hard, when you create a sale, you check if you have enough product quantity first, then if you do you substract the sale quantity from
+product quantity.

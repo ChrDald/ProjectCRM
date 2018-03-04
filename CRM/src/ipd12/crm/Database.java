@@ -159,7 +159,8 @@ public class Database {
     }
     
     public void addSale(Sale sale) throws SQLException {
-        String sql = "INSERT INTO sales (employeeId, saleDate, supportEnd, productId, customerId) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO sales (employeeId, saleDate, supportEnd, productId, customerId, salePrice)"
+                + " VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setInt(1, (int) sale.getEmployeeId());
@@ -169,7 +170,7 @@ public class Database {
             stmt.setDate(3, sqlEndDate);
             stmt.setInt(4, (int) sale.getProductId());
             stmt.setInt(5, (int) sale.getCustomerId());
- 
+            stmt.setBigDecimal(6, sale.getSalePrice());
             stmt.executeUpdate();
         }
     }
@@ -425,7 +426,7 @@ public class Database {
         List<Sale> list = new ArrayList<>();
            
         try (Statement stmt = conn.createStatement()) {
-            String sql= "SELECT id, employeeId, saleDate, supportEnd, productId, customerId FROM sales";
+            String sql= "SELECT id, employeeId, saleDate, supportEnd, productId, customerId, salePrice FROM sales";
             
             ResultSet rs = stmt.executeQuery(sql);
         
@@ -437,7 +438,7 @@ public class Database {
                 sale.setSupportEnd(rs.getDate("supportEnd"));
                 sale.setProductId((long) rs.getInt("productId"));
                 sale.setCustomerId((long) rs.getInt("customerId"));
-
+                sale.setSalePrice(rs.getBigDecimal("salePrice"));
                 list.add(sale);
             }
         } catch (SQLException ex) {
@@ -451,8 +452,9 @@ public class Database {
             Date supportEnd = list.get(i).getSupportEnd();
             long productId = list.get(i).getProductId();
             long customerId = list.get(i).getCustomerId();
-
-            Object[] data = {id, employeeId, saleDate, supportEnd, productId, customerId};
+            BigDecimal salePrice = list.get(i).getSalePrice();
+            
+            Object[] data = {id, employeeId, saleDate, supportEnd, productId, customerId, salePrice};
             
             model.addRow(data);
         }

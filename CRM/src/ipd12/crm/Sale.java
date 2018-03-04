@@ -5,6 +5,7 @@
  */
 package ipd12.crm;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -19,7 +20,8 @@ public class Sale {
     private Date supportEnd;
     private long productId;
     private long customerId;
-
+    BigDecimal salePrice;
+    
     public long getId() {
         return id;
     }
@@ -68,6 +70,14 @@ public class Sale {
 
     public void setCustomerId(long customer) {
         this.customerId = customer;
+    }
+
+    public BigDecimal getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(BigDecimal salePrice) {
+        this.salePrice = salePrice;
     }
     
     

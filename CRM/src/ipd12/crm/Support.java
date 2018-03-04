@@ -27,6 +27,15 @@ public class Support extends javax.swing.JFrame {
         initComponents();
         db = new Database();
         loadTickets();
+        
+        // Restrictions on users
+        if (!Login.department.equals("Management")) {
+            btDelete.setEnabled(false);
+        }
+        if (!Login.department.equals("Support") && !Login.department.equals("Management")) {
+            btAdd.setEnabled(false);
+            btEdit.setEnabled(false);
+        }
     }
     public void loadTickets() {
         
@@ -89,9 +98,9 @@ public class Support extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btAdd = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btEdit = new javax.swing.JButton();
+        btDelete = new javax.swing.JButton();
+        btPrint = new javax.swing.JButton();
         btEmployees = new javax.swing.JButton();
         btCustomers = new javax.swing.JButton();
         btSales = new javax.swing.JButton();
@@ -253,11 +262,11 @@ public class Support extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Edit");
+        btEdit.setText("Edit");
 
-        jButton6.setText("Delete");
+        btDelete.setText("Delete");
 
-        jButton7.setText("Print");
+        btPrint.setText("Print");
 
         btEmployees.setText("Employees");
         btEmployees.setFocusable(false);
@@ -313,12 +322,12 @@ public class Support extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btEmployees)
                         .addGap(0, 0, 0)
@@ -346,11 +355,11 @@ public class Support extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btAdd)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
+                        .addComponent(btEdit)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6)
+                        .addComponent(btDelete)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7)
+                        .addComponent(btPrint)
                         .addContainerGap(146, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
@@ -381,6 +390,11 @@ public class Support extends javax.swing.JFrame {
         jMenuBar1.add(menuLogin);
 
         menuLogout.setText("Logout");
+        menuLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLogoutMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuLogout);
 
         setJMenuBar(jMenuBar1);
@@ -497,6 +511,24 @@ public class Support extends javax.swing.JFrame {
         Employees.main(null);
     }//GEN-LAST:event_btEmployeesActionPerformed
 
+    private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseClicked
+        int decision = JOptionPane.showOptionDialog(
+            this,
+            "Are you sure you want to logout?",
+            "Alert",    // message icon
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            null,
+            null
+        );
+
+        if (decision == JOptionPane.YES_OPTION) {
+            this.dispose();
+            Login.main(null);
+        }
+    }//GEN-LAST:event_menuLogoutMouseClicked
+
     public void getCustomerProducts() {
         try {
             dlgAddTicket_cbProduct.removeAllItems();
@@ -559,7 +591,10 @@ public class Support extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdd;
     private javax.swing.JButton btCustomers;
+    private javax.swing.JButton btDelete;
+    private javax.swing.JButton btEdit;
     private javax.swing.JButton btEmployees;
+    private javax.swing.JButton btPrint;
     private javax.swing.JButton btSales;
     private javax.swing.JButton btSupport;
     private javax.swing.JButton btSupport1;
@@ -573,9 +608,6 @@ public class Support extends javax.swing.JFrame {
     private javax.swing.JRadioButton dlgAddTicket_rbIsDone;
     private javax.swing.JRadioButton dlgAddTicket_rbIsNotDone;
     private javax.swing.JTextField dlgAddTicket_tfDescription;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel21;

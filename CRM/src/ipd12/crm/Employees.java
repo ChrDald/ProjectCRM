@@ -329,6 +329,11 @@ public class Employees extends javax.swing.JFrame {
         jMenuBar1.add(menuLogin);
 
         menuLogout.setText("Logout");
+        menuLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLogoutMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuLogout);
 
         setJMenuBar(jMenuBar1);
@@ -466,6 +471,24 @@ public class Employees extends javax.swing.JFrame {
         this.dispose();
         Products.main(null);
     }//GEN-LAST:event_btSupport1ActionPerformed
+
+    private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseClicked
+        int decision = JOptionPane.showOptionDialog(
+            this,
+            "Are you sure you want to logout?",
+            "Alert",    // message icon
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            null,
+            null
+        );
+
+        if (decision == JOptionPane.YES_OPTION) {
+            this.dispose();
+            Login.main(null);
+        }
+    }//GEN-LAST:event_menuLogoutMouseClicked
 
     /**
      * @param args the command line arguments

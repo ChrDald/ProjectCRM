@@ -22,13 +22,20 @@ public class Customers extends javax.swing.JFrame {
 
     Database db;
 
-    /**
-     * Creates new form jcrm
-     */
+    
     public Customers() {
         db = new Database();
         initComponents();
         loadCustomers();
+        
+        // Restrictions on users
+        if (!Login.department.equals("Management")) {
+            btDelete.setEnabled(false);
+        }
+        if (!Login.department.equals("Sales") && !Login.department.equals("Management")) {
+            btAdd.setEnabled(false);
+            btEdit.setEnabled(false);
+        }
     }
 
     public void loadCustomers() {
@@ -78,10 +85,10 @@ public class Customers extends javax.swing.JFrame {
         dlgAddCustomer_tfContactNumber = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        customer_btAdd = new javax.swing.JButton();
-        customer_btEdit = new javax.swing.JButton();
-        customer_btDelete = new javax.swing.JButton();
-        customer_btPrint = new javax.swing.JButton();
+        btAdd = new javax.swing.JButton();
+        btEdit = new javax.swing.JButton();
+        btDelete = new javax.swing.JButton();
+        btPrint = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         customersTable = new javax.swing.JTable();
         btEmployees = new javax.swing.JButton();
@@ -186,31 +193,31 @@ public class Customers extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
-        customer_btAdd.setText("Add");
-        customer_btAdd.addActionListener(new java.awt.event.ActionListener() {
+        btAdd.setText("Add");
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customer_btAddActionPerformed(evt);
+                btAddActionPerformed(evt);
             }
         });
 
-        customer_btEdit.setText("Edit");
-        customer_btEdit.addActionListener(new java.awt.event.ActionListener() {
+        btEdit.setText("Edit");
+        btEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customer_btEditActionPerformed(evt);
+                btEditActionPerformed(evt);
             }
         });
 
-        customer_btDelete.setText("Delete");
-        customer_btDelete.addActionListener(new java.awt.event.ActionListener() {
+        btDelete.setText("Delete");
+        btDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customer_btDeleteActionPerformed(evt);
+                btDeleteActionPerformed(evt);
             }
         });
 
-        customer_btPrint.setText("Print");
-        customer_btPrint.addActionListener(new java.awt.event.ActionListener() {
+        btPrint.setText("Print");
+        btPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customer_btPrintActionPerformed(evt);
+                btPrintActionPerformed(evt);
             }
         });
 
@@ -291,10 +298,10 @@ public class Customers extends javax.swing.JFrame {
                         .addComponent(btSupport1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(customer_btAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customer_btEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customer_btDelete)
-                    .addComponent(customer_btPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btDelete)
+                    .addComponent(btPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -311,13 +318,13 @@ public class Customers extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(customer_btAdd)
+                        .addComponent(btAdd)
                         .addGap(18, 18, 18)
-                        .addComponent(customer_btEdit)
+                        .addComponent(btEdit)
                         .addGap(18, 18, 18)
-                        .addComponent(customer_btDelete)
+                        .addComponent(btDelete)
                         .addGap(18, 18, 18)
-                        .addComponent(customer_btPrint)
+                        .addComponent(btPrint)
                         .addContainerGap(118, Short.MAX_VALUE))))
         );
 
@@ -347,6 +354,11 @@ public class Customers extends javax.swing.JFrame {
         jMenuBar1.add(menuLogin1);
 
         menuLogout.setText("Logout");
+        menuLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLogoutMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuLogout);
 
         setJMenuBar(jMenuBar1);
@@ -391,7 +403,7 @@ public class Customers extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dlgAddCustomer_btSaveActionPerformed
 
-    private void customer_btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customer_btDeleteActionPerformed
+    private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         int decision = JOptionPane.showOptionDialog(
             this,   // parent element, this referes to the frame
             "Are you sure you want to delete this item?", // the message
@@ -421,9 +433,9 @@ public class Customers extends javax.swing.JFrame {
             }
             loadCustomers();
         }
-    }//GEN-LAST:event_customer_btDeleteActionPerformed
+    }//GEN-LAST:event_btDeleteActionPerformed
 
-    private void customer_btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customer_btEditActionPerformed
+    private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
 
         int rowIndex = customersTable.getSelectedRow();
 
@@ -443,9 +455,9 @@ public class Customers extends javax.swing.JFrame {
         } catch (ClassCastException e) {
             System.err.println("Casting exception");
         }
-    }//GEN-LAST:event_customer_btEditActionPerformed
+    }//GEN-LAST:event_btEditActionPerformed
 
-    private void customer_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customer_btAddActionPerformed
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
         
         dlgAddCustomer_lbId.setText("...");
         dlgAddCustomer_tfAddress.setText("");
@@ -454,7 +466,7 @@ public class Customers extends javax.swing.JFrame {
         
         dlgAddCustomer.pack();
         dlgAddCustomer.setVisible(true);
-    }//GEN-LAST:event_customer_btAddActionPerformed
+    }//GEN-LAST:event_btAddActionPerformed
 
     private void btCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCustomersActionPerformed
         this.dispose();
@@ -476,9 +488,9 @@ public class Customers extends javax.swing.JFrame {
         Products.main(null);
     }//GEN-LAST:event_btSupport1ActionPerformed
 
-    private void customer_btPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customer_btPrintActionPerformed
+    private void btPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_customer_btPrintActionPerformed
+    }//GEN-LAST:event_btPrintActionPerformed
 
     private void btEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEmployeesActionPerformed
                                          
@@ -490,6 +502,24 @@ public class Customers extends javax.swing.JFrame {
         
         dlgAddCustomer.dispose();
     }//GEN-LAST:event_dlgAddCustomer_btCancelActionPerformed
+
+    private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseClicked
+        int decision = JOptionPane.showOptionDialog(
+            this,
+            "Are you sure you want to logout?",
+            "Alert",    // message icon
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            null,
+            null
+        );
+
+        if (decision == JOptionPane.YES_OPTION) {
+            this.dispose();
+            Login.main(null);
+        }
+    }//GEN-LAST:event_menuLogoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -530,15 +560,15 @@ public class Customers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAdd;
     private javax.swing.JButton btCustomers;
+    private javax.swing.JButton btDelete;
+    private javax.swing.JButton btEdit;
     private javax.swing.JButton btEmployees;
+    private javax.swing.JButton btPrint;
     private javax.swing.JButton btSales;
     private javax.swing.JButton btSupport;
     private javax.swing.JButton btSupport1;
-    private javax.swing.JButton customer_btAdd;
-    private javax.swing.JButton customer_btDelete;
-    private javax.swing.JButton customer_btEdit;
-    private javax.swing.JButton customer_btPrint;
     private javax.swing.JTable customersTable;
     public javax.swing.JDialog dlgAddCustomer;
     private javax.swing.JButton dlgAddCustomer_btCancel;

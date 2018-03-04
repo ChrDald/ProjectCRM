@@ -29,6 +29,13 @@ public class Products extends javax.swing.JFrame {
         db = new Database();
         initComponents();
         loadProducts();
+        
+        // Restrictions on users
+        if (!Login.department.equals("Management")) {         
+            btAdd.setEnabled(false);
+            btEdit.setEnabled(false);
+            btDelete.setEnabled(false);
+        }
     }
 
     public void loadProducts() {
@@ -87,10 +94,10 @@ public class Products extends javax.swing.JFrame {
         dlgAddProduct_tfQuantity = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        products_btAdd = new javax.swing.JButton();
-        products_btEdit = new javax.swing.JButton();
-        products_btDelete = new javax.swing.JButton();
-        products_btPrint = new javax.swing.JButton();
+        btAdd = new javax.swing.JButton();
+        btEdit = new javax.swing.JButton();
+        btDelete = new javax.swing.JButton();
+        btPrint = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
         btSupport = new javax.swing.JButton();
@@ -191,28 +198,28 @@ public class Products extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
-        products_btAdd.setText("Add");
-        products_btAdd.addActionListener(new java.awt.event.ActionListener() {
+        btAdd.setText("Add");
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                products_btAddActionPerformed(evt);
+                btAddActionPerformed(evt);
             }
         });
 
-        products_btEdit.setText("Edit");
-        products_btEdit.addActionListener(new java.awt.event.ActionListener() {
+        btEdit.setText("Edit");
+        btEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                products_btEditActionPerformed(evt);
+                btEditActionPerformed(evt);
             }
         });
 
-        products_btDelete.setText("Delete");
-        products_btDelete.addActionListener(new java.awt.event.ActionListener() {
+        btDelete.setText("Delete");
+        btDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                products_btDeleteActionPerformed(evt);
+                btDeleteActionPerformed(evt);
             }
         });
 
-        products_btPrint.setText("Print");
+        btPrint.setText("Print");
 
         productTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -284,10 +291,10 @@ public class Products extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(products_btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(products_btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(products_btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(products_btPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btEmployees)
                         .addGap(0, 0, 0)
@@ -314,13 +321,13 @@ public class Products extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(products_btAdd)
+                        .addComponent(btAdd)
                         .addGap(18, 18, 18)
-                        .addComponent(products_btEdit)
+                        .addComponent(btEdit)
                         .addGap(18, 18, 18)
-                        .addComponent(products_btDelete)
+                        .addComponent(btDelete)
                         .addGap(18, 18, 18)
-                        .addComponent(products_btPrint)))
+                        .addComponent(btPrint)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -350,6 +357,11 @@ public class Products extends javax.swing.JFrame {
         jMenuBar1.add(menuLogin);
 
         menuLogout.setText("Logout");
+        menuLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLogoutMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuLogout);
 
         setJMenuBar(jMenuBar1);
@@ -357,7 +369,7 @@ public class Products extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void products_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_products_btAddActionPerformed
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
         
         dlgAddProduct_lbId.setText("...");
         dlgAddProduct_tfProductName.setText("");
@@ -366,7 +378,7 @@ public class Products extends javax.swing.JFrame {
         
         dlgAddProduct.pack();
         dlgAddProduct.setVisible(true);
-    }//GEN-LAST:event_products_btAddActionPerformed
+    }//GEN-LAST:event_btAddActionPerformed
 
     private void dlgAddProduct_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddProduct_btSaveActionPerformed
         try {
@@ -406,7 +418,7 @@ public class Products extends javax.swing.JFrame {
 
     }//GEN-LAST:event_dlgAddProduct_btSaveActionPerformed
 
-    private void products_btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_products_btEditActionPerformed
+    private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
         int rowIndex = productTable.getSelectedRow();
         
         try {
@@ -426,9 +438,9 @@ public class Products extends javax.swing.JFrame {
         } catch (ClassCastException e) {
             System.err.println("Casting exception");
         }
-    }//GEN-LAST:event_products_btEditActionPerformed
+    }//GEN-LAST:event_btEditActionPerformed
 
-    private void products_btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_products_btDeleteActionPerformed
+    private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         int decision = JOptionPane.showOptionDialog(
             this,   // parent element, this referes to the frame
             "Are you sure you want to delete this item?", // the message
@@ -458,7 +470,7 @@ public class Products extends javax.swing.JFrame {
             }
             loadProducts();
         }
-    }//GEN-LAST:event_products_btDeleteActionPerformed
+    }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btSupportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSupportActionPerformed
         this.dispose();
@@ -485,6 +497,24 @@ public class Products extends javax.swing.JFrame {
         this.dispose();
         Employees.main(null);
     }//GEN-LAST:event_btEmployeesActionPerformed
+
+    private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseClicked
+        int decision = JOptionPane.showOptionDialog(
+            this,
+            "Are you sure you want to logout?",
+            "Alert",    // message icon
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            null,
+            null
+        );
+
+        if (decision == JOptionPane.YES_OPTION) {
+            this.dispose();
+            Login.main(null);
+        }
+    }//GEN-LAST:event_menuLogoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -537,8 +567,12 @@ public class Products extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAdd;
     private javax.swing.JButton btCustomers;
+    private javax.swing.JButton btDelete;
+    private javax.swing.JButton btEdit;
     private javax.swing.JButton btEmployees;
+    private javax.swing.JButton btPrint;
     private javax.swing.JButton btSales;
     private javax.swing.JButton btSupport;
     private javax.swing.JButton btSupport1;
@@ -566,10 +600,6 @@ public class Products extends javax.swing.JFrame {
     private javax.swing.JMenu menuSupport2;
     private javax.swing.JMenu menuSupport3;
     private javax.swing.JTable productTable;
-    private javax.swing.JButton products_btAdd;
-    private javax.swing.JButton products_btDelete;
-    private javax.swing.JButton products_btEdit;
-    private javax.swing.JButton products_btPrint;
     // End of variables declaration//GEN-END:variables
 
 }

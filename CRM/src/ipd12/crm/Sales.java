@@ -5,6 +5,7 @@
  */
 package ipd12.crm;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -24,12 +25,21 @@ public class Sales extends javax.swing.JFrame {
     
     Database db;
     DefaultTableModel model = new DefaultTableModel(new String[]
-    {"Sale Id", "Employee Id", "Sale Date", "Support End", "Product Id", "Customer Id"}, 0);
+    {"Sale Id", "Employee Id", "Sale Date", "Support End", "Product Id", "Customer Id", "Sale Price"}, 0);
     
     public Sales() {
         db = new Database();
         db.loadSalesTable(model);
         initComponents();
+        
+        // Restrictions on users
+        if (!Login.department.equals("Management")) {
+            btDelete.setEnabled(false);
+        }
+        if (!Login.department.equals("Sales") && !Login.department.equals("Management")) {
+            btAdd.setEnabled(false);
+            btEdit.setEnabled(false);
+        }
     }
 
 
@@ -356,14 +366,6 @@ public class Sales extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btEmployees)
                         .addGap(0, 0, 0)
                         .addComponent(btCustomers)
@@ -372,8 +374,17 @@ public class Sales extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(btSupport, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(btSupport1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btSupport1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(204, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +398,6 @@ public class Sales extends javax.swing.JFrame {
                     .addComponent(btSupport1))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btAdd)
                         .addGap(18, 18, 18)
@@ -395,8 +405,9 @@ public class Sales extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btDelete)
                         .addGap(18, 18, 18)
-                        .addComponent(btPrint)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(btPrint)
+                        .addGap(0, 128, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -425,6 +436,11 @@ public class Sales extends javax.swing.JFrame {
         jMenuBar1.add(menuLogin1);
 
         menuLogout.setText("Logout");
+        menuLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLogoutMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuLogout);
 
         setJMenuBar(jMenuBar1);
@@ -528,6 +544,8 @@ public class Sales extends javax.swing.JFrame {
         String productName = dlgAddSales_cbProduct.getSelectedItem().toString().trim();
         try {
             sale.setProductId(db.getProductIdByName(productName));
+            BigDecimal salePrice = new BigDecimal(dlgAddSales_tfTotalPrice.getText());
+            sale.setSalePrice(salePrice);
             db.addSale(sale);
             dlgAddSales.setVisible(false);
             db.loadSalesTable(model);
@@ -580,6 +598,24 @@ public class Sales extends javax.swing.JFrame {
                 JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_dlgAddCustomer_btSaveActionPerformed
+
+    private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseClicked
+        int decision = JOptionPane.showOptionDialog(
+            this,
+            "Are you sure you want to logout?",
+            "Alert",    // message icon
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            null,
+            null
+        );
+
+        if (decision == JOptionPane.YES_OPTION) {
+            this.dispose();
+            Login.main(null);
+        }
+    }//GEN-LAST:event_menuLogoutMouseClicked
 
     /**
      * @param args the command line arguments
