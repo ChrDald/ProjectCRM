@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ipd12.crm;
 
 import java.math.BigDecimal;
@@ -32,11 +28,7 @@ public class Products extends javax.swing.JFrame {
     }
 
     public void loadProducts() {
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 448b5db767bd623f3ae1ea67f508851610c665a1
         try {            
             DefaultTableModel model = (DefaultTableModel) productTable.getModel();
             model.setRowCount(0);
@@ -47,9 +39,7 @@ public class Products extends javax.swing.JFrame {
                 rowData[1] = list.get(i).getProductName();
                 rowData[2] = list.get(i).getPricePerUnit();
                 rowData[3] = list.get(i).getQuantity();
-<<<<<<< HEAD
-                model.addRow(rowData);  
-=======
+
                 model.addRow(rowData);
                 
                 // line below only applies when this method is called from the Support class
@@ -58,8 +48,7 @@ public class Products extends javax.swing.JFrame {
                 } catch (NullPointerException e) {
                     
                 }
-                
->>>>>>> 448b5db767bd623f3ae1ea67f508851610c665a1
+
             }
 
         } catch (SQLException ex) {

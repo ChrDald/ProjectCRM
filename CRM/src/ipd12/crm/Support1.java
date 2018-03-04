@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ipd12.crm;
 
 import java.sql.SQLException;
@@ -22,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author yasser
  */
-public class Support extends javax.swing.JFrame {
+public class Support1 extends javax.swing.JFrame {
 
     Database db;
     DefaultTableModel model = new DefaultTableModel(new String[]
     {"Ticket Id", "Agent Id", "Customer Id", "Product Id", "Description"}, 0);
     
 
-    public Support() {
+    public Support1() {
         initComponents();
 
         db = new Database();
@@ -52,7 +48,7 @@ public class Support extends javax.swing.JFrame {
                 
                 // line below only applies when this method is called from the Support class
                 try {
-                    Support.dlgAddTicket_cbProduct.addItem(rowData[1].toString());
+                    Support1.dlgAddTicket_cbProduct.addItem(rowData[1].toString());
                 } catch (NullPointerException e) {
                     
                 }
@@ -91,9 +87,9 @@ public class Support extends javax.swing.JFrame {
         dlgAddTicket_rbIsNotDone = new javax.swing.JRadioButton();
         dlgAddTicket_btSave = new javax.swing.JButton();
         dlgAddTicket_btCancel = new javax.swing.JButton();
-        dlgAddTicket_lblAgentId = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        dlgAddTicket_tfCustomerId = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        dlgAddCompany = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btAdd = new javax.swing.JButton();
@@ -154,12 +150,16 @@ public class Support extends javax.swing.JFrame {
             }
         });
 
-        dlgAddTicket_lblAgentId.setText("placeholder");
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        dlgAddTicket_tfCustomerId.setText(" ");
-        dlgAddTicket_tfCustomerId.addActionListener(new java.awt.event.ActionListener() {
+        dlgAddCompany.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                dlgAddCompanyFocusGained(evt);
+            }
+        });
+        dlgAddCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dlgAddTicket_tfCustomerIdActionPerformed(evt);
+                dlgAddCompanyActionPerformed(evt);
             }
         });
 
@@ -175,30 +175,31 @@ public class Support extends javax.swing.JFrame {
                 .addGap(119, 119, 119))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddTicketLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dlgAddTicketLayout.createSequentialGroup()
+                .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addGap(18, 18, 18)
                         .addComponent(dlgAddTicket_cbProduct, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dlgAddTicketLayout.createSequentialGroup()
-                        .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel19)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddTicketLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(dlgAddTicket_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
+                        .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(dlgAddTicketLayout.createSequentialGroup()
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(dlgAddTicket_lblAgentId))
-                            .addComponent(jLabel3)
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dlgAddCompany, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel23)
+                            .addGroup(dlgAddTicketLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(dlgAddTicketLayout.createSequentialGroup()
                                 .addComponent(dlgAddTicket_rbIsDone)
                                 .addGap(18, 18, 18)
                                 .addComponent(dlgAddTicket_rbIsNotDone)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dlgAddTicket_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dlgAddTicket_tfCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24)
@@ -214,27 +215,29 @@ public class Support extends javax.swing.JFrame {
                     .addComponent(dlgAddTicket_lbId)
                     .addComponent(jLabel24))
                 .addGap(18, 18, 18)
-                .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dlgAddTicket_tfDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
+                        .addComponent(dlgAddTicket_tfDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
                     .addGroup(dlgAddTicketLayout.createSequentialGroup()
                         .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
-                            .addComponent(dlgAddTicket_tfCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dlgAddCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
                             .addComponent(dlgAddTicket_cbProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
-                        .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel23)
-                            .addComponent(dlgAddTicket_lblAgentId))
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dlgAddTicket_rbIsDone)
-                            .addComponent(dlgAddTicket_rbIsNotDone))))
-                .addGap(18, 18, 18)
+                            .addComponent(dlgAddTicket_rbIsNotDone))
+                        .addGap(39, 39, 39)))
                 .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dlgAddTicket_btSave)
                     .addComponent(dlgAddTicket_btCancel))
@@ -378,7 +381,7 @@ public class Support extends javax.swing.JFrame {
         dlgAddTicket.dispose();
         dlgAddTicket.pack();
         
-        dlgAddTicket_lblAgentId.setText(Login.userId + "");
+       // dlgAddTicket_lblAgentId.setText(Login.userId + "");
         dlgAddTicket.setVisible(true);
     }//GEN-LAST:event_btAddActionPerformed
 
@@ -398,7 +401,7 @@ public class Support extends javax.swing.JFrame {
 
     private void btSupportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSupportActionPerformed
         this.dispose();
-        Support.main(null);
+        Support1.main(null);
     }//GEN-LAST:event_btSupportActionPerformed
 
     private void dlgAddTicket_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddTicket_btSaveActionPerformed
@@ -406,11 +409,11 @@ public class Support extends javax.swing.JFrame {
         try {
             Ticket ticket = new Ticket();
             // ticket.setId **When adding, the id doesnt exist yet**
-            ticket.setSupportAgentId(Integer.valueOf(dlgAddTicket_lblAgentId.getText()));
+           // ticket.setSupportAgentId(Integer.valueOf(dlgAddTicket_lblAgentId.getText()));
 
             ticket.setDescription(dlgAddTicket_tfDescription.getText());
-            System.err.println("Test: " + dlgAddTicket_tfCustomerId.getText());
-            ticket.setCustomerId(Integer.parseInt(dlgAddTicket_tfCustomerId.getText()));
+          //  System.err.println("Test: " + dlgAddTicket_tfCustomerId.getText());
+          //  ticket.setCustomerId(Integer.parseInt(dlgAddTicket_tfCustomerId.getText()));
             // get product id
             switch (dlgAddTicket_cbProduct.getSelectedItem().toString()) {
                 case "sw":
@@ -440,9 +443,13 @@ public class Support extends javax.swing.JFrame {
         db.loadTable(model);
     }//GEN-LAST:event_dlgAddTicket_btSaveActionPerformed
 
-    private void dlgAddTicket_tfCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddTicket_tfCustomerIdActionPerformed
+    private void dlgAddCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddCompanyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dlgAddTicket_tfCustomerIdActionPerformed
+    }//GEN-LAST:event_dlgAddCompanyActionPerformed
+
+    private void dlgAddCompanyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dlgAddCompanyFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dlgAddCompanyFocusGained
 
     /**
      * @param args the command line arguments
@@ -461,14 +468,22 @@ public class Support extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Support.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Support1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Support.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Support1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Support.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Support1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Support.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Support1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -481,7 +496,7 @@ public class Support extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Support().setVisible(true);
+                new Support1().setVisible(true);
             }
         });
     }
@@ -492,19 +507,19 @@ public class Support extends javax.swing.JFrame {
     private javax.swing.JButton btEmployees;
     private javax.swing.JButton btSales;
     private javax.swing.JButton btSupport;
+    private javax.swing.JComboBox<String> dlgAddCompany;
     private javax.swing.JDialog dlgAddTicket;
     private javax.swing.JButton dlgAddTicket_btCancel;
     private javax.swing.JButton dlgAddTicket_btSave;
     public static javax.swing.JComboBox<String> dlgAddTicket_cbProduct;
     private javax.swing.JLabel dlgAddTicket_lbId;
-    private javax.swing.JLabel dlgAddTicket_lblAgentId;
     private javax.swing.JRadioButton dlgAddTicket_rbIsDone;
     private javax.swing.JRadioButton dlgAddTicket_rbIsNotDone;
-    private javax.swing.JTextField dlgAddTicket_tfCustomerId;
     private javax.swing.JTextField dlgAddTicket_tfDescription;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel21;
