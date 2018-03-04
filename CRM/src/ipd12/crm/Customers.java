@@ -65,7 +65,7 @@ public class Customers extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Add_Customer = new javax.swing.JDialog();
+        dlgAddCustomer = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dlgAddCustomer_tfCompanyName = new javax.swing.JTextField();
@@ -106,6 +106,11 @@ public class Customers extends javax.swing.JFrame {
         jLabel4.setText("Address");
 
         dlgAddCustomer_btCancel.setText("Cancel");
+        dlgAddCustomer_btCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAddCustomer_btCancelActionPerformed(evt);
+            }
+        });
 
         dlgAddCustomer_btSave.setText("Save");
         dlgAddCustomer_btSave.addActionListener(new java.awt.event.ActionListener() {
@@ -118,33 +123,33 @@ public class Customers extends javax.swing.JFrame {
 
         jLabel8.setText("Contact Number");
 
-        javax.swing.GroupLayout Add_CustomerLayout = new javax.swing.GroupLayout(Add_Customer.getContentPane());
-        Add_Customer.getContentPane().setLayout(Add_CustomerLayout);
-        Add_CustomerLayout.setHorizontalGroup(
-            Add_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Add_CustomerLayout.createSequentialGroup()
-                .addGroup(Add_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(Add_CustomerLayout.createSequentialGroup()
+        javax.swing.GroupLayout dlgAddCustomerLayout = new javax.swing.GroupLayout(dlgAddCustomer.getContentPane());
+        dlgAddCustomer.getContentPane().setLayout(dlgAddCustomerLayout);
+        dlgAddCustomerLayout.setHorizontalGroup(
+            dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(dlgAddCustomerLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(Add_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Add_CustomerLayout.createSequentialGroup()
+                        .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
                                 .addComponent(dlgAddCustomer_tfCompanyName))
-                            .addGroup(Add_CustomerLayout.createSequentialGroup()
+                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(26, 26, 26)
                                 .addComponent(dlgAddCustomer_tfAddress))
-                            .addGroup(Add_CustomerLayout.createSequentialGroup()
+                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(88, 88, 88)
                                 .addComponent(dlgAddCustomer_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(Add_CustomerLayout.createSequentialGroup()
+                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
                                 .addComponent(dlgAddCustomer_tfContactNumber))))
-                    .addGroup(Add_CustomerLayout.createSequentialGroup()
+                    .addGroup(dlgAddCustomerLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(dlgAddCustomer_btCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
@@ -152,27 +157,27 @@ public class Customers extends javax.swing.JFrame {
                         .addGap(36, 36, 36)))
                 .addContainerGap())
         );
-        Add_CustomerLayout.setVerticalGroup(
-            Add_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Add_CustomerLayout.createSequentialGroup()
+        dlgAddCustomerLayout.setVerticalGroup(
+            dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(Add_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(dlgAddCustomer_lbId))
                 .addGap(18, 18, 18)
-                .addGroup(Add_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(dlgAddCustomer_tfCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(dlgAddCustomer_tfAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(dlgAddCustomer_tfContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dlgAddCustomer_btCancel)
                     .addComponent(dlgAddCustomer_btSave)))
         );
@@ -231,6 +236,11 @@ public class Customers extends javax.swing.JFrame {
 
         btEmployees.setText("Employees");
         btEmployees.setSelected(true);
+        btEmployees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEmployeesActionPerformed(evt);
+            }
+        });
 
         btCustomers.setBackground(new java.awt.Color(255, 255, 255));
         btCustomers.setText("Customers");
@@ -352,9 +362,10 @@ public class Customers extends javax.swing.JFrame {
             String contactNum = dlgAddCustomer_tfContactNumber.getText();
             
             Customer c;
-            c = new Customer(0, companyName, address, contactNum);
+            c = new Customer(companyName, address, contactNum);
             if (dlgAddCustomer_lbId.getText().equals("...")) { // if youre editing, this would be false  
-            db.addCustomer(c);
+                db.addCustomer(c);
+                dlgAddCustomer.setVisible(false);
             }
             else {
                 try {
@@ -366,6 +377,7 @@ public class Customers extends javax.swing.JFrame {
                 }
                 
                 db.updateCustomer(c);
+                dlgAddCustomer.setVisible(false);
             }
             
 
@@ -427,16 +439,22 @@ public class Customers extends javax.swing.JFrame {
             dlgAddCustomer_tfAddress.setText(address);
             dlgAddCustomer_tfContactNumber.setText(contactNum);
 
-            Add_Customer.pack();
-            Add_Customer.setVisible(true);
+            dlgAddCustomer.pack();
+            dlgAddCustomer.setVisible(true);
         } catch (ClassCastException e) {
             System.err.println("Casting exception");
         }
     }//GEN-LAST:event_customer_btEditActionPerformed
 
     private void customer_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customer_btAddActionPerformed
-        Add_Customer.pack();
-        Add_Customer.setVisible(true);
+        
+        dlgAddCustomer_lbId.setText("...");
+        dlgAddCustomer_tfAddress.setText("");
+        dlgAddCustomer_tfCompanyName.setText("");
+        dlgAddCustomer_tfContactNumber.setText("");
+        
+        dlgAddCustomer.pack();
+        dlgAddCustomer.setVisible(true);
     }//GEN-LAST:event_customer_btAddActionPerformed
 
     private void btCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCustomersActionPerformed
@@ -462,6 +480,17 @@ public class Customers extends javax.swing.JFrame {
     private void customer_btPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customer_btPrintActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_customer_btPrintActionPerformed
+
+    private void btEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEmployeesActionPerformed
+                                         
+        this.dispose();
+        Employees.main(null);
+    }//GEN-LAST:event_btEmployeesActionPerformed
+
+    private void dlgAddCustomer_btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddCustomer_btCancelActionPerformed
+        
+        dlgAddCustomer.dispose();
+    }//GEN-LAST:event_dlgAddCustomer_btCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -502,7 +531,6 @@ public class Customers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog Add_Customer;
     private javax.swing.JButton btCustomers;
     private javax.swing.JButton btEmployees;
     private javax.swing.JButton btSales;
@@ -513,6 +541,7 @@ public class Customers extends javax.swing.JFrame {
     private javax.swing.JButton customer_btEdit;
     private javax.swing.JButton customer_btPrint;
     private javax.swing.JTable customersTable;
+    private javax.swing.JDialog dlgAddCustomer;
     private javax.swing.JButton dlgAddCustomer_btCancel;
     private javax.swing.JButton dlgAddCustomer_btSave;
     private javax.swing.JLabel dlgAddCustomer_lbId;

@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="Add_Customer">
+    <Container class="javax.swing.JDialog" name="dlgAddCustomer">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -101,6 +101,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dlgAddCustomer_btCancelActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="dlgAddCustomer_btSave">
           <Properties>
@@ -361,6 +364,9 @@
             <Property name="text" type="java.lang.String" value="Employees"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEmployeesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btCustomers">
           <Properties>

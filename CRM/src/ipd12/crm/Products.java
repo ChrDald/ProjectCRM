@@ -74,10 +74,10 @@ public class Products extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Add_Product = new javax.swing.JDialog();
+        dlgAddProduct = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        dlgAddProduct_tfProduct = new javax.swing.JTextField();
+        dlgAddProduct_tfProductName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         dlgAddProduct_btCancel = new javax.swing.JButton();
         dlgAddProduct_btSave = new javax.swing.JButton();
@@ -127,61 +127,61 @@ public class Products extends javax.swing.JFrame {
 
         jLabel8.setText("Quantity");
 
-        javax.swing.GroupLayout Add_ProductLayout = new javax.swing.GroupLayout(Add_Product.getContentPane());
-        Add_Product.getContentPane().setLayout(Add_ProductLayout);
-        Add_ProductLayout.setHorizontalGroup(
-            Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Add_ProductLayout.createSequentialGroup()
+        javax.swing.GroupLayout dlgAddProductLayout = new javax.swing.GroupLayout(dlgAddProduct.getContentPane());
+        dlgAddProduct.getContentPane().setLayout(dlgAddProductLayout);
+        dlgAddProductLayout.setHorizontalGroup(
+            dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAddProductLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Add_ProductLayout.createSequentialGroup()
-                        .addGroup(Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Add_ProductLayout.createSequentialGroup()
-                                .addGroup(Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dlgAddProductLayout.createSequentialGroup()
+                        .addGroup(dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dlgAddProductLayout.createSequentialGroup()
+                                .addGroup(dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3))
                                 .addGap(25, 25, 25)
-                                .addGroup(Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dlgAddProduct_tfProduct)
+                                .addGroup(dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dlgAddProduct_tfProductName)
                                     .addComponent(dlgAddProduct_tfPricePerUnit)))
-                            .addGroup(Add_ProductLayout.createSequentialGroup()
+                            .addGroup(dlgAddProductLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(88, 88, 88)
                                 .addComponent(dlgAddProduct_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(Add_ProductLayout.createSequentialGroup()
+                            .addGroup(dlgAddProductLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(46, 46, 46)
                                 .addComponent(dlgAddProduct_tfQuantity)))
                         .addContainerGap())
-                    .addGroup(Add_ProductLayout.createSequentialGroup()
+                    .addGroup(dlgAddProductLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(dlgAddProduct_btCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                         .addComponent(dlgAddProduct_btSave)
                         .addGap(54, 54, 54))))
         );
-        Add_ProductLayout.setVerticalGroup(
-            Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Add_ProductLayout.createSequentialGroup()
+        dlgAddProductLayout.setVerticalGroup(
+            dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAddProductLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(dlgAddProduct_lbId))
                 .addGap(28, 28, 28)
-                .addGroup(Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(dlgAddProduct_tfProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dlgAddProduct_tfProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(dlgAddProduct_tfPricePerUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(dlgAddProduct_tfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_ProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dlgAddProduct_btCancel)
                     .addComponent(dlgAddProduct_btSave)))
         );
@@ -258,6 +258,11 @@ public class Products extends javax.swing.JFrame {
 
         btEmployees.setText("Employees");
         btEmployees.setFocusable(false);
+        btEmployees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEmployeesActionPerformed(evt);
+            }
+        });
 
         btSupport1.setBackground(new java.awt.Color(255, 255, 255));
         btSupport1.setText("Products");
@@ -353,13 +358,19 @@ public class Products extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void products_btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_products_btAddActionPerformed
-        Add_Product.pack();
-        Add_Product.setVisible(true);
+        
+        dlgAddProduct_lbId.setText("...");
+        dlgAddProduct_tfProductName.setText("");
+        dlgAddProduct_tfPricePerUnit.setText("");
+        dlgAddProduct_tfQuantity.setText("");
+        
+        dlgAddProduct.pack();
+        dlgAddProduct.setVisible(true);
     }//GEN-LAST:event_products_btAddActionPerformed
 
     private void dlgAddProduct_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddProduct_btSaveActionPerformed
         try {
-            String productName = dlgAddProduct_tfProduct.getText();
+            String productName = dlgAddProduct_tfProductName.getText();
             String price = dlgAddProduct_tfPricePerUnit.getText();
             BigDecimal pricePerUnit = new BigDecimal(price);
             String q = dlgAddProduct_tfQuantity.getText();
@@ -367,7 +378,8 @@ public class Products extends javax.swing.JFrame {
             Product p;
             p = new Product(productName, pricePerUnit, quantity);
             if (dlgAddProduct_lbId.getText().equals("...")) { // if youre editing, this would be false  
-            db.addProduct(p);
+                dlgAddProduct.setVisible(false);
+                db.addProduct(p);
             }
             else {
                 try {
@@ -377,7 +389,7 @@ public class Products extends javax.swing.JFrame {
                 } catch (NullPointerException e) {
                     System.err.println("Id value is null");
                 }
-                
+                dlgAddProduct.setVisible(false);
                 db.updateProduct(p);
             }
             
@@ -405,12 +417,12 @@ public class Products extends javax.swing.JFrame {
             
             
             dlgAddProduct_lbId.setText(id);
-            dlgAddProduct_tfProduct.setText(productName);
+            dlgAddProduct_tfProductName.setText(productName);
             dlgAddProduct_tfPricePerUnit.setText(pricePerUnit);
             dlgAddProduct_tfQuantity.setText(quantity);
             
-            Add_Product.pack();
-            Add_Product.setVisible(true);
+            dlgAddProduct.pack();
+            dlgAddProduct.setVisible(true);
         } catch (ClassCastException e) {
             System.err.println("Casting exception");
         }
@@ -468,6 +480,12 @@ public class Products extends javax.swing.JFrame {
         Products.main(null);
     }//GEN-LAST:event_btSupport1ActionPerformed
 
+    private void btEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEmployeesActionPerformed
+        
+        this.dispose();
+        Employees.main(null);
+    }//GEN-LAST:event_btEmployeesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -519,17 +537,17 @@ public class Products extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog Add_Product;
     private javax.swing.JButton btCustomers;
     private javax.swing.JButton btEmployees;
     private javax.swing.JButton btSales;
     private javax.swing.JButton btSupport;
     private javax.swing.JButton btSupport1;
+    private javax.swing.JDialog dlgAddProduct;
     private javax.swing.JButton dlgAddProduct_btCancel;
     private javax.swing.JButton dlgAddProduct_btSave;
     private javax.swing.JLabel dlgAddProduct_lbId;
     private javax.swing.JTextField dlgAddProduct_tfPricePerUnit;
-    private javax.swing.JTextField dlgAddProduct_tfProduct;
+    private javax.swing.JTextField dlgAddProduct_tfProductName;
     private javax.swing.JTextField dlgAddProduct_tfQuantity;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

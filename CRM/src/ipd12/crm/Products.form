@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="Add_Product">
+    <Container class="javax.swing.JDialog" name="dlgAddProduct">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -19,7 +19,7 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="dlgAddProduct_tfProduct" max="32767" attributes="0"/>
+                                      <Component id="dlgAddProduct_tfProductName" max="32767" attributes="0"/>
                                       <Component id="dlgAddProduct_tfPricePerUnit" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -59,7 +59,7 @@
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dlgAddProduct_tfProduct" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dlgAddProduct_tfProductName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -91,7 +91,7 @@
             <Property name="text" type="java.lang.String" value="Product Name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="dlgAddProduct_tfProduct">
+        <Component class="javax.swing.JTextField" name="dlgAddProduct_tfProductName">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -390,6 +390,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Employees"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEmployeesActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btEmployees.setFocusable(false);"/>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Support_btEmployees"/>

@@ -261,6 +261,11 @@ public class Support extends javax.swing.JFrame {
 
         btEmployees.setText("Employees");
         btEmployees.setFocusable(false);
+        btEmployees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEmployeesActionPerformed(evt);
+            }
+        });
 
         btCustomers.setText("Customers");
         btCustomers.setFocusable(false);
@@ -486,6 +491,11 @@ public class Support extends javax.swing.JFrame {
        
         getCustomerProducts();
     }//GEN-LAST:event_dlgAddTicket_cbCustomerIdItemStateChanged
+
+    private void btEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEmployeesActionPerformed
+        this.dispose();
+        Employees.main(null);
+    }//GEN-LAST:event_btEmployeesActionPerformed
 
     public void getCustomerProducts() {
         try {

@@ -205,6 +205,11 @@ public class Sales extends javax.swing.JFrame {
 
         btEmployees.setText("Employees");
         btEmployees.setFocusable(false);
+        btEmployees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEmployeesActionPerformed(evt);
+            }
+        });
 
         btSupport1.setText("Products");
         btSupport1.setSelected(true);
@@ -317,6 +322,11 @@ public class Sales extends javax.swing.JFrame {
         this.dispose();
         Products.main(null);
     }//GEN-LAST:event_btSupport1ActionPerformed
+
+    private void btEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEmployeesActionPerformed
+        this.dispose();
+        Employees.main(null);
+    }//GEN-LAST:event_btEmployeesActionPerformed
 
     /**
      * @param args the command line arguments
