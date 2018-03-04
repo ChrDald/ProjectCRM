@@ -5,6 +5,8 @@
  */
 package ipd12.crm;
 
+import java.util.Date;
+
 /**
  *
  * @author D
@@ -12,12 +14,11 @@ package ipd12.crm;
 public class Sale {
     
     private long id;
-    private int employeeId;
-    // add dates later
-    //private date saleDate;
-    //private date supportEnd;
-    private int productId;
-    private int customerId;
+    private long employeeId;
+    private Date saleDate;
+    private Date supportEnd;
+    private long productId;
+    private long customerId;
 
     public long getId() {
         return id;
@@ -27,27 +28,45 @@ public class Sale {
         this.id = id;
     }
 
-    public int getEmployeeId() {
+    public long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(long employeeId) {
         this.employeeId = employeeId;
     }
 
-    public int getProductId() {
+    public Date getSaleDate() {
+        return saleDate;
+    }
+
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
+    }
+
+    public Date getSupportEnd() {
+        return supportEnd;
+    }
+
+    public void setSupportEnd(Date supportEnd) {
+        this.supportEnd = supportEnd;
+    }
+
+    
+    
+    public long getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(long productId) {
         this.productId = productId;
     }
 
-    public int getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customer) {
+    public void setCustomerId(long customer) {
         this.customerId = customer;
     }
     

@@ -133,22 +133,21 @@ public class Customers extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dlgAddCustomerLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(dlgAddCustomer_tfCompanyName))
-                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(26, 26, 26)
-                                .addComponent(dlgAddCustomer_tfAddress))
-                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(88, 88, 88)
-                                .addComponent(dlgAddCustomer_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(dlgAddCustomer_tfContactNumber))))
+                                .addComponent(dlgAddCustomer_tfContactNumber))
+                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dlgAddCustomer_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
+                                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(21, 21, 21)
+                                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dlgAddCustomer_tfAddress)
+                                    .addComponent(dlgAddCustomer_tfCompanyName)))))
                     .addGroup(dlgAddCustomerLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(dlgAddCustomer_btCancel)
@@ -541,7 +540,7 @@ public class Customers extends javax.swing.JFrame {
     private javax.swing.JButton customer_btEdit;
     private javax.swing.JButton customer_btPrint;
     private javax.swing.JTable customersTable;
-    private javax.swing.JDialog dlgAddCustomer;
+    public javax.swing.JDialog dlgAddCustomer;
     private javax.swing.JButton dlgAddCustomer_btCancel;
     private javax.swing.JButton dlgAddCustomer_btSave;
     private javax.swing.JLabel dlgAddCustomer_lbId;

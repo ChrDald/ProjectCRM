@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -156,6 +158,22 @@ public class Database {
         }
     }
     
+    public void addSale(Sale sale) throws SQLException {
+        String sql = "INSERT INTO sales (employeeId, saleDate, supportEnd, productId, customerId) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setInt(1, (int) sale.getEmployeeId());
+            java.sql.Date sqlSaleDate = new java.sql.Date(sale.getSaleDate().getTime());
+            stmt.setDate(2, sqlSaleDate);
+            java.sql.Date sqlEndDate = new java.sql.Date(sale.getSupportEnd().getTime());
+            stmt.setDate(3, sqlEndDate);
+            stmt.setInt(4, (int) sale.getProductId());
+            stmt.setInt(5, (int) sale.getCustomerId());
+ 
+            stmt.executeUpdate();
+        }
+    }
+    
     //=============================== ArrayList ===== getAll Method ===============================//
     
     public ArrayList<Customer> getAllCustomers() throws SQLException {
@@ -267,6 +285,26 @@ public class Database {
             }
         }
     }
+    //====================Get by name...==========================
+    // **method below assumes product names must be unique
+    public int getProductIdByName(String productName) throws SQLException {
+        String sql = "SELECT id FROM products WHERE productName = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, productName);
+            ResultSet result = stmt.executeQuery();
+            
+            if (result.next()) {
+                int productId = (result.getInt("id"));
+                return productId;
+            }
+            else {
+                System.err.println("Record not found");
+                return -1;
+            }
+        }          
+    }
+   
     //==================== Update ====================
     
     public void updateCustomer(Customer customer) throws SQLException {
@@ -377,6 +415,44 @@ public class Database {
             String description = list.get(i).getDescription();
 
             Object[] data = {id, supportAgentId, customerId, productId, description};
+            
+            model.addRow(data);
+        }
+    }
+    public void loadSalesTable(DefaultTableModel model) {
+        
+        model.setRowCount(0);
+        List<Sale> list = new ArrayList<>();
+           
+        try (Statement stmt = conn.createStatement()) {
+            String sql= "SELECT id, employeeId, saleDate, supportEnd, productId, customerId FROM sales";
+            
+            ResultSet rs = stmt.executeQuery(sql);
+        
+            while(rs.next()) {
+                Sale sale = new Sale();
+                sale.setId((long) rs.getInt("id"));
+                sale.setEmployeeId((long) rs.getInt("employeeId"));
+                sale.setSaleDate(rs.getDate("saleDate"));   // errors here for sure
+                sale.setSupportEnd(rs.getDate("supportEnd"));
+                sale.setProductId((long) rs.getInt("productId"));
+                sale.setCustomerId((long) rs.getInt("customerId"));
+
+                list.add(sale);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for (int i = 0; i < list.size(); i++){
+            long id = list.get(i).getId();
+            long employeeId = list.get(i).getEmployeeId();
+            Date saleDate = list.get(i).getSaleDate();
+            Date supportEnd = list.get(i).getSupportEnd();
+            long productId = list.get(i).getProductId();
+            long customerId = list.get(i).getCustomerId();
+
+            Object[] data = {id, employeeId, saleDate, supportEnd, productId, customerId};
             
             model.addRow(data);
         }

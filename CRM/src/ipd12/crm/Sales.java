@@ -5,6 +5,14 @@
  */
 package ipd12.crm;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,12 +24,14 @@ public class Sales extends javax.swing.JFrame {
     
     Database db;
     DefaultTableModel model = new DefaultTableModel(new String[]
-    {"Ticket Id", "Agent Id", "Customer Id", "Product Id", "Description"}, 0);
+    {"Sale Id", "Employee Id", "Sale Date", "Support End", "Product Id", "Customer Id"}, 0);
     
     public Sales() {
         db = new Database();
+        db.loadSalesTable(model);
         initComponents();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,10 +42,9 @@ public class Sales extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Add_Sale = new javax.swing.JDialog();
+        dlgAddSales = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        dlgAddSales_tfCustomer = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         dlgAddSales_cbProduct = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -46,12 +55,25 @@ public class Sales extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         dlgAddSales_tfTotalPrice = new javax.swing.JTextField();
         dlgAddSales_lbId = new javax.swing.JLabel();
+        dlgAddSales_btAddCustomer = new javax.swing.JButton();
+        dlgAddSales_cbCustomerId = new javax.swing.JComboBox<>();
+        dlgAddCustomer = new javax.swing.JDialog();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        dlgAddCustomer_tfCompanyName = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        dlgAddCustomer_btCancel = new javax.swing.JButton();
+        dlgAddCustomer_btSave = new javax.swing.JButton();
+        dlgAddCustomer_lbId = new javax.swing.JLabel();
+        dlgAddCustomer_tfAddress = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        dlgAddCustomer_tfContactNumber = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btAdd = new javax.swing.JButton();
+        btEdit = new javax.swing.JButton();
+        btDelete = new javax.swing.JButton();
+        btPrint = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbSupport = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -73,93 +95,195 @@ public class Sales extends javax.swing.JFrame {
         menuLogin1 = new javax.swing.JMenu();
         menuLogout = new javax.swing.JMenu();
 
-        jLabel2.setText("Id");
+        jLabel2.setText("Employee Id:");
 
-        jLabel3.setText("Customer");
+        jLabel3.setText("Customer Id:");
 
-        jLabel4.setText("Product");
+        jLabel4.setText("Product Name:");
 
-        dlgAddSales_cbProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel5.setText("Support Date");
+        jLabel5.setText("Support end Date:");
 
         dlgAddSales_cbSupportDate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Year", "2 Years", "3 Years" }));
 
         dlgAddSales_btCancel.setText("Cancel");
+        dlgAddSales_btCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAddSales_btCancelActionPerformed(evt);
+            }
+        });
 
         dlgAddSales_btSave.setText("Save");
+        dlgAddSales_btSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAddSales_btSaveActionPerformed(evt);
+            }
+        });
 
         dlgAddSales_btPrint.setText("Print");
 
-        jLabel6.setText("Total Price");
+        jLabel6.setText("Total Sale Price:");
 
         dlgAddSales_lbId.setText("...");
 
-        javax.swing.GroupLayout Add_SaleLayout = new javax.swing.GroupLayout(Add_Sale.getContentPane());
-        Add_Sale.getContentPane().setLayout(Add_SaleLayout);
-        Add_SaleLayout.setHorizontalGroup(
-            Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Add_SaleLayout.createSequentialGroup()
+        dlgAddSales_btAddCustomer.setText("Add new customer");
+        dlgAddSales_btAddCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAddSales_btAddCustomerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dlgAddSalesLayout = new javax.swing.GroupLayout(dlgAddSales.getContentPane());
+        dlgAddSales.getContentPane().setLayout(dlgAddSalesLayout);
+        dlgAddSalesLayout.setHorizontalGroup(
+            dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAddSalesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Add_SaleLayout.createSequentialGroup()
-                        .addGroup(Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Add_SaleLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(88, 88, 88)
-                                .addComponent(dlgAddSales_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(Add_SaleLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(34, 34, 34)
-                                .addComponent(dlgAddSales_tfTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(Add_SaleLayout.createSequentialGroup()
-                                .addComponent(dlgAddSales_btCancel)
-                                .addGap(18, 18, 18)
-                                .addComponent(dlgAddSales_btSave)
-                                .addGap(18, 18, 18)
-                                .addComponent(dlgAddSales_btPrint)))
-                        .addGap(0, 27, Short.MAX_VALUE))
-                    .addGroup(Add_SaleLayout.createSequentialGroup()
-                        .addGroup(Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dlgAddSalesLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(34, 34, 34)
+                        .addComponent(dlgAddSales_tfTotalPrice))
+                    .addGroup(dlgAddSalesLayout.createSequentialGroup()
+                        .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3))
+                        .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddSalesLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addComponent(dlgAddSales_btAddCustomer))
+                            .addGroup(dlgAddSalesLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dlgAddSales_cbCustomerId, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dlgAddSales_cbProduct, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dlgAddSales_cbSupportDate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(dlgAddSalesLayout.createSequentialGroup()
+                        .addComponent(dlgAddSales_btCancel)
                         .addGap(18, 18, 18)
-                        .addGroup(Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dlgAddSales_tfCustomer)
-                            .addComponent(dlgAddSales_cbProduct, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dlgAddSales_cbSupportDate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(dlgAddSales_btSave)
+                        .addGap(18, 18, 18)
+                        .addComponent(dlgAddSales_btPrint)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(dlgAddSalesLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dlgAddSales_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        Add_SaleLayout.setVerticalGroup(
-            Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Add_SaleLayout.createSequentialGroup()
+        dlgAddSalesLayout.setVerticalGroup(
+            dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAddSalesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(dlgAddSales_lbId))
                 .addGap(28, 28, 28)
-                .addGroup(Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(dlgAddSales_tfCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dlgAddSales_cbCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dlgAddSales_btAddCustomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(dlgAddSales_cbProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(dlgAddSales_cbSupportDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(dlgAddSales_tfTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(Add_SaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dlgAddSales_btCancel)
                     .addComponent(dlgAddSales_btSave)
                     .addComponent(dlgAddSales_btPrint))
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jLabel7.setText("Id");
+
+        jLabel8.setText("Company Name");
+
+        jLabel9.setText("Address");
+
+        dlgAddCustomer_btCancel.setText("Cancel");
+        dlgAddCustomer_btCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAddCustomer_btCancelActionPerformed(evt);
+            }
+        });
+
+        dlgAddCustomer_btSave.setText("Save");
+        dlgAddCustomer_btSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAddCustomer_btSaveActionPerformed(evt);
+            }
+        });
+
+        dlgAddCustomer_lbId.setText("...");
+
+        jLabel10.setText("Contact Number");
+
+        javax.swing.GroupLayout dlgAddCustomerLayout = new javax.swing.GroupLayout(dlgAddCustomer.getContentPane());
+        dlgAddCustomer.getContentPane().setLayout(dlgAddCustomerLayout);
+        dlgAddCustomerLayout.setHorizontalGroup(
+            dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(dlgAddCustomerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(dlgAddCustomer_tfContactNumber))
+                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dlgAddCustomer_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
+                                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addGap(21, 21, 21)
+                                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dlgAddCustomer_tfAddress)
+                                    .addComponent(dlgAddCustomer_tfCompanyName)))))
+                    .addGroup(dlgAddCustomerLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(dlgAddCustomer_btCancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addComponent(dlgAddCustomer_btSave)
+                        .addGap(36, 36, 36)))
+                .addContainerGap())
+        );
+        dlgAddCustomerLayout.setVerticalGroup(
+            dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlgAddCustomerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(dlgAddCustomer_lbId))
+                .addGap(18, 18, 18)
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(dlgAddCustomer_tfCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(dlgAddCustomer_tfAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(dlgAddCustomer_tfContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dlgAddCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dlgAddCustomer_btCancel)
+                    .addComponent(dlgAddCustomer_btSave)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -167,13 +291,18 @@ public class Sales extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
-        jButton4.setText("Add");
+        btAdd.setText("Add");
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Edit");
+        btEdit.setText("Edit");
 
-        jButton6.setText("Delete");
+        btDelete.setText("Delete");
 
-        jButton7.setText("Print");
+        btPrint.setText("Print");
 
         tbSupport.setAutoCreateRowSorter(true);
         tbSupport.setModel(model);
@@ -230,10 +359,10 @@ public class Sales extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btEmployees)
                         .addGap(0, 0, 0)
@@ -260,13 +389,13 @@ public class Sales extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(btAdd)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
+                        .addComponent(btEdit)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6)
+                        .addComponent(btDelete)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7)))
+                        .addComponent(btPrint)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -328,6 +457,130 @@ public class Sales extends javax.swing.JFrame {
         Employees.main(null);
     }//GEN-LAST:event_btEmployeesActionPerformed
 
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+        
+        // clear list contents
+        dlgAddSales_cbCustomerId.removeAllItems();
+        dlgAddSales_cbProduct.removeAllItems();
+        try  {     
+            // add current employee id
+            dlgAddSales_lbId.setText(Login.userId + "");
+            // load the product list         
+            ArrayList<String> products = new ArrayList<>();
+            
+            for (int i = 0; i < db.getAllProducts().size(); i++) {
+                products.add(db.getAllProducts().get(i).getProductName());
+            }
+            for (int i = 0; i < products.size(); i++) {
+                dlgAddSales_cbProduct.addItem(products.get(i));
+            }
+            // load the customer id list
+            ArrayList<Long> customerIds = new ArrayList<>();
+            
+            for (int i = 0; i < db.getAllCustomers().size(); i++) {
+                customerIds.add(db.getAllCustomers().get(i).getId());
+                dlgAddSales_cbCustomerId.addItem(String.valueOf(customerIds.get(i)));
+            }
+            
+            
+            dlgAddSales_cbCustomerId.setSelectedIndex(0);
+            dlgAddSales_cbProduct.setSelectedIndex(0);
+            dlgAddSales_cbSupportDate.setSelectedIndex(0);
+            dlgAddSales_tfTotalPrice.setText("");
+            dlgAddSales.pack();
+            dlgAddSales.setVisible(true);
+        } catch (SQLException ex) {
+            System.err.println("Error loading product list");
+            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btAddActionPerformed
+
+    private void dlgAddSales_btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddSales_btCancelActionPerformed
+        dlgAddSales.setVisible(false);
+    }//GEN-LAST:event_dlgAddSales_btCancelActionPerformed
+
+    private void dlgAddSales_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddSales_btSaveActionPerformed
+        
+        Sale sale = new Sale();
+        // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date saleDate = new Date();
+        Date endDate = new Date();
+        
+        sale.setEmployeeId(Long.parseLong(dlgAddSales_lbId.getText()));
+        sale.setSaleDate(saleDate);
+        
+        switch (dlgAddSales_cbSupportDate.getSelectedItem().toString().trim()) {
+            case "1 Year":
+                endDate.toInstant().plus( Duration.ofDays(365 ) );
+                break;
+            case "2 Years":
+                endDate.toInstant().plus( Duration.ofDays(730 ) );
+                break;
+            case "3 Years":
+                endDate.toInstant().plus( Duration.ofDays(730 ) );
+                break;
+            default:
+                System.err.println("Invalid support end date selected");
+                break;
+        }
+        sale.setSupportEnd(endDate);
+        sale.setCustomerId(Long.parseLong(dlgAddSales_cbCustomerId.getSelectedItem().toString().trim()));
+        String productName = dlgAddSales_cbProduct.getSelectedItem().toString().trim();
+        try {
+            sale.setProductId(db.getProductIdByName(productName));
+            db.addSale(sale);
+            dlgAddSales.setVisible(false);
+            db.loadSalesTable(model);
+        } catch (SQLException ex) {
+            System.err.println("Database error, make sure product name is selected and unique");
+            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_dlgAddSales_btSaveActionPerformed
+
+    private void dlgAddSales_btAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddSales_btAddCustomerActionPerformed
+        
+        // adding a new customer and reloading the customer id combo box
+        dlgAddCustomer.pack();
+        dlgAddCustomer.setVisible(true);
+    }//GEN-LAST:event_dlgAddSales_btAddCustomerActionPerformed
+
+    private void dlgAddCustomer_btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddCustomer_btCancelActionPerformed
+
+        dlgAddCustomer.dispose();
+    }//GEN-LAST:event_dlgAddCustomer_btCancelActionPerformed
+
+    private void dlgAddCustomer_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddCustomer_btSaveActionPerformed
+        try {
+            String companyName = dlgAddCustomer_tfCompanyName.getText();
+            String address = dlgAddCustomer_tfAddress.getText();
+            String contactNum = dlgAddCustomer_tfContactNumber.getText();
+
+            Customer c;
+            c = new Customer(companyName, address, contactNum);
+            
+            db.addCustomer(c);
+            dlgAddCustomer.setVisible(false);
+
+            
+            // reload customers
+            dlgAddSales_cbCustomerId.removeAllItems();
+            ArrayList<Long> customerIds = new ArrayList<>();
+            
+            for (int i = 0; i < db.getAllCustomers().size(); i++) {
+                customerIds.add(db.getAllCustomers().get(i).getId());
+                dlgAddSales_cbCustomerId.addItem(String.valueOf(customerIds.get(i)));
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // display dialog with error message and terminate the program
+            JOptionPane.showMessageDialog(this,
+                "Error: unable to reload customer\n" + ex.getMessage(),
+                "Database error",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_dlgAddCustomer_btSaveActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -367,30 +620,42 @@ public class Sales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog Add_Sale;
+    private javax.swing.JButton btAdd;
     private javax.swing.JButton btCustomers;
+    private javax.swing.JButton btDelete;
+    private javax.swing.JButton btEdit;
     private javax.swing.JButton btEmployees;
+    private javax.swing.JButton btPrint;
     private javax.swing.JButton btSales;
     private javax.swing.JButton btSupport;
     private javax.swing.JButton btSupport1;
+    public javax.swing.JDialog dlgAddCustomer;
+    private javax.swing.JButton dlgAddCustomer_btCancel;
+    private javax.swing.JButton dlgAddCustomer_btSave;
+    private javax.swing.JLabel dlgAddCustomer_lbId;
+    private javax.swing.JTextField dlgAddCustomer_tfAddress;
+    private javax.swing.JTextField dlgAddCustomer_tfCompanyName;
+    private javax.swing.JTextField dlgAddCustomer_tfContactNumber;
+    private javax.swing.JDialog dlgAddSales;
+    private javax.swing.JButton dlgAddSales_btAddCustomer;
     private javax.swing.JButton dlgAddSales_btCancel;
     private javax.swing.JButton dlgAddSales_btPrint;
     private javax.swing.JButton dlgAddSales_btSave;
+    private javax.swing.JComboBox<String> dlgAddSales_cbCustomerId;
     private javax.swing.JComboBox<String> dlgAddSales_cbProduct;
     private javax.swing.JComboBox<String> dlgAddSales_cbSupportDate;
     private javax.swing.JLabel dlgAddSales_lbId;
-    private javax.swing.JTextField dlgAddSales_tfCustomer;
     private javax.swing.JTextField dlgAddSales_tfTotalPrice;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

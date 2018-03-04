@@ -14,3 +14,7 @@ in the database
 
 **ADDING SUPPORT TICKET: use a drop down list to select customer id, then load that customer's products and add those to
 the drop down list for products
+
+*Change column saleDate in sales to date instead of datetime...
+
+*Decide if the ids are INT or LONG (We have both now its confusing)
