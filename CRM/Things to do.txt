@@ -17,3 +17,9 @@ for max characters and characters allowed?)
 
 ***When ADDING and EDITING in sales, 
 the correct value for SUPPORT END is not working, its showing the same value as sale date
+
+*In support, when selecting customer id, show that customers name/info in a tf or label below
+do this for sales also
+
+**in add sale, add a combo box(or something) below product name to ask for product quantity, and calculate
+total price from price per unit and quantity in the text field total sale (maybe plus tax?)

@@ -126,9 +126,34 @@ Not done:
 - create Sales and support windows with all function
 - create function Print for dlgSales
 
+================================
+================================
+Christopher Daldalian / 03-05-2018
+
+1. What I have done or Not done since the last scrum?
+Done:
+- Added tab switching between windows
+- Simplified main menu bar
+- Made the password more secure
+- Added user restrictions based on type
+- Added add/edit functionality to all windows
+- Created methods in database class to allow that
+- Added some error handling code
+- Added a logout function (takes you back to log in)
+
+Not done:
+-
 
 
+2. What is planned from this scrum to the next?
+- Implement product quantity, use that to determine sale price, and use an actual inventory of products
+- Fix the issue with the support end date not getting the correct value
+- When a customer id is selected (in some windows), display that customer's name/info for better usability
 
+3. Where do I need assistance/help?
+- Formatting phone number and sale price
+- Adding delete functionality to the remaining windows
+==================================
 
 
 
