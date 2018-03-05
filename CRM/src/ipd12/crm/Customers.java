@@ -424,7 +424,10 @@ public class Customers extends javax.swing.JFrame {
             try {
                 db.deleteCustomerById(id);
             } catch (SQLException ex) {
-                System.err.println("Error deleting from database, check your query");
+                JOptionPane.showMessageDialog(this,
+                "Cannot delete selected customer. Database referential integrity would be comprised.",
+                "Database conflict",
+                JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
             }
             loadCustomers();

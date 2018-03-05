@@ -14,3 +14,6 @@ product quantity.
 value for password (for example if youre not changing the password) youre gonna update the password to ****
 pretty big problem, need to set it so if the password is = **** then dont change it (also might wanna add some regex
 for max characters and characters allowed?)
+
+***When ADDING and EDITING in sales, 
+the correct value for SUPPORT END is not working, its showing the same value as sale date

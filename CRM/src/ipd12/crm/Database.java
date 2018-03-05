@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sun.security.util.Password;
 
@@ -97,7 +98,7 @@ public class Database {
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setLong(1, id);
             stmt.executeUpdate();
-        }
+        } 
     }
     
     public List<Employee> loadEmployeeList() {
@@ -330,6 +331,27 @@ public class Database {
         }
     }
     
+    public void updateSale(Sale sale) throws SQLException {
+        String sql = "UPDATE sales SET employeeId=?, saleDate =?, supportEnd =?, "
+                + "productId = ?, customerId = ?, salePrice =? WHERE id=?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, (int) sale.getId());
+            java.sql.Date sqlSaleDate = new java.sql.Date(sale.getSaleDate().getTime());
+            stmt.setDate(2, sqlSaleDate);
+            java.sql.Date sqlEndDate = new java.sql.Date(sale.getSupportEnd().getTime());
+            stmt.setDate(3, sqlEndDate);
+            stmt.setInt(4, (int) sale.getProductId());
+            stmt.setInt(5, (int) sale.getCustomerId());
+            stmt.setBigDecimal(6, sale.getSalePrice());
+            stmt.setInt(7, (int) sale.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("sqlException");
+            e.printStackTrace();
+        }
+    }
     
     //==================== Delete ====================
     

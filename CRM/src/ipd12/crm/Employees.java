@@ -411,12 +411,15 @@ public class Employees extends javax.swing.JFrame {
 
             try {
                 db.deleteEmployeeById(id);
-            } catch (SQLException ex) {
-                System.err.println("Error deleting from database, check your query");
-                Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            db.loadTable(model);
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this,
+                "Cannot delete selected employee. Database referential integrity would be comprised.",
+                "Database conflict",
+                JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, e);
+            }              
         }
+        db.loadTable(model);
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
@@ -441,10 +444,7 @@ public class Employees extends javax.swing.JFrame {
             dlgAdd.setVisible(true);
         } catch (ClassCastException e) {
             System.err.println("Casting exception");
-        }
-        
-        
-                
+        }            
         
     }//GEN-LAST:event_btEditActionPerformed
 

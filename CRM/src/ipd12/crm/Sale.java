@@ -80,5 +80,10 @@ public class Sale {
         this.salePrice = salePrice;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Sale ID: " + this.getId() + " Employee ID: " + this.getEmployeeId() + " Sale Date: " + this.getSaleDate() 
+                + " Support End: " + this.getSupportEnd() + " Product ID: " + this.getProductId() + " Customer ID: " +
+                this.getCustomerId() + " Sale Price: " + this.getSalePrice();
+    }
 }

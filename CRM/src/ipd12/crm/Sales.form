@@ -44,10 +44,16 @@
                           <Component id="dlgAddSales_btPrint" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="dlgAddSales_lbId" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="dlgAddSales_lblSaleId" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="dlgAddSales_lblEmployeeId" min="-2" pref="37" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -56,11 +62,16 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dlgAddSales_lblSaleId" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dlgAddSales_lbId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dlgAddSales_lblEmployeeId" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -90,7 +101,7 @@
                       <Component id="dlgAddSales_btSave" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dlgAddSales_btPrint" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -168,7 +179,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="dlgAddSales_tfTotalPrice">
         </Component>
-        <Component class="javax.swing.JLabel" name="dlgAddSales_lbId">
+        <Component class="javax.swing.JLabel" name="dlgAddSales_lblEmployeeId">
           <Properties>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
@@ -190,6 +201,16 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sale Id:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="dlgAddSales_lblSaleId">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="..."/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -426,7 +447,7 @@
                           <Component id="btSupport" min="-2" pref="83" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="btSupport1" min="-2" pref="83" max="-2" attributes="0"/>
-                          <EmptySpace pref="204" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="194" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jScrollPane2" max="32767" attributes="0"/>
@@ -437,9 +458,9 @@
                               <Component id="btAdd" alignment="0" max="32767" attributes="0"/>
                               <Component id="btPrint" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -485,6 +506,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btDelete">
           <Properties>
@@ -503,7 +527,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tbSupport">
+            <Component class="javax.swing.JTable" name="tbSales">
               <Properties>
                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">

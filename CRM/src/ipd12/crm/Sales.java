@@ -7,6 +7,8 @@ package ipd12.crm;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -64,9 +66,11 @@ public class Sales extends javax.swing.JFrame {
         dlgAddSales_btPrint = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         dlgAddSales_tfTotalPrice = new javax.swing.JTextField();
-        dlgAddSales_lbId = new javax.swing.JLabel();
+        dlgAddSales_lblEmployeeId = new javax.swing.JLabel();
         dlgAddSales_btAddCustomer = new javax.swing.JButton();
         dlgAddSales_cbCustomerId = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        dlgAddSales_lblSaleId = new javax.swing.JLabel();
         dlgAddCustomer = new javax.swing.JDialog();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -85,7 +89,7 @@ public class Sales extends javax.swing.JFrame {
         btDelete = new javax.swing.JButton();
         btPrint = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbSupport = new javax.swing.JTable(){
+        tbSales = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;   //Disallow the editing of any cell
             }
@@ -132,7 +136,7 @@ public class Sales extends javax.swing.JFrame {
 
         jLabel6.setText("Total Sale Price:");
 
-        dlgAddSales_lbId.setText("...");
+        dlgAddSales_lblEmployeeId.setText("...");
 
         dlgAddSales_btAddCustomer.setText("Add new customer");
         dlgAddSales_btAddCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +144,10 @@ public class Sales extends javax.swing.JFrame {
                 dlgAddSales_btAddCustomerActionPerformed(evt);
             }
         });
+
+        jLabel11.setText("Sale Id:");
+
+        dlgAddSales_lblSaleId.setText("...");
 
         javax.swing.GroupLayout dlgAddSalesLayout = new javax.swing.GroupLayout(dlgAddSales.getContentPane());
         dlgAddSales.getContentPane().setLayout(dlgAddSalesLayout);
@@ -174,19 +182,27 @@ public class Sales extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(dlgAddSales_btPrint)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(dlgAddSalesLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddSalesLayout.createSequentialGroup()
+                        .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dlgAddSales_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dlgAddSales_lblSaleId, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dlgAddSales_lblEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         dlgAddSalesLayout.setVerticalGroup(
             dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dlgAddSalesLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddSalesLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(dlgAddSales_lblSaleId, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(dlgAddSales_lbId))
+                    .addComponent(dlgAddSales_lblEmployeeId))
                 .addGap(28, 28, 28)
                 .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -210,7 +226,7 @@ public class Sales extends javax.swing.JFrame {
                     .addComponent(dlgAddSales_btCancel)
                     .addComponent(dlgAddSales_btSave)
                     .addComponent(dlgAddSales_btPrint))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel7.setText("Id");
@@ -308,14 +324,19 @@ public class Sales extends javax.swing.JFrame {
         });
 
         btEdit.setText("Edit");
+        btEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditActionPerformed(evt);
+            }
+        });
 
         btDelete.setText("Delete");
 
         btPrint.setText("Print");
 
-        tbSupport.setAutoCreateRowSorter(true);
-        tbSupport.setModel(model);
-        jScrollPane2.setViewportView(tbSupport);
+        tbSales.setAutoCreateRowSorter(true);
+        tbSales.setModel(model);
+        jScrollPane2.setViewportView(tbSales);
 
         btSupport.setText("Support");
         btSupport.addActionListener(new java.awt.event.ActionListener() {
@@ -374,7 +395,7 @@ public class Sales extends javax.swing.JFrame {
                         .addComponent(btSupport, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(btSupport1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(204, Short.MAX_VALUE))
+                        .addGap(0, 194, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -382,8 +403,8 @@ public class Sales extends javax.swing.JFrame {
                             .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                            .addComponent(btPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,7 +497,7 @@ public class Sales extends javax.swing.JFrame {
         dlgAddSales_cbProduct.removeAllItems();
         try  {     
             // add current employee id
-            dlgAddSales_lbId.setText(Login.userId + "");
+            dlgAddSales_lblEmployeeId.setText(Login.userId + "");
             // load the product list         
             ArrayList<String> products = new ArrayList<>();
             
@@ -513,13 +534,16 @@ public class Sales extends javax.swing.JFrame {
 
     private void dlgAddSales_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddSales_btSaveActionPerformed
         
+        
         Sale sale = new Sale();
-        // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        
         Date saleDate = new Date();
         Date endDate = new Date();
         
-        sale.setEmployeeId(Long.parseLong(dlgAddSales_lbId.getText()));
+        sale.setEmployeeId(Long.parseLong(dlgAddSales_lblEmployeeId.getText()));
         sale.setSaleDate(saleDate);
+        
         
         switch (dlgAddSales_cbSupportDate.getSelectedItem().toString().trim()) {
             case "1 Year":
@@ -529,7 +553,7 @@ public class Sales extends javax.swing.JFrame {
                 endDate.toInstant().plus( Duration.ofDays(730 ) );
                 break;
             case "3 Years":
-                endDate.toInstant().plus( Duration.ofDays(730 ) );
+                endDate.toInstant().plus( Duration.ofDays(1095 ) );
                 break;
             default:
                 System.err.println("Invalid support end date selected");
@@ -542,7 +566,14 @@ public class Sales extends javax.swing.JFrame {
             sale.setProductId(db.getProductIdByName(productName));
             BigDecimal salePrice = new BigDecimal(dlgAddSales_tfTotalPrice.getText());
             sale.setSalePrice(salePrice);
-            db.addSale(sale);
+            if (dlgAddSales_lblSaleId.getText().equals("...")) { // for adding
+                db.addSale(sale); 
+            }
+            else {  // for editing
+                sale.setId(Long.valueOf(dlgAddSales_lblSaleId.getText()));
+                System.out.println(sale.toString());
+                db.updateSale(sale);
+            }
             dlgAddSales.setVisible(false);
             db.loadSalesTable(model);
         } catch (SQLException ex) {
@@ -613,6 +644,119 @@ public class Sales extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuLogoutMouseClicked
 
+    private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
+        
+        int rowIndex = tbSales.getSelectedRow();
+        
+        if (rowIndex == -1) {
+            JOptionPane.showMessageDialog(this,
+                "Select an item to edit.",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            
+            dlgAddSales_cbProduct.removeAllItems();
+            // load the product list         
+            ArrayList<String> products = new ArrayList<>();
+            
+            for (int i = 0; i < db.getAllProducts().size(); i++) {
+                products.add(db.getAllProducts().get(i).getProductName());
+            }
+            for (int i = 0; i < products.size(); i++) {
+                dlgAddSales_cbProduct.addItem(products.get(i));
+            }
+            //
+            
+            dlgAddSales_cbCustomerId.removeAllItems();
+            // load customer id list
+            ArrayList<Long> customerIds = new ArrayList<>();
+            
+            for (int i = 0; i < db.getAllCustomers().size(); i++) {
+                customerIds.add(db.getAllCustomers().get(i).getId());
+                dlgAddSales_cbCustomerId.addItem(String.valueOf(customerIds.get(i)));
+            }
+            // 
+            String saleId = String.valueOf(tbSales.getValueAt(rowIndex, 0));
+            String employeeId = String.valueOf(tbSales.getValueAt(rowIndex, 1));
+            String saleDate = String.valueOf(tbSales.getValueAt(rowIndex, 2));
+            String supportEnd = String.valueOf(tbSales.getValueAt(rowIndex, 3));
+            String productId = String.valueOf(tbSales.getValueAt(rowIndex, 4));
+            String customerId = String.valueOf(tbSales.getValueAt(rowIndex, 5));
+            String salePrice = String.valueOf(tbSales.getValueAt(rowIndex, 6));
+            
+            dlgAddSales_lblSaleId.setText(saleId);
+            dlgAddSales_lblEmployeeId.setText(employeeId);
+            // set the selected customer id
+            for (int i = 0; i < dlgAddSales_cbCustomerId.getModel().getSize(); i++) {
+                if (dlgAddSales_cbCustomerId.getModel().getElementAt(i).trim().equals(customerId)) {
+                    dlgAddSales_cbCustomerId.setSelectedIndex(i);
+                    break;
+                }
+            }
+            
+
+            // get the product name from the product id and select it in the combo box...
+            // all this code below is to do that. probably shouldve made this easier and more efficient
+            String productName = "";
+            for (int i = 0; i < db.getAllProducts().size(); i++) {
+                if (db.getAllProducts().get(i).getId() == Long.valueOf(productId)) {
+                    productName = db.getAllProducts().get(i).getProductName();
+                    break;
+                }
+            }
+            System.err.println("Product Name: " + productName);
+            // set the selected combo box item to the correct product
+            for (int i = 0; i < dlgAddSales_cbProduct.getModel().getSize(); i++) {
+                System.err.println("Product name in for loop: " + productName);
+                if (dlgAddSales_cbProduct.getModel().getElementAt(i).trim().equals(productName.trim())) {
+                    dlgAddSales_cbProduct.setSelectedIndex(i);
+                    break;
+                }
+            }
+            
+            // set support end date
+            // calculate the difference between sale date and support end
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            long timeDifference = 0;
+            int timeDifferenceWeeks = 0;
+            try {
+                Date saleDateFormat = format.parse(saleDate);
+                Date supportEndFormat = format.parse(supportEnd);
+                timeDifference = supportEndFormat.getTime() - saleDateFormat.getTime();
+                timeDifferenceWeeks = (int) (timeDifference / (1000*60*60*24*7));
+            } catch (ParseException ex) {
+                System.err.println("Invalid date values, check your code");
+                Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            if (timeDifferenceWeeks < 0) {
+                System.err.println("Invalid date values (support end value cannot be less than sale date)");
+                return;
+            }
+            if (timeDifferenceWeeks <= 52) {
+                dlgAddSales_cbSupportDate.setSelectedIndex(0);
+            }
+            else if (timeDifferenceWeeks <= 104) {
+                dlgAddSales_cbSupportDate.setSelectedIndex(1);
+            }
+            else {
+                dlgAddSales_cbSupportDate.setSelectedIndex(2);
+            }
+            System.err.println("Time difference in weeks: " + timeDifferenceWeeks);
+            dlgAddSales_tfTotalPrice.setText(salePrice);
+
+            dlgAddSales.pack();
+            dlgAddSales.setVisible(true);
+        } catch (ClassCastException e) {
+            System.err.println("Casting exception");
+        } catch (SQLException ex) {
+            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btEditActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -676,10 +820,12 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> dlgAddSales_cbCustomerId;
     private javax.swing.JComboBox<String> dlgAddSales_cbProduct;
     private javax.swing.JComboBox<String> dlgAddSales_cbSupportDate;
-    private javax.swing.JLabel dlgAddSales_lbId;
+    private javax.swing.JLabel dlgAddSales_lblEmployeeId;
+    private javax.swing.JLabel dlgAddSales_lblSaleId;
     private javax.swing.JTextField dlgAddSales_tfTotalPrice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -698,6 +844,6 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JMenu menuSupport2;
     private javax.swing.JMenu menuSupport3;
     private javax.swing.JMenu menuSupport4;
-    private javax.swing.JTable tbSupport;
+    private javax.swing.JTable tbSales;
     // End of variables declaration//GEN-END:variables
 }

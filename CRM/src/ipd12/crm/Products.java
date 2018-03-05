@@ -461,7 +461,10 @@ public class Products extends javax.swing.JFrame {
             try {
                 db.deleteProductById(id);
             } catch (SQLException ex) {
-                System.err.println("Error deleting from database, check your query");
+                JOptionPane.showMessageDialog(this,
+                "Cannot delete selected product. Database referential integrity would be comprised.",
+                "Database conflict",
+                JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
             }
             loadProducts();
