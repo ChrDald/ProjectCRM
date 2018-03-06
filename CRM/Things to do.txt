@@ -1,14 +1,9 @@
+Bugs:
+====================================================================
 *Add invalid index error handling WHEN delete or edit is selected but no row is selected in the table
 
 ***Make sure you cant put more characters in the description of the issue then you can
 in the database
-
-*Add menu bar functions
-
-*Decide if the ids are INT or LONG (We have both now its confusing)
-
-*If you want to be a try hard, when you create a sale, you check if you have enough product quantity first, then if you do you substract the sale quantity from
-product quantity.
 
 *Again try hard, if youre a manager and youre editing an employee's info, if you dont change the default **** 
 value for password (for example if youre not changing the password) youre gonna update the password to ****
@@ -17,9 +12,34 @@ for max characters and characters allowed?)
 
 ***When ADDING and EDITING in sales, 
 the correct value for SUPPORT END is not working, its showing the same value as sale date
+======================================================
 
-*In support, when selecting customer id, show that customers name/info in a tf or label below
-do this for sales also
 
-**in add sale, add a combo box(or something) below product name to ask for product quantity, and calculate
-total price from price per unit and quantity in the text field total sale (maybe plus tax?)
+*Export if easy
+*Gray out print options (not done)
+*Delete in sales
+*In sales, dont allow edit customer id, product name.
+*In sales, Support end date not working
+*CLEAN UP the database, customers with no products (delete those), and things like that
+*In support, when adding, description is going into customer ID column, and customer id is not showing
+*In support, edit/delete not working yet
+*Get rid of done not done
+
+Yasser: 
+*If there is time, add export to txt or wtv option
+*Change productId to name, agentId to name, 
+*in support edit/delete
+*(fix columns) 
+In support, when adding, description is going into customer ID column, and customer id is not showing
+*In support add, show customer name for the customerId selected, and maybe agent name from id
+
+Chris:
+*Delete import in menu bar
+*In sales, change customerId, employeeId, and productId to their name 
+
+*in add sale, add a combo box(or something) below product name to ask for product quantity, and calculate
+total price from price per unit and quantity in the text field total sale (maybe plus tax?) 
+
+*In sales, dont allow edit customer id, product name.
+*In sales, Support end date not working
+*Support end fix

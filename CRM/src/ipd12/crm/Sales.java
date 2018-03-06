@@ -696,7 +696,7 @@ public class Sales extends javax.swing.JFrame {
                     break;
                 }
             }
-            
+
 
             // get the product name from the product id and select it in the combo box...
             // all this code below is to do that. probably shouldve made this easier and more efficient
