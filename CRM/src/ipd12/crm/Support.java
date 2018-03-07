@@ -394,7 +394,7 @@ public class Support extends javax.swing.JFrame {
                         .addComponent(btDelete)
                         .addGap(18, 18, 18)
                         .addComponent(btPrint)
-                        .addContainerGap(146, Short.MAX_VALUE))
+                        .addContainerGap(113, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
