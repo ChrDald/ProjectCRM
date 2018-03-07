@@ -46,9 +46,9 @@ public class Support extends javax.swing.JFrame {
             for (int i = 0; i < list.size(); i++) {
                 rowData[0] = list.get(i).getId();
                 rowData[1] = list.get(i).getSupportAgentId();
-                rowData[2] = list.get(i).getDescription();
-                rowData[3] = list.get(i).getCustomerId();
-                rowData[4] = list.get(i).getProductId();
+                rowData[2] = list.get(i).getCustomerId();
+                rowData[3] = list.get(i).getProductId();
+                rowData[4] = list.get(i).getDescription();
                 model.addRow(rowData);
                 
                 // line below only applies when this method is called from the Support class
