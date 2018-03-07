@@ -8,6 +8,7 @@ package ipd12.crm;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -16,6 +17,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -338,6 +340,11 @@ public class Sales extends javax.swing.JFrame {
         });
 
         btPrint.setText("Print");
+        btPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPrintActionPerformed(evt);
+            }
+        });
 
         tbSales.setAutoCreateRowSorter(true);
         tbSales.setModel(model);
@@ -765,6 +772,20 @@ public class Sales extends javax.swing.JFrame {
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btDeleteActionPerformed
+
+    private void btPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintActionPerformed
+        MessageFormat header = new MessageFormat("Report Print");
+        MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+        
+        try{
+            
+            tbSales.print(JTable.PrintMode.NORMAL, header, footer);
+            
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("Can not print %s%n", e.getMessage());
+        }
+        
+    }//GEN-LAST:event_btPrintActionPerformed
 
     /**
      * @param args the command line arguments

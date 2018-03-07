@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -214,6 +215,11 @@ public class Employees extends javax.swing.JFrame {
         });
 
         btPrint.setText("Print");
+        btPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPrintActionPerformed(evt);
+            }
+        });
 
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(model);
@@ -299,7 +305,7 @@ public class Employees extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btPrint))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -485,6 +491,20 @@ public class Employees extends javax.swing.JFrame {
             Login.main(null);
         }
     }//GEN-LAST:event_menuLogoutMouseClicked
+
+    private void btPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintActionPerformed
+        MessageFormat header = new MessageFormat("Report Print");
+        MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+        
+        try{
+            
+            jTable1.print(JTable.PrintMode.NORMAL, header, footer);
+            
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("Can not print %s%n", e.getMessage());
+        }
+        
+    }//GEN-LAST:event_btPrintActionPerformed
 
     /**
      * @param args the command line arguments

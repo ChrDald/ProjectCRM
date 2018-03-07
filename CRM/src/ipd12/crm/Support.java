@@ -6,11 +6,13 @@
 package ipd12.crm;
 
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,10 +20,10 @@ import javax.swing.table.DefaultTableModel;
  * @author yasser
  */
 public class Support extends javax.swing.JFrame {
-    
+
     Database db;
     DefaultTableModel model = new DefaultTableModel(new String[]{"Ticket Id", "Customer Name", "Product Name", "Support Agent", "Description",}, 0);
-    
+
     public Support() {
         initComponents();
         db = new Database();
@@ -36,9 +38,9 @@ public class Support extends javax.swing.JFrame {
             btEdit.setEnabled(false);
         }
     }
-    
+
     public void loadTickets() {
-        
+
         try {
             model.setRowCount(0);
             ArrayList<Ticket> list = db.getAllTickets();
@@ -52,7 +54,7 @@ public class Support extends javax.swing.JFrame {
                 rowData[2] = list.get(i).getProductName();
                 rowData[3] = list.get(i).getSupportAgent();
                 rowData[4] = list.get(i).getDescription();
-                
+
                 model.addRow(rowData);
 
                 // line below only applies when this method is called from the Support class
@@ -62,7 +64,7 @@ public class Support extends javax.swing.JFrame {
                     
                 } */
             }
-            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             // display dialog with error message and terminate the program
@@ -71,7 +73,7 @@ public class Support extends javax.swing.JFrame {
                     "Database error",
                     JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }
 
     /**
@@ -108,7 +110,6 @@ public class Support extends javax.swing.JFrame {
         btAdd = new javax.swing.JButton();
         btEdit = new javax.swing.JButton();
         btDelete = new javax.swing.JButton();
-        btPrint = new javax.swing.JButton();
         btEmployees = new javax.swing.JButton();
         btCustomers = new javax.swing.JButton();
         btSales = new javax.swing.JButton();
@@ -120,6 +121,7 @@ public class Support extends javax.swing.JFrame {
             }
         };
         btSupport1 = new javax.swing.JButton();
+        jbt_Print = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuSales = new javax.swing.JMenu();
@@ -300,8 +302,6 @@ public class Support extends javax.swing.JFrame {
             }
         });
 
-        btPrint.setText("Print");
-
         btEmployees.setText("Employees");
         btEmployees.setFocusable(false);
         btEmployees.addActionListener(new java.awt.event.ActionListener() {
@@ -347,6 +347,13 @@ public class Support extends javax.swing.JFrame {
             }
         });
 
+        jbt_Print.setText("Print");
+        jbt_Print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbt_PrintActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -357,11 +364,12 @@ public class Support extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jbt_Print, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btEmployees)
                         .addGap(0, 0, 0)
@@ -393,7 +401,7 @@ public class Support extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btDelete)
                         .addGap(18, 18, 18)
-                        .addComponent(btPrint)
+                        .addComponent(jbt_Print)
                         .addContainerGap(113, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
@@ -435,11 +443,10 @@ public class Support extends javax.swing.JFrame {
 
     private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
 
-
         try {
             ArrayList<Sale> customers = db.getAllSales();
             ArrayList<Long> customerIds = new ArrayList<>();
-            
+
             for (int i = 0; i < customers.size(); i++) {
                 customerIds.add(customers.get(i).getId());
             }
@@ -448,25 +455,25 @@ public class Support extends javax.swing.JFrame {
             for (int i = 0; i < customerIds.size(); i++) {
                 dlgAddTicket_cbCustomerId.addItem(customerIds.get(i).toString());
             }
-            
+
             getCustomerProducts();
-           
+
         } catch (SQLException ex) {
             Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         dlgAddTicket.dispose();
         dlgAddTicket.pack();
-        
+
         dlgAddTicket_lblAgentId.setText(Login.userId + "");
-       
+
         try {
-           String u = db.getuserNameById(Login.userId);
-           jtf_UserName.setText(u);
+            String u = db.getuserNameById(Login.userId);
+            jtf_UserName.setText(u);
         } catch (SQLException ex) {
             Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         dlgAddTicket.setVisible(true);
         dlgAddTicket_lblAgentId.setVisible(false);
     }//GEN-LAST:event_btAddActionPerformed
@@ -491,7 +498,7 @@ public class Support extends javax.swing.JFrame {
     }//GEN-LAST:event_btSupportActionPerformed
 
     private void dlgAddTicket_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddTicket_btSaveActionPerformed
-        
+
         try {
             // supportAgentId, description, customerId, productId
             Ticket ticket = new Ticket();
@@ -500,20 +507,20 @@ public class Support extends javax.swing.JFrame {
             ticket.setDescription(dlgAddTicket_tfDescription.getText());
             ticket.setCustomerId(Integer.parseInt(jtf_CustomerId.getText()));
             ticket.setProductId(Integer.parseInt(jtf_ProductId.getText()));
-            
+
             System.err.println("Ticket id: " + ticket.getId());
-            
+
             if (jlbl_TicketId.getText().equals("...")) { // for adding
                 db.addTicket(ticket);
             } else {  // for editing
-               ticket.setId(Integer.parseInt(jlbl_TicketId.getText())); 
+                ticket.setId(Integer.parseInt(jlbl_TicketId.getText()));
                 db.updateSupport(ticket);
             }
         } catch (SQLException ex) {
             System.err.println("SQL Exception");
             Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         dlgAddTicket.setVisible(false);
         loadTickets();
     }//GEN-LAST:event_dlgAddTicket_btSaveActionPerformed
@@ -539,7 +546,7 @@ public class Support extends javax.swing.JFrame {
                 null,
                 null
         );
-        
+
         if (decision == JOptionPane.YES_OPTION) {
             this.dispose();
             Login.main(null);
@@ -548,7 +555,7 @@ public class Support extends javax.swing.JFrame {
 
     private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
         int rowIndex = tbSupport.getSelectedRow();
-        
+
         if (rowIndex == -1) {
             JOptionPane.showMessageDialog(this,
                     "Select an item to edit.",
@@ -556,12 +563,12 @@ public class Support extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         String supportId = String.valueOf(tbSupport.getValueAt(rowIndex, 0));
         jlbl_TicketId.setText(supportId);
         int suId = Integer.parseInt(supportId);
         try {
-            
+
             ArrayList<Ticket> list = db.getSupportById(suId);
 
             // Set Product ID
@@ -623,13 +630,13 @@ public class Support extends javax.swing.JFrame {
     }//GEN-LAST:event_btEditActionPerformed
 
     private void dlgAddTicket_cbCustomerIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dlgAddTicket_cbCustomerIdItemStateChanged
-        
+
         getCustomerProducts();
     }//GEN-LAST:event_dlgAddTicket_cbCustomerIdItemStateChanged
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         int rowIndex = tbSupport.getSelectedRow();
-        
+
         if (rowIndex == -1) {
             JOptionPane.showMessageDialog(this,
                     "Select an item to edit.",
@@ -639,8 +646,7 @@ public class Support extends javax.swing.JFrame {
         }
         String supportId = String.valueOf(tbSupport.getValueAt(rowIndex, 0));
         Object[] options = {"Yes, please",
-            "No, thanks",
-            };
+            "No, thanks",};
         int choice = JOptionPane.showConfirmDialog(this,
                 "Are you sure you want to delete Ticket Id:\n"
                 + supportId,
@@ -648,9 +654,9 @@ public class Support extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
             try {
-                
-        int suId = Integer.parseInt(supportId);
-        db.deleteSupportById(suId);
+
+                int suId = Integer.parseInt(supportId);
+                db.deleteSupportById(suId);
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(this,
                         "Error adding record: " + e.getMessage(),
@@ -660,7 +666,21 @@ public class Support extends javax.swing.JFrame {
         }
         loadTickets();
     }
-    
+
+    private void jbt_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_PrintActionPerformed
+        MessageFormat header = new MessageFormat("Report Print");
+        MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+        
+        try{
+            
+            tbSupport.print(JTable.PrintMode.NORMAL, header, footer);
+            
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("Can not print %s%n", e.getMessage());
+        }
+        
+    }//GEN-LAST:event_jbt_PrintActionPerformed
+
     public void getCustomerProducts() {
         try {
             //dlgAddTicket_cbProduct.removeAllItems();
@@ -701,11 +721,11 @@ public class Support extends javax.swing.JFrame {
             for (int i = 0; i < customerName.size(); i++) {
                 jtf_CustomerName.setText(list.get(i).getCustomerName());
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     /**
@@ -756,7 +776,6 @@ public class Support extends javax.swing.JFrame {
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btEdit;
     private javax.swing.JButton btEmployees;
-    private javax.swing.JButton btPrint;
     private javax.swing.JButton btSales;
     private javax.swing.JButton btSupport;
     private javax.swing.JButton btSupport1;
@@ -777,6 +796,7 @@ public class Support extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbt_Print;
     private javax.swing.JLabel jlbl_SaleId;
     private javax.swing.JLabel jlbl_TicketId;
     private javax.swing.JTextField jtf_CustomerId;
