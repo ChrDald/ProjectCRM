@@ -84,6 +84,7 @@ public class Employees extends javax.swing.JFrame {
         btSupport1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
+        menuSales = new javax.swing.JMenu();
         menuSupport = new javax.swing.JMenu();
         menuSupport1 = new javax.swing.JMenu();
         menuSupport2 = new javax.swing.JMenu();
@@ -188,7 +189,7 @@ public class Employees extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Employees");
+        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         btAdd.setText("Add");
@@ -296,16 +297,18 @@ public class Employees extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btDelete)
                         .addGap(18, 18, 18)
-                        .addComponent(btPrint)
-                        .addGap(0, 91, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(btPrint))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         menuFile.setText("File");
         jMenuBar1.add(menuFile);
+
+        menuSales.setText("Import");
+        jMenuBar1.add(menuSales);
 
         menuSupport.setText("Export");
 
@@ -559,6 +562,7 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuLogout;
+    private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;
     private javax.swing.JMenu menuSupport1;
     private javax.swing.JMenu menuSupport2;

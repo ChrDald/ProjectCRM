@@ -53,11 +53,11 @@ public class Products extends javax.swing.JFrame {
                 model.addRow(rowData);
                 
                 // line below only applies when this method is called from the Support class
-                try {
+               /* try {
                     Support.dlgAddTicket_cbProduct.addItem(rowData[1].toString());
                 } catch (NullPointerException e) {
                     
-                }
+                } */
                 
             }
 
@@ -107,6 +107,7 @@ public class Products extends javax.swing.JFrame {
         btSupport1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
+        menuSales = new javax.swing.JMenu();
         menuSupport = new javax.swing.JMenu();
         menuSupport1 = new javax.swing.JMenu();
         menuSupport2 = new javax.swing.JMenu();
@@ -333,6 +334,9 @@ public class Products extends javax.swing.JFrame {
 
         menuFile.setText("File");
         jMenuBar1.add(menuFile);
+
+        menuSales.setText("Import");
+        jMenuBar1.add(menuSales);
 
         menuSupport.setText("Export");
 
@@ -588,6 +592,7 @@ public class Products extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuLogout;
+    private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;
     private javax.swing.JMenu menuSupport1;
     private javax.swing.JMenu menuSupport2;
