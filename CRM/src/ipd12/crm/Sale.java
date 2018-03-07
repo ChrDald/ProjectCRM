@@ -19,8 +19,6 @@ public class Sale {
     private Date saleDate;
     private Date supportEnd;
     private long productId;
-    private String productName;
-    private String customerName;
     private long customerId;
     BigDecimal salePrice;
     
@@ -55,6 +53,8 @@ public class Sale {
     public void setSupportEnd(Date supportEnd) {
         this.supportEnd = supportEnd;
     }
+
+    
     
     public long getProductId() {
         return productId;
@@ -79,24 +79,6 @@ public class Sale {
     public void setSalePrice(BigDecimal salePrice) {
         this.salePrice = salePrice;
     }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-    
-    
     
     @Override
     public String toString() {
