@@ -1,0 +1,77 @@
+Slide 1:
+
+Title: Project CRM
+subject: A basic crm software to keep track of employees, sales, and support tickets
+names: ../.
+=========================================
+Next slides (1-2)
+
+Background: One of the team members has a fair amount of experience with real crm softwares, so we decided
+		to use this experience for this project. We know what crms are for?
+
+=========================================
+Next slides (2)
+
+Solution overview:
+
+We created seperate windows for the different purposes of the software.
+A user can switch between tabs to access the different data. Depending on user permissions,
+determined by the login information, a user can add, edit, or delete data.
+
+=========================================
+Next slides (2-4)
+
+Challenges and solutions:
+
+Chris:
+1- Creating a working login system (probably not very safe but still)
+
+Solution:
+
+2- Fetching and inserting data back and forth from the database, and integrating those 2 technologies
+	so they work together (mssql datbase and java program)
+
+Solution:
+
+3- Manipulating data in various ways (ex. from database date to java string to bigdecimal, using new methods)
+Solution:
+--------------------------------
+Yasser:
+1- Fd
+
+
+=========================================
+Next slides (1-2)
+
+What we learned:
+
+Chris:
+Your problem:
+Teach your solution (describe how you solved the problem):
+
+-------------------------------------
+Yasser:
+Your problem:
+Teach your solution (describe how you solved the problem):
+
+=========================================
+Next slides (1)
+
+What we didnt have time to do:
+
+Import/Export and printing option (to print the data in the tables)
+
+=========================================
+Last Slide (1)
+
+Summary, we managed to create a basic crm software, summarise
+
+
+==================================
+==================================
+1:intro -> Chris		||	2:background -> Yasser	(use database screenshot here)
+3:overview -> Chris		||	4:Challenge 1 -> Yasser
+5:Challenge 2 -> Chris		||	6:What we learned -> Yasser
+7:What we learned -> Chris	||	8:Didnt have time -> Yasser
+9:Summary -> Chris
+
