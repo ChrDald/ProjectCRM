@@ -7,6 +7,7 @@ package ipd12.crm;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -194,7 +196,7 @@ public class Products extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Products");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         btAdd.setText("Add");
@@ -219,6 +221,11 @@ public class Products extends javax.swing.JFrame {
         });
 
         btPrint.setText("Print");
+        btPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPrintActionPerformed(evt);
+            }
+        });
 
         productTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -514,6 +521,19 @@ public class Products extends javax.swing.JFrame {
             Login.main(null);
         }
     }//GEN-LAST:event_menuLogoutMouseClicked
+
+    private void btPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintActionPerformed
+      MessageFormat header = new MessageFormat("Report Print");
+        MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+        
+        try{
+            
+            productTable.print(JTable.PrintMode.NORMAL, header, footer);
+            
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("Can not print %s%n", e.getMessage());
+        }
+    }//GEN-LAST:event_btPrintActionPerformed
 
     /**
      * @param args the command line arguments

@@ -374,6 +374,26 @@ public class Database {
         }
     }
 
+    public Product getProductById(int id) throws SQLException {
+        // FIXME: Preapred statement is required if id may contain malicious SQL injection code
+        String sql = "SELECT * FROM products WHERE id=" + id;
+
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet result = stmt.executeQuery(sql);
+            if (result.next()) {
+                long productId = (long) result.getInt("id");
+                String productName = result.getString("productName");
+                int quantity = result.getInt("quantity");
+                BigDecimal pricePerUnit = result.getBigDecimal("pricePerUnit");
+                
+                Product product = new Product(productId, productName, pricePerUnit, quantity);
+                return product;
+            } else {
+                throw new RecordNotFoundException("Not found id=" + id);
+                // return null;
+            }
+        }
+    }
     //====================Get by name...==========================
     // **method below assumes product names must be unique
     public int getProductIdByName(String productName) throws SQLException {
@@ -545,41 +565,44 @@ public class Database {
     }
 
     public void loadSalesTable(DefaultTableModel model) {
-
+        
         model.setRowCount(0);
         List<Sale> list = new ArrayList<>();
-
+           
         try (Statement stmt = conn.createStatement()) {
-            String sql = "SELECT id, employeeId, saleDate, supportEnd, productId, customerId, salePrice FROM sales";
-
+            String sql= "SELECT sales.id, employeeId, saleDate, supportEnd, products.productName,"
+                    + " customers.companyName, salePrice FROM sales"
+                    + " left join products on products.id = sales.productId"
+                    + " left join customers on customers.id = sales.customerId";
+            
             ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
+        
+            while(rs.next()) {
                 Sale sale = new Sale();
                 sale.setId((long) rs.getInt("id"));
                 sale.setEmployeeId((long) rs.getInt("employeeId"));
                 sale.setSaleDate(rs.getDate("saleDate"));   // errors here for sure
                 sale.setSupportEnd(rs.getDate("supportEnd"));
-                sale.setProductId((long) rs.getInt("productId"));
-                sale.setCustomerId((long) rs.getInt("customerId"));
+                sale.setProductName(rs.getString("productName"));
+                sale.setCustomerName(rs.getString("companyName"));
                 sale.setSalePrice(rs.getBigDecimal("salePrice"));
                 list.add(sale);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        for (int i = 0; i < list.size(); i++) {
+        
+        for (int i = 0; i < list.size(); i++){
             long id = list.get(i).getId();
             long employeeId = list.get(i).getEmployeeId();
             Date saleDate = list.get(i).getSaleDate();
             Date supportEnd = list.get(i).getSupportEnd();
-            long productId = list.get(i).getProductId();
-            long customerId = list.get(i).getCustomerId();
+            String productName = list.get(i).getProductName();
+            String customerName = list.get(i).getCustomerName();
             BigDecimal salePrice = list.get(i).getSalePrice();
-
-            Object[] data = {id, employeeId, saleDate, supportEnd, productId, customerId, salePrice};
-
+            
+            Object[] data = {id, employeeId, saleDate, supportEnd, productName, customerName, salePrice};
+            
             model.addRow(data);
         }
     }
