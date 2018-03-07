@@ -67,11 +67,6 @@ public class Login extends javax.swing.JFrame {
         });
 
         pfPassword.setText("jPasswordField1");
-        pfPassword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                pfPasswordFocusGained(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,10 +167,6 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btLoginActionPerformed
-
-    private void pfPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfPasswordFocusGained
-        pfPassword.setText("");
-    }//GEN-LAST:event_pfPasswordFocusGained
 
     /**
      * @param args the command line arguments
