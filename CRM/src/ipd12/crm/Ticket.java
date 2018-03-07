@@ -16,6 +16,12 @@ public class Ticket {
     private String description;
     private int customerId;
     private int productId;
+    private String customerName;
+    private String productName;
+    private String supportAgent;
+
+    
+    
 
     public int getId() {
         return id;
@@ -55,6 +61,48 @@ public class Ticket {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    /**
+     * @return the customerName
+     */
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    /**
+     * @param customerName the customerName to set
+     */
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    /**
+     * @return the productName
+     */
+    public String getProductName() {
+        return productName;
+    }
+
+    /**
+     * @param productName the productName to set
+     */
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    /**
+     * @return the supportAgent
+     */
+    public String getSupportAgent() {
+        return supportAgent;
+    }
+
+    /**
+     * @param supportAgent the supportAgent to set
+     */
+    public void setSupportAgent(String supportAgent) {
+        this.supportAgent = supportAgent;
     }
     
     

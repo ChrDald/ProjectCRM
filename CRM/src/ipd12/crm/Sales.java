@@ -331,6 +331,11 @@ public class Sales extends javax.swing.JFrame {
         });
 
         btDelete.setText("Delete");
+        btDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDeleteActionPerformed(evt);
+            }
+        });
 
         btPrint.setText("Print");
 
@@ -756,6 +761,10 @@ public class Sales extends javax.swing.JFrame {
             Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btEditActionPerformed
+
+    private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btDeleteActionPerformed
 
     /**
      * @param args the command line arguments

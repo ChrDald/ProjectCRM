@@ -53,11 +53,11 @@ public class Products extends javax.swing.JFrame {
                 model.addRow(rowData);
                 
                 // line below only applies when this method is called from the Support class
-                try {
+               /* try {
                     Support.dlgAddTicket_cbProduct.addItem(rowData[1].toString());
                 } catch (NullPointerException e) {
                     
-                }
+                } */
                 
             }
 
