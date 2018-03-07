@@ -29,7 +29,6 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lblFirstName = new javax.swing.JLabel();
@@ -40,11 +39,9 @@ public class Login extends javax.swing.JFrame {
         pfPassword = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
+        miExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         jLabel2.setText("Login");
 
@@ -67,11 +64,6 @@ public class Login extends javax.swing.JFrame {
         });
 
         pfPassword.setText("jPasswordField1");
-        pfPassword.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                pfPasswordFocusGained(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,12 +108,26 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btLogin)
                     .addComponent(btCancel))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         menuFile.setText("File");
+
+        miExit.setText("Exit");
+        miExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                miExitMouseClicked(evt);
+            }
+        });
+        miExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miExitActionPerformed(evt);
+            }
+        });
+        menuFile.add(miExit);
+
         jMenuBar1.add(menuFile);
 
         setJMenuBar(jMenuBar1);
@@ -173,9 +179,15 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btLoginActionPerformed
 
-    private void pfPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfPasswordFocusGained
-        pfPassword.setText("");
-    }//GEN-LAST:event_pfPasswordFocusGained
+    private void miExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miExitMouseClicked
+        
+        
+    }//GEN-LAST:event_miExitMouseClicked
+
+    private void miExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExitActionPerformed
+
+        System.exit(0);
+    }//GEN-LAST:event_miExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,13 +237,13 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btLogin;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JMenu menuFile;
+    private javax.swing.JMenuItem miExit;
     private javax.swing.JPasswordField pfPassword;
     private javax.swing.JTextField tfFirstName;
     // End of variables declaration//GEN-END:variables
