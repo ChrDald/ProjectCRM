@@ -134,11 +134,6 @@
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuSales">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Import"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="menuSupport">
           <Properties>
             <Property name="text" type="java.lang.String" value="Export"/>

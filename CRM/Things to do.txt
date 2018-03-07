@@ -12,6 +12,9 @@ for max characters and characters allowed?)
 
 ***When ADDING and EDITING in sales, 
 the correct value for SUPPORT END is not working, its showing the same value as sale date
+
+*Dont ADD CUSTOMER in SALES until everything is done. At the moment if you click add customer and then cancel the sale, the customer will
+still be added in the database.
 ======================================================
 
 
@@ -34,12 +37,14 @@ In support, when adding, description is going into customer ID column, and custo
 *In support add, show customer name for the customerId selected, and maybe agent name from id
 
 Chris:
-*Delete import in menu bar
-*In sales, change customerId, employeeId, and productId to their name 
 
+
+======
+Done:
 *in add sale, add a combo box(or something) below product name to ask for product quantity, and calculate
 total price from price per unit and quantity in the text field total sale (maybe plus tax?) 
-
-*In sales, dont allow edit customer id, product name.
+*In sales, dont allow edit or delete.
 *In sales, Support end date not working
-*Support end fix
+*Delete import in menu bar
+*Delete jlabel1 at the bottom of the windows. (Changed jlabel to the window name)
+*In sales, change customerId, employeeId, and productId to their name 

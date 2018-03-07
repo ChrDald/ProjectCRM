@@ -22,13 +22,19 @@ import javax.swing.table.DefaultTableModel;
 public class Support extends javax.swing.JFrame {
 
     Database db;
+<<<<<<< HEAD
     DefaultTableModel model = new DefaultTableModel(new String[]{"Ticket Id", "Customer Name", "Product Name", "Support Agent", "Description",}, 0);
 
+=======
+    DefaultTableModel model = new DefaultTableModel(new String[]
+    {"Ticket Id", "Agent Id", "Customer Id", "Product Id", "Description"}, 0);
+    
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
     public Support() {
         initComponents();
         db = new Database();
         loadTickets();
-
+        
         // Restrictions on users
         if (!Login.department.equals("Management")) {
             btDelete.setEnabled(false);
@@ -38,31 +44,38 @@ public class Support extends javax.swing.JFrame {
             btEdit.setEnabled(false);
         }
     }
+<<<<<<< HEAD
 
     public void loadTickets() {
 
         try {
+=======
+    public void loadTickets() {
+        
+        try {            
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
             model.setRowCount(0);
             ArrayList<Ticket> list = db.getAllTickets();
-            Object rowData[] = new Object[6];
+            Object rowData[] = new Object[5];
             for (int i = 0; i < list.size(); i++) {
                 rowData[0] = list.get(i).getId();
-                // rowData[1] = list.get(i).getCustomerId();
-                // rowData[2] = list.get(i).getProductId();
-                // rowData[3] = list.get(i).getSupportAgentId();  
-                rowData[1] = list.get(i).getCustomerName();
-                rowData[2] = list.get(i).getProductName();
-                rowData[3] = list.get(i).getSupportAgent();
+                rowData[1] = list.get(i).getSupportAgentId();
+                rowData[2] = list.get(i).getCustomerId();
+                rowData[3] = list.get(i).getProductId();
                 rowData[4] = list.get(i).getDescription();
+<<<<<<< HEAD
 
+=======
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
                 model.addRow(rowData);
-
+                
                 // line below only applies when this method is called from the Support class
-                /* try {
+                try {
                     Support.dlgAddTicket_cbProduct.addItem(rowData[1].toString());
                 } catch (NullPointerException e) {
                     
-                } */
+                }
+                
             }
 
         } catch (SQLException ex) {
@@ -73,9 +86,12 @@ public class Support extends javax.swing.JFrame {
                     "Database error",
                     JOptionPane.ERROR_MESSAGE);
         }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,24 +103,20 @@ public class Support extends javax.swing.JFrame {
 
         dlgAddTicket = new javax.swing.JDialog();
         jLabel19 = new javax.swing.JLabel();
-        jlbl_TicketId = new javax.swing.JLabel();
-        jlbl_SaleId = new javax.swing.JLabel();
+        dlgAddTicket_lbId = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        dlgAddTicket_cbProduct = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        dlgAddTicket_tfDescription = new javax.swing.JTextField();
+        dlgAddTicket_rbIsDone = new javax.swing.JRadioButton();
+        dlgAddTicket_rbIsNotDone = new javax.swing.JRadioButton();
         dlgAddTicket_btSave = new javax.swing.JButton();
         dlgAddTicket_btCancel = new javax.swing.JButton();
         dlgAddTicket_lblAgentId = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dlgAddTicket_cbCustomerId = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jtf_CustomerName = new javax.swing.JTextField();
-        jtf_ProductId = new javax.swing.JTextField();
-        jtf_ProductName = new javax.swing.JTextField();
-        jtf_CustomerId = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        dlgAddTicket_tfDescription = new javax.swing.JTextArea();
-        jtf_UserName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btAdd = new javax.swing.JButton();
@@ -124,7 +136,6 @@ public class Support extends javax.swing.JFrame {
         jbt_Print = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
-        menuSales = new javax.swing.JMenu();
         menuSupport = new javax.swing.JMenu();
         menuSupport1 = new javax.swing.JMenu();
         menuSupport2 = new javax.swing.JMenu();
@@ -133,15 +144,31 @@ public class Support extends javax.swing.JFrame {
 
         jLabel19.setText("Ticket id: ");
 
-        jlbl_TicketId.setText("...");
+        dlgAddTicket_lbId.setText("...");
 
-        jlbl_SaleId.setText("Sale Id:");
+        jLabel21.setText("Customer Id:");
 
         jLabel22.setText("Product:");
 
-        jLabel23.setText("Support Agent");
+        dlgAddTicket_cbProduct.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                dlgAddTicket_cbProductItemStateChanged(evt);
+            }
+        });
+
+        jLabel23.setText("Support Agent id:");
 
         jLabel24.setText("Description of the issue:");
+
+        dlgAddTicket_tfDescription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dlgAddTicket_tfDescriptionActionPerformed(evt);
+            }
+        });
+
+        dlgAddTicket_rbIsDone.setText("Is Done");
+
+        dlgAddTicket_rbIsNotDone.setText("Is Not Done");
 
         dlgAddTicket_btSave.setText("Save");
         dlgAddTicket_btSave.addActionListener(new java.awt.event.ActionListener() {
@@ -165,73 +192,47 @@ public class Support extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Customer");
-
-        jtf_CustomerName.setEditable(false);
-
-        jtf_ProductId.setEditable(false);
-        jtf_ProductId.setText("...");
-
-        jtf_ProductName.setEditable(false);
-
-        jtf_CustomerId.setEditable(false);
-        jtf_CustomerId.setText("...");
-
-        dlgAddTicket_tfDescription.setColumns(20);
-        dlgAddTicket_tfDescription.setRows(5);
-        jScrollPane1.setViewportView(dlgAddTicket_tfDescription);
-
         javax.swing.GroupLayout dlgAddTicketLayout = new javax.swing.GroupLayout(dlgAddTicket.getContentPane());
         dlgAddTicket.getContentPane().setLayout(dlgAddTicketLayout);
         dlgAddTicketLayout.setHorizontalGroup(
             dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddTicketLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(dlgAddTicket_btCancel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dlgAddTicket_btSave)
+                .addGap(119, 119, 119))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddTicketLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_CustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_CustomerName))
-                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
-                        .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlbl_SaleId)
-                            .addGroup(dlgAddTicketLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dlgAddTicket_lblAgentId))
-                            .addGroup(dlgAddTicketLayout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(9, 9, 9)
-                                .addComponent(jlbl_TicketId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 134, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddTicketLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(dlgAddTicket_cbCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddTicketLayout.createSequentialGroup()
-                        .addComponent(dlgAddTicket_btCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dlgAddTicket_btSave)
-                        .addGap(38, 38, 38))
-                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_UserName))
-                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
+                .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dlgAddTicketLayout.createSequentialGroup()
                         .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_ProductId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_ProductName)))
+                        .addGap(18, 18, 18)
+                        .addComponent(dlgAddTicket_cbProduct, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dlgAddTicketLayout.createSequentialGroup()
+                        .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel19)
+                            .addGroup(dlgAddTicketLayout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dlgAddTicket_lblAgentId))
+                            .addComponent(jLabel3)
+                            .addGroup(dlgAddTicketLayout.createSequentialGroup()
+                                .addComponent(dlgAddTicket_rbIsDone)
+                                .addGap(18, 18, 18)
+                                .addComponent(dlgAddTicket_rbIsNotDone)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dlgAddTicket_cbCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dlgAddTicket_lbId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addGap(88, 88, 88))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddTicketLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addComponent(jLabel24)
+                    .addComponent(dlgAddTicket_tfDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
         dlgAddTicketLayout.setVerticalGroup(
             dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,46 +240,39 @@ public class Support extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jlbl_TicketId)
+                    .addComponent(dlgAddTicket_lbId)
                     .addComponent(jLabel24))
+                .addGap(18, 18, 18)
                 .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dlgAddTicket_tfDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(dlgAddTicketLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlbl_SaleId)
+                            .addComponent(jLabel21)
                             .addComponent(dlgAddTicket_cbCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jtf_CustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtf_CustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
-                            .addComponent(jtf_ProductId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtf_ProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(dlgAddTicket_cbProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
                         .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel23)
-                            .addComponent(jtf_UserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addComponent(dlgAddTicket_lblAgentId)
+                            .addComponent(dlgAddTicket_lblAgentId))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dlgAddTicket_btCancel)
-                            .addComponent(dlgAddTicket_btSave))
-                        .addGap(37, 37, 37))
-                    .addGroup(dlgAddTicketLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                            .addComponent(dlgAddTicket_rbIsDone)
+                            .addComponent(dlgAddTicket_rbIsNotDone))))
+                .addGap(18, 18, 18)
+                .addGroup(dlgAddTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dlgAddTicket_btSave)
+                    .addComponent(dlgAddTicket_btCancel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Support");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         btAdd.setText("Add");
@@ -289,18 +283,8 @@ public class Support extends javax.swing.JFrame {
         });
 
         btEdit.setText("Edit");
-        btEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditActionPerformed(evt);
-            }
-        });
 
         btDelete.setText("Delete");
-        btDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btDeleteActionPerformed(evt);
-            }
-        });
 
         btEmployees.setText("Employees");
         btEmployees.setFocusable(false);
@@ -401,8 +385,13 @@ public class Support extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btDelete)
                         .addGap(18, 18, 18)
+<<<<<<< HEAD
                         .addComponent(jbt_Print)
                         .addContainerGap(113, Short.MAX_VALUE))
+=======
+                        .addComponent(btPrint)
+                        .addContainerGap(146, Short.MAX_VALUE))
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
@@ -410,9 +399,6 @@ public class Support extends javax.swing.JFrame {
 
         menuFile.setText("File");
         jMenuBar1.add(menuFile);
-
-        menuSales.setText("Import");
-        jMenuBar1.add(menuSales);
 
         menuSupport.setText("Export");
 
@@ -441,20 +427,28 @@ public class Support extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void dlgAddTicket_tfDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddTicket_tfDescriptionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dlgAddTicket_tfDescriptionActionPerformed
+
+<<<<<<< HEAD
+=======
     private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
 
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
         try {
-            ArrayList<Sale> customers = db.getAllSales();
+            ArrayList<Customer> customers = db.getAllCustomers();
             ArrayList<Long> customerIds = new ArrayList<>();
 
             for (int i = 0; i < customers.size(); i++) {
                 customerIds.add(customers.get(i).getId());
-            }
+            }          
             System.err.println(customerIds); // test line
             // add the IDs to the combo box
             for (int i = 0; i < customerIds.size(); i++) {
                 dlgAddTicket_cbCustomerId.addItem(customerIds.get(i).toString());
             }
+<<<<<<< HEAD
 
             getCustomerProducts();
 
@@ -462,10 +456,19 @@ public class Support extends javax.swing.JFrame {
             Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+=======
+           
+            getCustomerProducts();
+        } catch (SQLException ex) {
+            Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
         dlgAddTicket.dispose();
         dlgAddTicket.pack();
 
         dlgAddTicket_lblAgentId.setText(Login.userId + "");
+<<<<<<< HEAD
 
         try {
             String u = db.getuserNameById(Login.userId);
@@ -474,8 +477,9 @@ public class Support extends javax.swing.JFrame {
             Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+=======
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
         dlgAddTicket.setVisible(true);
-        dlgAddTicket_lblAgentId.setVisible(false);
     }//GEN-LAST:event_btAddActionPerformed
 
     private void dlgAddTicket_btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddTicket_btCancelActionPerformed
@@ -505,6 +509,7 @@ public class Support extends javax.swing.JFrame {
             // ticket.setId **When adding, the id doesnt exist yet**
             ticket.setSupportAgentId(Integer.valueOf(dlgAddTicket_lblAgentId.getText().trim()));
             ticket.setDescription(dlgAddTicket_tfDescription.getText());
+<<<<<<< HEAD
             ticket.setCustomerId(Integer.parseInt(jtf_CustomerId.getText()));
             ticket.setProductId(Integer.parseInt(jtf_ProductId.getText()));
 
@@ -515,12 +520,40 @@ public class Support extends javax.swing.JFrame {
             } else {  // for editing
                 ticket.setId(Integer.parseInt(jlbl_TicketId.getText()));
                 db.updateSupport(ticket);
+=======
+            ticket.setCustomerId(Integer.parseInt(dlgAddTicket_cbCustomerId.getSelectedItem().toString()));
+ 
+            // get product id
+            switch (dlgAddTicket_cbProduct.getSelectedItem().toString()) {
+                case "sw":
+                    ticket.setId(1);
+                    break;
+                case "sw2960":
+                    ticket.setId(2);
+                    break;
+                case "UTMCisco":
+                    ticket.setId(4);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(this,
+                            "Invalid Product Selected",
+                            "Internal Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    break;
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
             }
+            System.err.println("Ticket id: " + ticket.getId());
+            db.addTicket(ticket);
+
         } catch (SQLException ex) {
             System.err.println("SQL Exception");
             Logger.getLogger(Employees.class.getName()).log(Level.SEVERE, null, ex);
+<<<<<<< HEAD
         }
 
+=======
+        } 
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
         dlgAddTicket.setVisible(false);
         loadTickets();
     }//GEN-LAST:event_dlgAddTicket_btSaveActionPerformed
@@ -530,6 +563,16 @@ public class Support extends javax.swing.JFrame {
         Products.main(null);
     }//GEN-LAST:event_btSupport1ActionPerformed
 
+    private void dlgAddTicket_cbProductItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dlgAddTicket_cbProductItemStateChanged
+
+        
+    }//GEN-LAST:event_dlgAddTicket_cbProductItemStateChanged
+
+    private void dlgAddTicket_cbCustomerIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dlgAddTicket_cbCustomerIdItemStateChanged
+       
+        getCustomerProducts();
+    }//GEN-LAST:event_dlgAddTicket_cbCustomerIdItemStateChanged
+
     private void btEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEmployeesActionPerformed
         this.dispose();
         Employees.main(null);
@@ -537,14 +580,14 @@ public class Support extends javax.swing.JFrame {
 
     private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseClicked
         int decision = JOptionPane.showOptionDialog(
-                this,
-                "Are you sure you want to logout?",
-                "Alert", // message icon
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE,
-                null,
-                null,
-                null
+            this,
+            "Are you sure you want to logout?",
+            "Alert",    // message icon
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            null,
+            null
         );
 
         if (decision == JOptionPane.YES_OPTION) {
@@ -553,6 +596,7 @@ public class Support extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuLogoutMouseClicked
 
+<<<<<<< HEAD
     private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
         int rowIndex = tbSupport.getSelectedRow();
 
@@ -681,12 +725,15 @@ public class Support extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbt_PrintActionPerformed
 
+=======
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
     public void getCustomerProducts() {
         try {
-            //dlgAddTicket_cbProduct.removeAllItems();
-
+            dlgAddTicket_cbProduct.removeAllItems();
+            
             // get all products that the selected customer has
             int selectedCustomerId = Integer.parseInt(dlgAddTicket_cbCustomerId.getSelectedItem().toString());
+<<<<<<< HEAD
             ArrayList<Ticket> list = db.getSalesByID(selectedCustomerId);
 
             // Set Product ID
@@ -726,8 +773,19 @@ public class Support extends javax.swing.JFrame {
             Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+=======
+            ArrayList<String> customerProducts = db.getCustomerProductsById(selectedCustomerId);
+            
+            // add the products to the list
+            for (int i = 0; i < customerProducts.size(); i++) {
+                dlgAddTicket_cbProduct.addItem(customerProducts.get(i));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Support.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
     }
-
     /**
      * @param args the command line arguments
      */
@@ -783,19 +841,23 @@ public class Support extends javax.swing.JFrame {
     private javax.swing.JButton dlgAddTicket_btCancel;
     private javax.swing.JButton dlgAddTicket_btSave;
     private javax.swing.JComboBox<String> dlgAddTicket_cbCustomerId;
+    public static javax.swing.JComboBox<String> dlgAddTicket_cbProduct;
+    private javax.swing.JLabel dlgAddTicket_lbId;
     private javax.swing.JLabel dlgAddTicket_lblAgentId;
-    private javax.swing.JTextArea dlgAddTicket_tfDescription;
+    private javax.swing.JRadioButton dlgAddTicket_rbIsDone;
+    private javax.swing.JRadioButton dlgAddTicket_rbIsNotDone;
+    private javax.swing.JTextField dlgAddTicket_tfDescription;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+<<<<<<< HEAD
     private javax.swing.JButton jbt_Print;
     private javax.swing.JLabel jlbl_SaleId;
     private javax.swing.JLabel jlbl_TicketId;
@@ -804,9 +866,10 @@ public class Support extends javax.swing.JFrame {
     private javax.swing.JTextField jtf_ProductId;
     private javax.swing.JTextField jtf_ProductName;
     private javax.swing.JTextField jtf_UserName;
+=======
+>>>>>>> fa71cd4bcc047fa3650b857ba5bf329694ae0a95
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuLogout;
-    private javax.swing.JMenu menuSales;
     private javax.swing.JMenu menuSupport;
     private javax.swing.JMenu menuSupport1;
     private javax.swing.JMenu menuSupport2;
