@@ -98,6 +98,7 @@ public class Customers extends javax.swing.JFrame {
         btSupport1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
+        menuSales1 = new javax.swing.JMenu();
         menuSupport1 = new javax.swing.JMenu();
         menuSupport2 = new javax.swing.JMenu();
         menuSupport3 = new javax.swing.JMenu();
@@ -188,7 +189,7 @@ public class Customers extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Customers");
+        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         btAdd.setText("Add");
@@ -330,6 +331,9 @@ public class Customers extends javax.swing.JFrame {
 
         menuFile.setText("File");
         jMenuBar1.add(menuFile);
+
+        menuSales1.setText("Import");
+        jMenuBar1.add(menuSales1);
 
         menuSupport1.setText("Export");
 
@@ -582,6 +586,7 @@ public class Customers extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuLogout;
+    private javax.swing.JMenu menuSales1;
     private javax.swing.JMenu menuSupport1;
     private javax.swing.JMenu menuSupport2;
     private javax.swing.JMenu menuSupport3;

@@ -12,7 +12,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,19 +27,20 @@ public class Sales extends javax.swing.JFrame {
     
     Database db;
     DefaultTableModel model = new DefaultTableModel(new String[]
-    {"Sale Id", "Employee Id", "Sale Date", "Support End", "Product Name", "Customer Name", "Sale Price"}, 0);
+    {"Sale Id", "Employee Id", "Sale Date", "Support End", "Product Id", "Customer Id", "Sale Price"}, 0);
     
     public Sales() {
         db = new Database();
         db.loadSalesTable(model);
         initComponents();
-        btEdit.setEnabled(false);   // sales should not be edited once finalized
-        btDelete.setEnabled(false); // nor should they be deleted
         
         // Restrictions on users
+        if (!Login.department.equals("Management")) {
+            btDelete.setEnabled(false);
+        }
         if (!Login.department.equals("Sales") && !Login.department.equals("Management")) {
             btAdd.setEnabled(false);
-            
+            btEdit.setEnabled(false);
         }
     }
 
@@ -71,10 +71,6 @@ public class Sales extends javax.swing.JFrame {
         dlgAddSales_cbCustomerId = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         dlgAddSales_lblSaleId = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        dlgAddSales_spQuantity = new javax.swing.JSpinner();
-        dlgAddSales_lblCustName = new javax.swing.JLabel();
-        dlgAddSales_lblCustNameValue = new javax.swing.JLabel();
         dlgAddCustomer = new javax.swing.JDialog();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -105,6 +101,7 @@ public class Sales extends javax.swing.JFrame {
         btSupport1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
+        menuSales1 = new javax.swing.JMenu();
         menuSupport1 = new javax.swing.JMenu();
         menuSupport2 = new javax.swing.JMenu();
         menuSupport3 = new javax.swing.JMenu();
@@ -116,17 +113,6 @@ public class Sales extends javax.swing.JFrame {
         jLabel3.setText("Customer Id:");
 
         jLabel4.setText("Product Name:");
-
-        dlgAddSales_cbProduct.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                dlgAddSales_cbProductItemStateChanged(evt);
-            }
-        });
-        dlgAddSales_cbProduct.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                dlgAddSales_cbProductPropertyChange(evt);
-            }
-        });
 
         jLabel5.setText("Support end Date:");
 
@@ -150,8 +136,6 @@ public class Sales extends javax.swing.JFrame {
 
         jLabel6.setText("Total Sale Price:");
 
-        dlgAddSales_tfTotalPrice.setEditable(false);
-
         dlgAddSales_lblEmployeeId.setText("...");
 
         dlgAddSales_btAddCustomer.setText("Add new customer");
@@ -161,27 +145,9 @@ public class Sales extends javax.swing.JFrame {
             }
         });
 
-        dlgAddSales_cbCustomerId.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                dlgAddSales_cbCustomerIdItemStateChanged(evt);
-            }
-        });
-
         jLabel11.setText("Sale Id:");
 
         dlgAddSales_lblSaleId.setText("...");
-
-        jLabel12.setText("Product Quantity:");
-
-        dlgAddSales_spQuantity.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                dlgAddSales_spQuantityStateChanged(evt);
-            }
-        });
-
-        dlgAddSales_lblCustName.setText("Customer Name:");
-
-        dlgAddSales_lblCustNameValue.setText("Placeholder");
 
         javax.swing.GroupLayout dlgAddSalesLayout = new javax.swing.GroupLayout(dlgAddSales.getContentPane());
         dlgAddSales.getContentPane().setLayout(dlgAddSalesLayout);
@@ -194,14 +160,21 @@ public class Sales extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addGap(34, 34, 34)
                         .addComponent(dlgAddSales_tfTotalPrice))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddSalesLayout.createSequentialGroup()
+                    .addGroup(dlgAddSalesLayout.createSequentialGroup()
                         .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
                         .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dlgAddSales_lblSaleId, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dlgAddSales_lblEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddSalesLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addComponent(dlgAddSales_btAddCustomer))
+                            .addGroup(dlgAddSalesLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dlgAddSales_cbCustomerId, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dlgAddSales_cbProduct, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dlgAddSales_cbSupportDate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(dlgAddSalesLayout.createSequentialGroup()
                         .addComponent(dlgAddSales_btCancel)
                         .addGap(18, 18, 18)
@@ -209,29 +182,20 @@ public class Sales extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(dlgAddSales_btPrint)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(dlgAddSalesLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddSalesLayout.createSequentialGroup()
+                        .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dlgAddSales_spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dlgAddSalesLayout.createSequentialGroup()
                         .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(dlgAddSales_lblCustName))
-                        .addGap(22, 22, 22)
-                        .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dlgAddSales_btAddCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(dlgAddSales_cbCustomerId, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dlgAddSales_cbProduct, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dlgAddSales_cbSupportDate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dlgAddSales_lblCustNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(dlgAddSales_lblSaleId, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dlgAddSales_lblEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         dlgAddSalesLayout.setVerticalGroup(
             dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgAddSalesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(dlgAddSales_lblSaleId, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -239,24 +203,16 @@ public class Sales extends javax.swing.JFrame {
                 .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(dlgAddSales_lblEmployeeId))
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(dlgAddSales_cbCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dlgAddSales_lblCustNameValue)
-                    .addComponent(dlgAddSales_lblCustName))
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dlgAddSales_btAddCustomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(dlgAddSales_cbProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(dlgAddSales_spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(dlgAddSalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -357,7 +313,7 @@ public class Sales extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Sales");
+        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         btAdd.setText("Add");
@@ -439,7 +395,7 @@ public class Sales extends javax.swing.JFrame {
                         .addComponent(btSupport, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(btSupport1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 299, Short.MAX_VALUE))
+                        .addGap(0, 194, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -478,6 +434,9 @@ public class Sales extends javax.swing.JFrame {
 
         menuFile.setText("File");
         jMenuBar1.add(menuFile);
+
+        menuSales1.setText("Import");
+        jMenuBar1.add(menuSales1);
 
         menuSupport1.setText("Export");
 
@@ -556,21 +515,11 @@ public class Sales extends javax.swing.JFrame {
                 dlgAddSales_cbCustomerId.addItem(String.valueOf(customerIds.get(i)));
             }
             
-            // get the cutomer name based on the id selected
-            dlgAddSales_lblCustNameValue.setText
-                (db.getCustomerById(Integer.parseInt(dlgAddSales_cbCustomerId.getSelectedItem().toString())).getCompanyName());
-            
-            // calculate the current sale price
-            int productId = db.getProductIdByName(dlgAddSales_cbProduct.getSelectedItem().toString());
-            Product soldProduct = db.getProductById((int) productId);
-            BigDecimal productPricePerUnit = soldProduct.getPricePerUnit();
-            BigDecimal productQuantity = new BigDecimal((int) dlgAddSales_spQuantity.getValue());
-            dlgAddSales_tfTotalPrice.setText(String.valueOf(productPricePerUnit.multiply(productQuantity)));
             
             dlgAddSales_cbCustomerId.setSelectedIndex(0);
             dlgAddSales_cbProduct.setSelectedIndex(0);
             dlgAddSales_cbSupportDate.setSelectedIndex(0);
-            //dlgAddSales_tfTotalPrice.setText("");
+            dlgAddSales_tfTotalPrice.setText("");
             dlgAddSales.pack();
             dlgAddSales.setVisible(true);
         } catch (SQLException ex) {
@@ -587,55 +536,42 @@ public class Sales extends javax.swing.JFrame {
         
         
         Sale sale = new Sale();
-        // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        sale.setEmployeeId(Long.parseLong(dlgAddSales_lblEmployeeId.getText()));
-
-        Date saleDate = new Date();
-        sale.setSaleDate(saleDate);
-        Calendar c = Calendar.getInstance();    // using a calendar to add years to date
-        c.setTime(saleDate);
-        Date endDate;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         
-        switch (dlgAddSales_cbSupportDate.getSelectedItem().toString()) {
-            case "1 Year":               
-                c.add(Calendar.YEAR, 1);
+        Date saleDate = new Date();
+        Date endDate = new Date();
+        
+        sale.setEmployeeId(Long.parseLong(dlgAddSales_lblEmployeeId.getText()));
+        sale.setSaleDate(saleDate);
+        
+        
+        switch (dlgAddSales_cbSupportDate.getSelectedItem().toString().trim()) {
+            case "1 Year":
+                endDate.toInstant().plus( Duration.ofDays(365 ) );
                 break;
             case "2 Years":
-                c.add(Calendar.YEAR, 2);
+                endDate.toInstant().plus( Duration.ofDays(730 ) );
                 break;
             case "3 Years":
-                c.add(Calendar.YEAR, 3);
+                endDate.toInstant().plus( Duration.ofDays(1095 ) );
                 break;
             default:
                 System.err.println("Invalid support end date selected");
                 break;
         }
-        endDate = c.getTime();
         sale.setSupportEnd(endDate);
-        System.err.println("Support end date: " + endDate); // test line
-        
         sale.setCustomerId(Long.parseLong(dlgAddSales_cbCustomerId.getSelectedItem().toString().trim()));
         String productName = dlgAddSales_cbProduct.getSelectedItem().toString().trim();
         try {
-            
             sale.setProductId(db.getProductIdByName(productName));
-            int productId = (int) sale.getProductId();
-            Product soldProduct = db.getProductById(productId);
-            BigDecimal productPricePerUnit = soldProduct.getPricePerUnit();
-            BigDecimal productQuantity = BigDecimal.valueOf(soldProduct.getQuantity());
-            // Test lines
-            System.out.println("Price per unit: " + productPricePerUnit);
-            System.out.println("Quantity: " + productQuantity);
-            BigDecimal finalPrice = productPricePerUnit.multiply(productQuantity);
-            System.out.println("Final Price: " + finalPrice);
-            dlgAddSales_tfTotalPrice.setText(String.valueOf(finalPrice));
-            sale.setSalePrice(finalPrice);
-            
+            BigDecimal salePrice = new BigDecimal(dlgAddSales_tfTotalPrice.getText());
+            sale.setSalePrice(salePrice);
             if (dlgAddSales_lblSaleId.getText().equals("...")) { // for adding
                 db.addSale(sale); 
             }
             else {  // for editing
                 sale.setId(Long.valueOf(dlgAddSales_lblSaleId.getText()));
+                System.out.println(sale.toString());
                 db.updateSale(sale);
             }
             dlgAddSales.setVisible(false);
@@ -710,8 +646,6 @@ public class Sales extends javax.swing.JFrame {
 
     private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
         
-        // On second thought, you cant edit an already made sale.
-        /*
         int rowIndex = tbSales.getSelectedRow();
         
         if (rowIndex == -1) {
@@ -773,6 +707,7 @@ public class Sales extends javax.swing.JFrame {
                     break;
                 }
             }
+            System.err.println("Product Name: " + productName);
             // set the selected combo box item to the correct product
             for (int i = 0; i < dlgAddSales_cbProduct.getModel().getSize(); i++) {
                 System.err.println("Product name in for loop: " + productName);
@@ -820,62 +755,7 @@ public class Sales extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
     }//GEN-LAST:event_btEditActionPerformed
-
-    private void dlgAddSales_cbProductPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dlgAddSales_cbProductPropertyChange
-        
-    }//GEN-LAST:event_dlgAddSales_cbProductPropertyChange
-
-    private void dlgAddSales_cbProductItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dlgAddSales_cbProductItemStateChanged
-        
-        try {
-            if (dlgAddSales_cbProduct.getSelectedIndex() == -1) {
-                return;
-            }
-            // when the product name is changed, recalculate the total price
-            // calculate the current sale price
-            int productId = db.getProductIdByName(dlgAddSales_cbProduct.getSelectedItem().toString());
-            Product soldProduct = db.getProductById((int) productId);
-            BigDecimal productPricePerUnit = soldProduct.getPricePerUnit();
-            BigDecimal productQuantity = new BigDecimal((int) dlgAddSales_spQuantity.getValue());
-            dlgAddSales_tfTotalPrice.setText(String.valueOf(productPricePerUnit.multiply(productQuantity)));
-            // test line
-        } catch (SQLException ex) {
-            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_dlgAddSales_cbProductItemStateChanged
-
-    private void dlgAddSales_spQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_dlgAddSales_spQuantityStateChanged
-        
-        try {
-            // when the slider value is changed, recalculate the total price
-            // calculate the current sale price
-            int productId = db.getProductIdByName(dlgAddSales_cbProduct.getSelectedItem().toString());
-            Product soldProduct = db.getProductById((int) productId);
-            BigDecimal productPricePerUnit = soldProduct.getPricePerUnit();
-            BigDecimal productQuantity = new BigDecimal((int) dlgAddSales_spQuantity.getValue());
-            dlgAddSales_tfTotalPrice.setText(String.valueOf(productPricePerUnit.multiply(productQuantity)));
-            // test line
-        } catch (SQLException ex) {
-            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_dlgAddSales_spQuantityStateChanged
-
-    private void dlgAddSales_cbCustomerIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dlgAddSales_cbCustomerIdItemStateChanged
-        
-        try {
-            if (dlgAddSales_cbCustomerId.getSelectedIndex() == -1) {
-                return;
-            }
-            // get the cutomer name when the id selected changes
-            dlgAddSales_lblCustNameValue.setText
-                        (db.getCustomerById(
-                                Integer.parseInt(dlgAddSales_cbCustomerId.getSelectedItem().toString())).getCompanyName());
-        } catch (SQLException ex) {
-            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_dlgAddSales_cbCustomerIdItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -940,16 +820,12 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> dlgAddSales_cbCustomerId;
     private javax.swing.JComboBox<String> dlgAddSales_cbProduct;
     private javax.swing.JComboBox<String> dlgAddSales_cbSupportDate;
-    private javax.swing.JLabel dlgAddSales_lblCustName;
-    private javax.swing.JLabel dlgAddSales_lblCustNameValue;
     private javax.swing.JLabel dlgAddSales_lblEmployeeId;
     private javax.swing.JLabel dlgAddSales_lblSaleId;
-    private javax.swing.JSpinner dlgAddSales_spQuantity;
     private javax.swing.JTextField dlgAddSales_tfTotalPrice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -963,6 +839,7 @@ public class Sales extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuLogout;
+    private javax.swing.JMenu menuSales1;
     private javax.swing.JMenu menuSupport1;
     private javax.swing.JMenu menuSupport2;
     private javax.swing.JMenu menuSupport3;
