@@ -107,8 +107,6 @@ public class Customers extends javax.swing.JFrame {
         menuSupport4 = new javax.swing.JMenu();
         menuLogout = new javax.swing.JMenu();
 
-        dlgAddCustomer.setAlwaysOnTop(true);
-
         jLabel2.setText("Id");
 
         jLabel3.setText("Company Name");
@@ -193,7 +191,7 @@ public class Customers extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Customers");
+        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, java.awt.BorderLayout.PAGE_END);
 
         btAdd.setText("Add");
@@ -364,7 +362,6 @@ public class Customers extends javax.swing.JFrame {
         setJMenuBar(jMenuBar1);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void dlgAddCustomer_btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dlgAddCustomer_btSaveActionPerformed
